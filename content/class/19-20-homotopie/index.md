@@ -22,15 +22,17 @@ urls:
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faExclamationTriangle } from "@fortawesome/free-solid-svg-icons";
 
-<div class="bg-red-200 text-red-800 dark:bg-red-800 dark:text-red-200 py-1 px-2 rounded-sm">
-This is the page for the 2019&ndash;2020 lecture, <a href="/class/21-22-homotopie">see here for the 2021&ndash;2022 page</a>.
-</div>
-
 ## Introduction
 
 The goal of this course is to give an introduction to modern homotopy theory, its tools, and its applications, as well as to introduce the notion of $\infty$-category. We will essentially follow two examples: the founding example of topological spaces and the example of chain complexes (in the sense of homological algebra and algebraic topology). We will present the modern axiomatic treatement of homotopy theory -- Quillen's model categories -- and we will explain the equivalence between topological spaces and simplicial sets. We will illustrate these methods through the example of rational homotopy theory, showing how the multiplicative structure of cochains -- singular or de Rham -- encode topological spaces up to rational homotopy.
 
-### Prerequisites.
+<div class="bg-red-200 text-red-800 dark:bg-red-800 dark:text-red-100 py-1 px-2 rounded-sm">
+  <FontAwesomeIcon icon={faExclamationTriangle} title="Warning!" />
+  &nbsp;
+  This is the page for the 2019&ndash;2020 lecture. <a href="/class/21-22-homotopie">See here for the 2021&ndash;2022 page</a>.
+</div>
+
+### Prerequisites
 
 It is advised to have already taken a class on algebraic topology as well as an introduction to homological algebra.
 
@@ -76,10 +78,10 @@ It covered chapters 1 and 2.
 | Thursday January 23rd | Section 1.6: Cofibrantly generated model categories, small object argument. |
 | Tuesday January 28th | Section 1.7: Quillen adjunctions and equivalences. Section 1.8: Homotopy (co)limits. |
 | Thursday January 30th | Sections 2.1--2.3: Introduction to simplicial sets. |
-| Monday February 3rd (<FontAwesomeIcon icon={faExclamationTriangle} className="mr-1" title="Warning!" />16:15--18:15) | Sections 2.4--2.5: Model structure on simplicial sets, beginning of the equivalence with topological spaces. |
+| Monday February 3rd (<FontAwesomeIcon icon={faExclamationTriangle} title="Warning!" />&nbsp;16:15--18:15) | Sections 2.4--2.5: Model structure on simplicial sets, beginning of the equivalence with topological spaces. |
 | Tuesday February 4th | Sections 2.5--2.6: End of the equivalence with topological spaces. Dold--Kan correspondence. Section 3.1: Localization with respect to rational equivalences. |
 | ~~Thursday February 6th~~ | Moved to February 3rd. |
-| Tuesday February 11th (<FontAwesomeIcon icon={faExclamationTriangle} className="mr-1" title="Warning!" />room 2017) | Sections 3.2--3.3: Model structure on CDGAs, Sullivan theory, comparison with simplicial sets up to rational equivalence. |
+| Tuesday February 11th (<FontAwesomeIcon icon={faExclamationTriangle} title="Warning!" />&nbsp;room 2017) | Sections 3.2--3.3: Model structure on CDGAs, Sullivan theory, comparison with simplicial sets up to rational equivalence. |
 | Thursday February 13th | Chapter 3: Some applications of rational homotopy theory. Chapter 4: Very bried introduction to $\infty$-categories. |
 
 ## Bibliography

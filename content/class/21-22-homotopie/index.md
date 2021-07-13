@@ -21,12 +21,12 @@ We will be particularly interested in two examples: chain complexes (see the pre
 We will present Quillen's model categories, and we will explain the equivalence between topological spaces and simplicial sets.
 We will illustrate these methods with rational homotopy theory by showing that multiplicative structures of cochains encodes rational homotopy types of topological spaces.
 
-### Prerequisites.
+### Prerequisites
 
 It is recommended to have taken the courses [_Homology_ (Emmanuel Wagner)](https://moodle.u-paris.fr/course/view.php?id=11052) and [_Homotopy I_ (Bruno Vallette)](https://www.math.univ-paris13.fr/~vallette/Course-Master%20II-2020.html).
 It will be useful to have a certain familiarity with categorical language and with basic notions of algebraic topology and homological algebra.
 
-### Plan of the course.
+### Plan of the course
 
 1. Model categories.
 2. Chain complexes.

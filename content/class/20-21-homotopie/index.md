@@ -25,10 +25,8 @@ urls:
 ---
 
 import HomotopyCard from "./HomotopyCard.tsx";
-
-<div class="bg-red-200 text-red-800 dark:bg-red-800 dark:text-red-200 py-1 px-2 rounded-sm">
-This is the page for the 2020&ndash;2021 lecture, <a href="/class/21-22-homotopie">see here for the 2021&ndash;2022 page</a>.
-</div>
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faExclamationTriangle } from "@fortawesome/free-solid-svg-icons";
 
 ## Introduction
 
@@ -37,19 +35,25 @@ We will be particularly interested in two examples: chain complexes (see the pre
 We will present Quillen's model categories, and we will explain the equivalence between topological spaces and simplicial sets.
 We will illustrate these methods with rational homotopy theory by showing that multiplicative structures of cochains encodes rational homotopy types of topological spaces.
 
-### Prerequisites.
+<div class="bg-red-200 text-red-800 dark:bg-red-800 dark:text-red-100 py-1 px-2 rounded-sm">
+  <FontAwesomeIcon icon={faExclamationTriangle} title="Warning!" />
+  &nbsp;
+  This is the page for the 2020&ndash;2021 lecture. <a href="/class/21-22-homotopie">See here for the 2021&ndash;2022 page</a>.
+</div>
+
+### Prerequisites
 
 It is recommended to have taken the courses [_Homology_ (Emmanuel Wagner)](https://moodle.u-paris.fr/course/view.php?id=11052) and [_Homotopy I_ (Bruno Vallette)](https://www.math.univ-paris13.fr/~vallette/Course-Master%20II-2020.html).
 It will be useful to have a certain familiarity with categorical language and with basic notions of algebraic topology and homological algebra.
 
-### Plan of the course.
+### Plan of the course
 
 1. Model categories.
 2. Chain complexes.
 3. Simplicial sets and topological spaces.
 4. Rational homotopy theory.
 
-### After this course.
+### After this course
 
 - The course [_Higher categories_ (Muriel Livernet)](https://webusers.imj-prg.fr/~muriel.livernet/enseignement/index.html) is a natural continuation of this course and a conclusion to the "homotopy" sequence of the master's degree (Homology -- Homotopy I/II -- Higher categories).
 - I gave in 2020 a [Peccot lecture entitled _Real homotopy of configuration spaces_](/class/peccot) at the Collège de France which gave concrete applications of the methods presented here.
@@ -62,15 +66,13 @@ All lectures were online (via Zoom).
 The sessions were recorded and [they are now available on YouTube](https://www.youtube.com/playlist?list=PLTt5PyNwzdilR4GnUNxvTBGlKzma9imTf).
 
 The exam was on Friday, March 5th, 14:00--17:00, in room 207C of the [Halle aux Farines](../19-20-homotopie/HAF.pdf).
-It was be an open-book exam: students had access to printed and handwritten lecture notes.
+It was an open-book exam: students had access to printed and handwritten lecture notes.
 Electronic devices were forbidden.
 
-The retake exam (*rattrapage*) will be on June 15<sup>th</sup>.
-It will consist in oral exams lasting around 30 minutes total per student.
-In-person sessions will be in the morning between 9AM and 1PM, in the Sophie Germain building, room 1014.
-Online sessions for students that cannot be physically present in Paris at that time will be in the afternoon.
-Individual students have been contacted for the organization.
-**If you have not been contacted, please let me know as soon as possible!**
+The retake exam (*rattrapage*) was be on June 15<sup>th</sup>.
+It consisted in oral exams lasting around 30 minutes total per student.
+In-person sessions were in the morning between 9AM and 1PM, in the Sophie Germain building, room 1014.
+Online sessions for students that cannot be physically present in Paris at that time were in the afternoon.
 
 ## Lectures
 
