@@ -192,6 +192,15 @@ section:
           c: Université de Paris
       - subtitle: Autre ! Other
       - entry:
+          a: 06/2021--
+          b: Contribution to the development of the project `ical-ufr` ! Contribution au développement du projet `ical-ufr`
+          c: Université de Paris
+          d: UFR de Mathématiques
+          f: |
+            Affichage des emplois du temps de licence et master dans un format lisible par les humains. Je me suis principalement occupé de la partie visible par les utilisateurs, développée en JavaScript/React. <https://gitlab.math.univ-paris-diderot.fr/molin/ical-ufr>
+            !
+            Display of the schedules of Bachelors and Masters in a format readable by humans. I mainly took care of the part visible by users, written in JavaScript/React. <https://gitlab.math.univ-paris-diderot.fr/molin/ical-ufr>
+      - entry:
           a: en cours ! ongoing
           b: Évaluations d'articles (rapports et/ou opinions) ! Peer reviews (reports and/or opinions)
           f: |

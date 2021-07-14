@@ -1,7 +1,7 @@
 ---
 # ⚠ Automatically generated file ⚠
 title: Curriculum Vitæ
-lastMod: 2021-06-17
+lastMod: 2021-07-09
 urls:
   customFile:
   - label: PDF version (English)
@@ -279,6 +279,15 @@ Fall 2013: Research internship in algebraic topology, Massachusetts Institute of
 ### Other
 
 
+
+
+
+
+
+<div class="sm:flex my-1">
+<div class="sm:w-1/6 font-semibold">June 2021–</div>
+<div class="sm:w-5/6"><span class="font-bold">Contribution au développement du projet <code>ical-ufr</code></span>, <span class="italic">Université de Paris</span>, UFR de Mathématiques.<br/>Display of the schedules of Bachelors and Masters in a format readable by humans. I mainly took care of the part visible by users, written in JavaScript/React. <a href="https://gitlab.math.univ-paris-diderot.fr/molin/ical-ufr" class="uri">https://gitlab.math.univ-paris-diderot.fr/molin/ical-ufr</a></div>
+</div>
 
 
 
