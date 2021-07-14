@@ -13,6 +13,8 @@ urls:
   custom:
     - label: M2 Fundamental mathematics
       url: https://master-math-fonda.imj-prg.fr/
+    - label: Discord
+      url: https://discord.com/channels/772392315159314472/772392315159314475
   customFile:
     - label: Solved homework
       file: devoir.pdf
