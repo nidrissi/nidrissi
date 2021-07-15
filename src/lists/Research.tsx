@@ -11,20 +11,20 @@ const sections = [
   { key: "publication", title: "Publications" },
   { key: "preprint", title: "Preprints" },
   { key: "thesis", title: "Theses" },
-]
+];
 
-type ResearchListProps = {
+interface ResearchListProps {
   data: {
     allMdx: {
       nodes: {
         slug: string;
         frontmatter: Frontmatter;
       }[];
-    }
-  }
+    };
+  };
 };
 
-const ResearchList: React.FC<ResearchListProps> = ({ data }) => {
+export default function ResearchList({ data }: ResearchListProps) {
   const { allMdx: { nodes } } = data;
 
   return (
@@ -55,7 +55,6 @@ const ResearchList: React.FC<ResearchListProps> = ({ data }) => {
     </Layout>
   );
 }
-export default ResearchList;
 
 export const query = graphql`
 query {

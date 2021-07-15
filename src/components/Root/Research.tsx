@@ -4,7 +4,7 @@ import Mini from "../Mini";
 import SeeMore from "./SeeMore";
 import { Frontmatter } from "../meta";
 
-type RootResearchQuery = {
+interface RootResearchQuery {
   allMdx: {
     nodes: {
       slug: string;
@@ -13,7 +13,7 @@ type RootResearchQuery = {
   };
 };
 
-const Research: React.FC<{}> = () => {
+export default function Research() {
   const { allMdx: { nodes } }: RootResearchQuery = useStaticQuery(graphql`
 query RootResearchQuery {
   allMdx(
@@ -51,5 +51,4 @@ query RootResearchQuery {
       <SeeMore to="/research">research</SeeMore>
     </section>
   );
-};
-export default Research;
+}

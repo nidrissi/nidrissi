@@ -1,4 +1,4 @@
-import React from "react";
+import React, { SyntheticEvent } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCheck,
@@ -6,12 +6,12 @@ import {
   faSave,
 } from "@fortawesome/free-solid-svg-icons";
 
-type CopyAndTotalProps = {
+interface CopyAndTotalProps {
   totalText: JSX.Element;
   outerRef: React.RefObject<HTMLDivElement>;
 };
-const CopyAndTotal: React.FC<CopyAndTotalProps> = ({ totalText, outerRef }) => {
-  const getResult = (): string => {
+export default function CopyAndTotal({ totalText, outerRef }: CopyAndTotalProps) {
+  function getResult(): string {
     if (!outerRef.current) {
       return "";
     }
@@ -19,11 +19,13 @@ const CopyAndTotal: React.FC<CopyAndTotalProps> = ({ totalText, outerRef }) => {
       (pre) => pre.innerText
     );
     return result.join("\n\n");
-  };
-  const onClickCopyAll = (_e: any) => {
+  }
+
+  function onClickCopyAll(_e: SyntheticEvent) {
     navigator.clipboard.writeText(getResult());
-  };
-  const onClickDownloadAll = (_e: any) => {
+  }
+
+  function onClickDownloadAll(_e: SyntheticEvent) {
     const result = getResult();
     const element = document.createElement("a");
     element.setAttribute(
@@ -35,7 +37,7 @@ const CopyAndTotal: React.FC<CopyAndTotalProps> = ({ totalText, outerRef }) => {
     document.body.appendChild(element);
     element.click();
     document.body.removeChild(element);
-  };
+  }
 
   return (
     <div className="bg-green-600 text-white p-2 my-2 rounded-lg block sm:flex items-center gap-3">
@@ -61,5 +63,4 @@ const CopyAndTotal: React.FC<CopyAndTotalProps> = ({ totalText, outerRef }) => {
       </div>
     </div>
   );
-};
-export default CopyAndTotal;
+}

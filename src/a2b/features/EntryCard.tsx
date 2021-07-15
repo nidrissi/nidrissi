@@ -9,7 +9,7 @@ import { selectSettings } from "./Settings/settingsSlice";
 import { Entry, Settings } from "../types";
 
 // TODO Better pairing type
-type Pairing = {
+interface Pairing {
   abstract?: string | null;
   [index: string]: string | JSX.Element | number | null | undefined;
 };
@@ -28,7 +28,7 @@ function joinAuthorsGetKey({
 }: {
   authors: string[];
   date: string;
-}): { key: string; authorList: string } {
+}): { key: string; authorList: string; } {
   const splitAuthors = authors.map((a) => splitter(a, /\s+/));
   const authorList = splitAuthors
     .map((l) => l[l.length - 1] + ", " + l.slice(0, -1).join(" "))
@@ -215,10 +215,14 @@ function buildPairing({
   return { type: entry.type, pairing, key, wget };
 }
 
+interface EntryCardProps {
+  entry: Entry;
+}
+
 /** The full Entry component. Settings are taken from the redux state.
  * @param entry The key-value entry
  */
-const EntryCard: React.FC<{ entry: Entry }> = ({ entry }) => {
+export default function EntryCard({ entry }: EntryCardProps) {
   // for the clipboard
   const preRef = useRef<HTMLPreElement>(null);
   const [copied, setCopied] = useState(false);
@@ -256,5 +260,4 @@ const EntryCard: React.FC<{ entry: Entry }> = ({ entry }) => {
       )}
     </div>
   );
-};
-export default EntryCard;
+}

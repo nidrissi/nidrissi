@@ -6,7 +6,7 @@ import { faCaretSquareRight } from "@fortawesome/free-solid-svg-icons";
 import Meta, { Frontmatter } from "./meta";
 import { actualTitle, heldOnline } from "./Page";
 
-type MiniProps = {
+interface MiniProps {
   frontmatter: Frontmatter;
   type: string;
   slug: string;
@@ -15,7 +15,8 @@ type MiniProps = {
   noLink?: boolean;
   index?: number;
 };
-const Mini: React.FC<MiniProps> = ({ frontmatter, slug, levelUp, excerpt, type, noLink }) => {
+
+export default function Mini({ frontmatter, slug, levelUp, excerpt, type, noLink }: MiniProps) {
   const titleLabel = actualTitle(frontmatter, type);
 
   const linkedTitle = noLink ? titleLabel : (
@@ -33,7 +34,7 @@ const Mini: React.FC<MiniProps> = ({ frontmatter, slug, levelUp, excerpt, type, 
     <h3 className="text-xl font-semibold">
       {linkedTitle}
       {heldOnline(type, frontmatter)}
-    </h3 >
+    </h3>
   );
 
   const fullExcerpt = excerpt && (
@@ -59,5 +60,4 @@ const Mini: React.FC<MiniProps> = ({ frontmatter, slug, levelUp, excerpt, type, 
       {fullExcerpt}
     </article>
   );
-};
-export default Mini;
+}

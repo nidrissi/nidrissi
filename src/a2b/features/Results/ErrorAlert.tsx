@@ -8,7 +8,7 @@ import { selectError, clearError } from "./resultsSlice";
 /** A generic error alert. The error is taken from the redux state and
  * displayed, if any.
  */
-const ErrorAlert: React.FC<{}> = () => {
+export default function ErrorAlert() {
   const dispatch = useDispatch();
   const error = useSelector(selectError);
 
@@ -31,5 +31,4 @@ const ErrorAlert: React.FC<{}> = () => {
       </div>
     </div>
   );
-};
-export default ErrorAlert;
+}

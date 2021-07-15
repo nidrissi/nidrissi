@@ -1,9 +1,9 @@
 import React from "react";
-import { graphql, Link, useStaticQuery } from "gatsby";
+import { graphql, useStaticQuery } from "gatsby";
 import Mini from "../Mini";
 import SeeMore from "./SeeMore";
 
-const Post: React.FC<{}> = () => {
+export default function Post() {
   const { allMdx: { nodes } } = useStaticQuery(graphql`
 query RootPostQuery {
   allMdx(
@@ -39,5 +39,4 @@ query RootPostQuery {
       <SeeMore to="/post">posts</SeeMore>
     </section>
   );
-};
-export default Post;
+}

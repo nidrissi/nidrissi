@@ -5,17 +5,18 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTags } from "@fortawesome/free-solid-svg-icons";
 import TagLink from "../components/meta/TagLink";
 
-type TagListProps = {
+interface TagListProps {
   data: {
     allMdx: {
       group: {
         fieldValue: string;
         totalCount: number;
       }[];
-    }
-  }
-}
-const TagList: React.FC<TagListProps> = ({ data: { allMdx: { group } } }) => {
+    };
+  };
+};
+
+export default function TagList({ data: { allMdx: { group } } }: TagListProps) {
   return (
     <Layout title="All Tags" description="The list of all tags used on the website.">
       <h1 role="banner" className="text-4xl font-bold mb-8 text-black dark:text-gray-200">
@@ -30,9 +31,8 @@ const TagList: React.FC<TagListProps> = ({ data: { allMdx: { group } } }) => {
         ))}
       </ul>
     </Layout>
-  )
+  );
 }
-export default TagList;
 
 export const query = graphql`
 query {
@@ -43,4 +43,4 @@ query {
     }
   }
 }
-`
+`;

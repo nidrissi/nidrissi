@@ -2,7 +2,11 @@ import { graphql, Link, useStaticQuery } from "gatsby";
 import React from "react";
 import Meta from "./meta";
 
-const Bibliography: React.FC<{ status: string }> = ({ status }) => {
+interface BibliographyProps {
+  status: string;
+}
+
+export default function Bibliography({ status }: BibliographyProps) {
   const { allMdx: { nodes } } = useStaticQuery(graphql`
 query BibliographyQuery {
   allMdx(
@@ -34,9 +38,7 @@ query BibliographyQuery {
             </Link>
             <Meta frontmatter={frontmatter} type="research" />
           </li>
-        ))
-      }
+        ))}
     </ul>
-  )
+  );
 }
-export default Bibliography;

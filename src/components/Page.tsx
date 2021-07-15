@@ -4,23 +4,23 @@ import React from "react";
 
 import Layout from "./Layout";
 import Meta, { Frontmatter } from "./meta";
-import { NextPrevious, NextPreviousProps } from "./NextPrevious";
+import NextPrevious, { NextOrPrevious } from "./NextPrevious";
 import Embed from "./Embed";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faNetworkWired } from "@fortawesome/free-solid-svg-icons";
 
-type PageTemplateProps = {
+interface PageTemplateProps {
   data: {
     mdx: {
       body: string;
       fields: {
         type: string;
-      }
+      };
       excerpt: string;
       frontmatter: Frontmatter;
     };
-    previous: NextPreviousProps;
-    next: NextPreviousProps;
+    previous: NextOrPrevious;
+    next: NextOrPrevious;
   };
 };
 
@@ -52,12 +52,9 @@ export function heldOnline(type: string, frontmatter: Frontmatter): JSX.Element 
   ) : null;
 }
 
-const PageTemplate: React.FC<PageTemplateProps> = ({ data }) => {
+export default function PageTemplate({ data }: PageTemplateProps) {
   const {
-    body,
-    frontmatter,
-    excerpt,
-    fields: { type }
+    body, frontmatter, excerpt, fields: { type }
   } = data.mdx;
 
   const parsedTitle = actualTitle(frontmatter, type);
@@ -100,8 +97,7 @@ const PageTemplate: React.FC<PageTemplateProps> = ({ data }) => {
       <NextPrevious next={data.next} previous={data.previous} type={type} />
     </Layout>
   );
-};
-export default PageTemplate;
+}
 
 export const query = graphql`
   query (

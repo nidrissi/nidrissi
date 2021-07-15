@@ -7,7 +7,7 @@ import Layout from "../components/Layout";
 import Mini from "../components/Mini";
 import { Frontmatter } from "../components/meta";
 
-type TagListProps = {
+interface TagListProps {
   data: {
     allMdx: {
       nodes: {
@@ -15,17 +15,17 @@ type TagListProps = {
         excerpt: string;
         fields: {
           type: string;
-        }
+        };
         frontmatter: Frontmatter;
       }[];
-    }
+    };
   },
   pageContext: {
     tag: string;
-  }
+  };
 };
 
-const TagList: React.FC<TagListProps> = ({ data: { allMdx: { nodes } }, pageContext: { tag } }) => {
+export default function TagList({ data: { allMdx: { nodes } }, pageContext: { tag } }: TagListProps) {
   return (
     <Layout title={`Pages tagged ${tag}`} description={`The list of all pages tagged ${tag}`}>
       <h1 role="banner" className="text-4xl font-bold mb-4 text-black dark:text-gray-200">
@@ -37,9 +37,8 @@ const TagList: React.FC<TagListProps> = ({ data: { allMdx: { nodes } }, pageCont
         ))}
       </div>
     </Layout>
-  )
-};
-export default TagList;
+  );
+}
 
 export const query = graphql`
 query tagListQuery($tag: String!) {
@@ -75,4 +74,4 @@ query tagListQuery($tag: String!) {
     }
   }
 }
-`
+`;

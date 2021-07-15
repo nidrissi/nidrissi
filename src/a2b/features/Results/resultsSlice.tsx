@@ -16,7 +16,7 @@ export const fetchEntries = createAsyncThunk<
     state: {
       searchForm: Query;
       settings: Settings;
-      results: { isLoading: boolean; currentRequestId: string };
+      results: { isLoading: boolean; currentRequestId: string; };
     };
   }
 >("results/fetchEntries", async (_: void, { getState, requestId }) => {
@@ -33,7 +33,7 @@ export const fetchEntries = createAsyncThunk<
 
 const entriesAdapter = createEntityAdapter<Entry>();
 
-type ResultsExtraState = {
+interface ResultsExtraState {
   isLoading: boolean;
   totalEntriesFound?: number;
   currentRequestId?: string;

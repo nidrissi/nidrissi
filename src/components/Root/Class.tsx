@@ -1,10 +1,10 @@
 import React from "react";
-import { graphql, Link, useStaticQuery } from "gatsby";
+import { graphql, useStaticQuery } from "gatsby";
 import Mini from "../Mini";
 import SeeMore from "./SeeMore";
 import { Frontmatter } from "../meta";
 
-const Class: React.FC<{}> = () => {
+export default function Class() {
   const { allMdx: { nodes } }: {
     allMdx: {
       nodes: {
@@ -54,5 +54,4 @@ query RootClassQuery {
       <SeeMore to="/class">teaching</SeeMore>
     </section>
   );
-};
-export default Class;
+}

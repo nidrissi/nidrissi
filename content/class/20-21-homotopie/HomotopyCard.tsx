@@ -1,16 +1,16 @@
 import React from "react";
-import { ImageDataLike } from "gatsby-plugin-image";
-import { faChalkboard, faVideo } from "@fortawesome/free-solid-svg-icons";
+import { faVideo } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-type CardProps = {
+interface CardProps {
   number: number;
   date: string;
   hours: string;
   video: string;
-}
+  children: JSX.Element;
+};
 
-const Card: React.FC<CardProps> = ({ number, date, hours, children, video }) => {
+export default function HomotopyCard({ number, date, hours, children, video }: CardProps) {
   return (
     <section className="flex flex-col border border-gray-400 dark:border-gray-900 rounded-md gap-2">
       <header className="p-1 bg-gray-200 dark:bg-gray-900 rounded-t-md">
@@ -31,6 +31,5 @@ const Card: React.FC<CardProps> = ({ number, date, hours, children, video }) => 
         Video
       </a>
     </section>
-  )
+  );
 }
-export default Card;

@@ -3,7 +3,7 @@ import React from "react";
 import { Frontmatter } from ".";
 import DateTime from "./datetime";
 
-import people from './people.json'
+import people from './people.json';
 
 function formatAuthor(author: string): string | JSX.Element {
   const person = people[author];
@@ -23,7 +23,11 @@ function formatAuthor(author: string): string | JSX.Element {
   }
 }
 
-const MetaResearch: React.FC<{ frontmatter: Frontmatter }> = ({ frontmatter: { date, lastMod, accepted, publication, authors } }) => {
+interface MetaResearchProps {
+  frontmatter: Frontmatter;
+}
+
+export default function MetaResearch({ frontmatter: { date, lastMod, accepted, publication, authors } }: MetaResearchProps) {
   const displayedAuthors = authors.length > 1 && (
     <div>
       {authors.map((a, i) => (
@@ -44,5 +48,4 @@ const MetaResearch: React.FC<{ frontmatter: Frontmatter }> = ({ frontmatter: { d
       <DateTime label="Accepted on">{accepted}</DateTime>
     </>
   );
-};
-export default MetaResearch;
+}

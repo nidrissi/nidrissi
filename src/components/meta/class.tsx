@@ -14,7 +14,7 @@ const courseTypeAssociation: {
   [key: string]: {
     label: string;
     title?: string;
-  }
+  };
 } = {
   CM: {
     label: "Lectures",
@@ -39,10 +39,14 @@ const courseTypeAssociation: {
     label: "Tutoring",
     title: "Weekly sessions where students can ask questions and work out exercises seen before."
   },
+};
+
+interface CourseTypeBlockProps {
+  type: string;
 }
 
-const CourseTypeBlock: React.FC<{ type: string }> = ({ type }) => {
-  const [expanded, setExpanded] = useState(false)
+function CourseTypeBlock({ type }: CourseTypeBlockProps) {
+  const [expanded, setExpanded] = useState(false);
 
   const { label, title } = courseTypeAssociation[type];
   return (
@@ -69,10 +73,14 @@ const CourseTypeBlock: React.FC<{ type: string }> = ({ type }) => {
 function formatCourseType(courseTypes?: string[]): JSX.Element[] {
   return courseTypes?.map(type => (
     <CourseTypeBlock key={type} type={type} />
-  ))
+  ));
 }
 
-const MetaClass: React.FC<{ frontmatter: Frontmatter }> = ({ frontmatter }) => {
+interface MetaClassProps {
+  frontmatter: Frontmatter;
+}
+
+export default function MetaClass({ frontmatter }: MetaClassProps) {
   const { cursus, institution, courseTypes, courseHours } = frontmatter;
 
   return (
@@ -84,5 +92,4 @@ const MetaClass: React.FC<{ frontmatter: Frontmatter }> = ({ frontmatter }) => {
       {format(courseHours ? `${courseHours}\xa0h` : null)}
     </>
   );
-};
-export default MetaClass;
+}

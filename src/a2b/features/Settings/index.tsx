@@ -3,23 +3,23 @@ import { useSelector } from "react-redux";
 
 import { Formik } from "formik";
 
+import { Settings as SettingsType } from "../../types";
 import { selectSettings } from "./settingsSlice";
 import SettingsFormBody from "./SettingsFormBody";
 
 /** The settings form, controls the related redux state. */
-const Settings: React.FC<{}> = () => {
+export default function Settings() {
   const settings = useSelector(selectSettings);
 
   return (
     <div>
-      <Formik<Settings>
+      <Formik<SettingsType>
         component={SettingsFormBody}
         enableReinitialize={true}
         initialValues={settings}
         onSubmit={() => {
           return;
-        }}
-      />
+        }} />
       <p className="text-muted">
         Settings are saved in your browser's{" "}
         <a href="https://en.wikipedia.org/wiki/Web_storage">local storage</a>{" "}
@@ -27,5 +27,4 @@ const Settings: React.FC<{}> = () => {
       </p>
     </div>
   );
-};
-export default Settings;
+}

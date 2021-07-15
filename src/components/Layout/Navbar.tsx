@@ -13,7 +13,7 @@ import {
 import { Link } from "gatsby";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-type navbarLink = {
+interface navbarLink {
   to: string;
   icon: IconDefinition;
   label: string;
@@ -29,7 +29,7 @@ const navbarLinks: navbarLink[] = [
   { to: "/misc", icon: faBoxOpen, label: "Misc" },
 ];
 
-const Navbar: React.FC<{}> = () => {
+export default function Navbar() {
   const [expanded, setExpanded] = useState(false);
   return (
     <nav
@@ -67,6 +67,4 @@ const Navbar: React.FC<{}> = () => {
       </div>
     </nav>
   );
-};
-
-export default Navbar;
+}

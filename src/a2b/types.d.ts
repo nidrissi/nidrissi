@@ -1,5 +1,5 @@
 /** The main entry type. */
-export type Entry = {
+export interface Entry {
   authors: string[];
   date: string;
   type: string;
@@ -27,14 +27,14 @@ export type Entry = {
 };
 
 /** An arXiv query as built by SearchForm */
-export type Query = {
+export interface Query {
   authors: string[];
   ids: string[];
   titles: string[];
 };
 
 /** The settings */
-export type Settings = {
+export interface Settings {
   fileFolder: string;
   filePrefix: boolean;
   includeAbstract: boolean;

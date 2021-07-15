@@ -3,29 +3,29 @@ import { graphql, useStaticQuery } from "gatsby";
 import { useLocation } from "@reach/router";
 import { Helmet } from "react-helmet";
 
-type SEOQuery = {
+interface SEOQuery {
   site: {
     siteMetadata: {
       siteTitle: string;
       siteUrl: string;
       author: {
-        name: string
+        name: string;
         social: {
-          twitter: string
-        }
-      }
+          twitter: string;
+        };
+      };
     };
   };
 };
 
-export type SEOProps = {
+export interface SEOProps {
   title: string;
   description: string;
   date?: string;
   lastMod?: string;
-}
+};
 
-const SEO: React.FC<SEOProps> = ({ title, description, date, lastMod }) => {
+export default function SEO({ title, description, date, lastMod }: SEOProps) {
   const {
     site: {
       siteMetadata: { siteTitle, siteUrl, author: { name, social: { twitter } } },
@@ -61,8 +61,7 @@ const SEO: React.FC<SEOProps> = ({ title, description, date, lastMod }) => {
 
       <meta
         http-equiv="Content-Security-Policy"
-        content="default-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-eval' 'unsafe-inline' www.googletagmanager.com; img-src 'self' data: www.googletagmanager.com; connect-src 'self' analytics.google.com stats.g.doubleclick.net export.arxiv.org localhost:* ws://localhost:*; font-src 'self' data:;"
-      />
+        content="default-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-eval' 'unsafe-inline' www.googletagmanager.com; img-src 'self' data: www.googletagmanager.com; connect-src 'self' analytics.google.com stats.g.doubleclick.net export.arxiv.org localhost:* ws://localhost:*; font-src 'self' data:;" />
 
       <link rel="canonical" href={`${siteUrl}${pathname}`} />
       <title>{trueTitle}</title>
@@ -83,6 +82,4 @@ const SEO: React.FC<SEOProps> = ({ title, description, date, lastMod }) => {
       {lastMod && <meta property="og:article:modified_time" content={new Date(lastMod).toISOString()} />}
     </Helmet>
   );
-};
-
-export default SEO;
+}

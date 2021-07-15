@@ -3,13 +3,13 @@ import { Link } from "gatsby";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTag } from "@fortawesome/free-solid-svg-icons";
 
-type TagLinkProps = {
+interface TagLinkProps {
   tag: string;
   big?: boolean;
   count?: number;
 };
 
-const TagLink: React.FC<TagLinkProps> = ({ tag, big, count }) => {
+export default function TagLink({ tag, big, count }: TagLinkProps) {
   const extraStyle = big ? "font-semibold text-2xl py-2 px-3" : "text-sm px-1.5 py-0.5";
 
   return (
@@ -21,7 +21,5 @@ const TagLink: React.FC<TagLinkProps> = ({ tag, big, count }) => {
       {tag}
       {count && <span className="text-lg"> [{count}]</span>}
     </Link>
-  )
+  );
 }
-
-export default TagLink;

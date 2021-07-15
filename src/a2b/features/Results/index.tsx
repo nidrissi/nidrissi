@@ -6,12 +6,11 @@ import ErrorAlert from "./ErrorAlert";
 /** The full results component. Displays an error if any and then the
  * list of all found entries.
  */
-const Results: React.FC<{}> = () => {
+export default function Results() {
   return (
     <div>
       <ErrorAlert />
       <EntryList />
     </div>
   );
-};
-export default Results;
+}

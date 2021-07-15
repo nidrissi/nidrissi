@@ -11,7 +11,7 @@ import CopyAndTotal from "./CopyAndTotal";
  * and then rendered using `EntryById`. Then adds buttons to copy entries
  * to the clipboards and counts how many are displayed out of the total.
  */
-const EntryList: React.FC<{}> = () => {
+export default function EntryList() {
   const totalEntriesFound = useSelector(selectTotalEntriesFound);
   const entries = useSelector(selectAllEntries);
   const { mode } = useSelector(selectSettings);
@@ -46,5 +46,4 @@ const EntryList: React.FC<{}> = () => {
       {renderedEntries}
     </div>
   );
-};
-export default EntryList;
+}

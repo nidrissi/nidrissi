@@ -13,10 +13,11 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFileAlt } from "@fortawesome/free-regular-svg-icons";
 
-type LocalFile = {
+interface LocalFile {
   publicURL: string;
-}
-export type Urls = {
+};
+
+export interface Urls {
   arxiv: string;
   doi: string;
   mathrev: string;
@@ -27,9 +28,10 @@ export type Urls = {
   video: string;
   zbmath: string;
   event: string;
-  custom: { label: string; url: string }[];
-  customFile: { label: string; file: { publicURL: string } }[]
+  custom: { label: string; url: string; }[];
+  customFile: { label: string; file: { publicURL: string; }; }[];
 };
+
 export const allUrlsFragment = graphql`
 fragment allUrlsFragment on MdxFrontmatter {
 urls {
@@ -63,13 +65,14 @@ urls {
 }
 `;
 
-type LinkDefinition = {
+interface LinkDefinition {
   link: string;
   label: string | ((id: string) => string);
   icon?: IconDefinition;
   urlBuilder?: (id: string) => string;
   titleBuilder?: (title: string) => string;
 };
+
 const linkDefinitions: LinkDefinition[] = [
   {
     link: "event",
@@ -128,20 +131,21 @@ const linkDefinitions: LinkDefinition[] = [
   },
 ];
 
-const EntryLink: React.FC<{ definition: LinkDefinition; url: string | LocalFile; title: string }> = ({
-  url,
-  definition,
-  title
-}) => {
+interface EntryLinkProps {
+  definition: LinkDefinition;
+  url: string | LocalFile;
+  title: string;
+}
+
+function EntryLink({ url, definition, title }: EntryLinkProps) {
   if (!url) {
     return null;
   }
 
   const actualUrl: string = typeof url === 'string' ? url : url.publicURL;
-  const label: string =
-    typeof definition.label === "string"
-      ? definition.label
-      : definition.label(actualUrl);
+  const label: string = typeof definition.label === "string"
+    ? definition.label
+    : definition.label(actualUrl);
   const href: string = definition.urlBuilder?.(actualUrl) ?? actualUrl;
 
   return (
@@ -156,9 +160,14 @@ const EntryLink: React.FC<{ definition: LinkDefinition; url: string | LocalFile;
       {label}
     </a>
   );
-};
+}
 
-const Links: React.FC<{ urls: Urls; title: string }> = ({ urls, title }) => {
+interface LinksProps {
+  urls: Urls;
+  title: string;
+}
+
+export default function Links({ urls, title }: LinksProps) {
   if (!urls) {
     return null;
   }
@@ -171,8 +180,7 @@ const Links: React.FC<{ urls: Urls; title: string }> = ({ urls, title }) => {
             key={url.publicURL || url}
             url={url}
             title={title}
-            definition={definition}
-          />
+            definition={definition} />
         );
       })}
 
@@ -181,8 +189,7 @@ const Links: React.FC<{ urls: Urls; title: string }> = ({ urls, title }) => {
           key={`custom-${index}`}
           url={url}
           title={title}
-          definition={{ label, link: "custom", icon: faLink }}
-        />
+          definition={{ label, link: "custom", icon: faLink }} />
       ))}
 
       {urls.customFile?.map(({ label, file: { publicURL: url } }, index) => (
@@ -190,11 +197,8 @@ const Links: React.FC<{ urls: Urls; title: string }> = ({ urls, title }) => {
           key={`customFile-${index}`}
           url={url}
           title={title}
-          definition={{ label, link: "customFile", icon: faFile }}
-        />
+          definition={{ label, link: "customFile", icon: faFile }} />
       ))}
     </div>
   );
-};
-
-export default Links;
+}

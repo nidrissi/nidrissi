@@ -6,7 +6,7 @@ import { Frontmatter } from "../components/meta";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChalkboardTeacher } from "@fortawesome/free-solid-svg-icons";
 
-type ClassListProps = {
+interface ClassListProps {
   data: {
     allMdx: {
       group: {
@@ -17,11 +17,11 @@ type ClassListProps = {
           frontmatter: Frontmatter;
         }[];
       }[];
-    }
-  }
+    };
+  };
 };
 
-const ClassList: React.FC<ClassListProps> = ({ data: { allMdx: { group } } }) => {
+export default function ClassList({ data: { allMdx: { group } } }: ClassListProps) {
 
   return (
     <Layout title="Teaching" description="The classes I have taught and/or am currently teaching.">
@@ -49,7 +49,6 @@ const ClassList: React.FC<ClassListProps> = ({ data: { allMdx: { group } } }) =>
     </Layout>
   );
 }
-export default ClassList;
 
 export const query = graphql`
 {

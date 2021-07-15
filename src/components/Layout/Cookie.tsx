@@ -1,16 +1,14 @@
 import React, { useEffect, useState } from "react";
 
-const Cookie: React.FC<{}> = () => {
+export default function Cookie() {
   const [show, setShow] = useState(false);
 
   useEffect(() => {
-    if (
-      !document.cookie
-        .split("; ")
-        .find((row) => row.startsWith("cookieToastShown="))
-    ) {
+    if (!document.cookie
+      .split("; ")
+      .find((row) => row.startsWith("cookieToastShown="))) {
       setShow(true);
-      setInterval(() => { setShow(false) }, 5000);
+      setInterval(() => { setShow(false); }, 5000);
       document.cookie = "cookieToastShown=true; expires=Fri, 31 Dec 9999 23:59:59 GMT";
     }
   }, []);
@@ -31,5 +29,4 @@ const Cookie: React.FC<{}> = () => {
       </aside>
     );
   }
-};
-export default Cookie;
+}

@@ -3,12 +3,12 @@ import { Link } from "gatsby";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleDoubleLeft, faAngleDoubleRight, faAngleLeft, faAngleRight } from "@fortawesome/free-solid-svg-icons";
 
-type PagerProps = {
+interface PagerProps {
   numPages: number;
   currentPage: number;
   type: string;
 };
-const Pager: React.FC<PagerProps> = ({ numPages, currentPage, type }) => {
+export default function Pager({ numPages, currentPage, type }: PagerProps) {
   if (numPages === 1) {
     return null;
   }
@@ -39,8 +39,7 @@ const Pager: React.FC<PagerProps> = ({ numPages, currentPage, type }) => {
         >
           <FontAwesomeIcon icon={faAngleLeft} />
         </Link>
-      )
-      }
+      )}
       {Array.from({ length: numPages }, (_x, i) => (
         <Link
           key={i}
@@ -72,5 +71,4 @@ const Pager: React.FC<PagerProps> = ({ numPages, currentPage, type }) => {
       </Link>
     </nav>
   );
-};
-export default Pager;
+}

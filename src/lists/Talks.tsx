@@ -1,32 +1,32 @@
 import React from "react";
 import { graphql } from "gatsby";
 
-import Layout from '../components/Layout'
+import Layout from '../components/Layout';
 import Mini from "../components/Mini";
 import { Frontmatter } from "../components/meta";
 import Pager from "./Pager";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faComments } from "@fortawesome/free-solid-svg-icons";
 
-type TalkListProps = {
+interface TalkListProps {
   data: {
     allMdx: {
       nodes: {
         slug: string;
-        wordCount: { words: number };
+        wordCount: { words: number; };
         frontmatter: Frontmatter;
       }[];
-    }
+    };
   },
   pageContext: {
     limit: number;
     skip: number;
     numPages: number;
     currentPage: number;
-  }
+  };
 };
 
-const TalkList: React.FC<TalkListProps> = ({ data, pageContext }) => {
+export default function TalkList({ data, pageContext }: TalkListProps) {
   const { allMdx: { nodes } } = data;
   const { numPages, currentPage } = pageContext;
   const title = `Talks (p. ${currentPage}/${numPages})`;
@@ -47,7 +47,6 @@ const TalkList: React.FC<TalkListProps> = ({ data, pageContext }) => {
     </Layout>
   );
 }
-export default TalkList;
 
 export const query = graphql`
 query talkListQuery($skip: Int!, $limit: Int!) {

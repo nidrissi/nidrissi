@@ -16,7 +16,7 @@ import {
 import { fetchEntries } from "./features/Results/resultsSlice";
 import Title from "./features/Title";
 
-const App: React.FC<{}> = () => {
+export default function App() {
   // keep here to avoid re-fetching on route change
   const dispatch = useDispatch();
   // query
@@ -31,7 +31,7 @@ const App: React.FC<{}> = () => {
     if (persistentState) {
       // in case I have introduced new settings since the last time the user
       // has used the app, I still want to use defaultInitialState as fallback
-      dispatch(saveSettings({ ...initialState, ...JSON.parse(persistentState) }))
+      dispatch(saveSettings({ ...initialState, ...JSON.parse(persistentState) }));
     }
   }, []);
 
@@ -47,7 +47,7 @@ const App: React.FC<{}> = () => {
     "Search": <Search />,
     "Settings": <Settings />,
     "DIY": <DIY />,
-  }
+  };
 
   return (
     <>
@@ -55,5 +55,4 @@ const App: React.FC<{}> = () => {
       {pageAssociation[currentPage]}
     </>
   );
-};
-export default App;
+}

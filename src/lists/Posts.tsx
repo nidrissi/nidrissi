@@ -8,7 +8,7 @@ import Pager from "./Pager";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPen } from "@fortawesome/free-solid-svg-icons";
 
-type PostListProps = {
+interface PostListProps {
   data: {
     allMdx: {
       nodes: {
@@ -16,17 +16,17 @@ type PostListProps = {
         excerpt: string;
         frontmatter: Frontmatter;
       }[];
-    }
+    };
   },
   pageContext: {
     limit: number;
     skip: number;
     numPages: number;
     currentPage: number;
-  }
+  };
 };
 
-const PostList: React.FC<PostListProps> = ({ data, pageContext }) => {
+export default function PostList({ data, pageContext }: PostListProps) {
   const { allMdx: { nodes } } = data;
   const { numPages, currentPage } = pageContext;
   const title = `Posts (p. ${currentPage}/${numPages})`;
@@ -45,7 +45,6 @@ const PostList: React.FC<PostListProps> = ({ data, pageContext }) => {
     </Layout>
   );
 }
-export default PostList;
 
 export const query = graphql`
 query postListQuery($skip: Int!, $limit: Int!) {

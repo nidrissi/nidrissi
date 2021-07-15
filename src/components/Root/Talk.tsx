@@ -4,7 +4,7 @@ import Mini from "../Mini";
 import SeeMore from "./SeeMore";
 import { Frontmatter } from "../meta";
 
-type RootTalkQuery = {
+interface RootTalkQuery {
   allMdx: {
     nodes: {
       slug: string;
@@ -14,7 +14,7 @@ type RootTalkQuery = {
   };
 };
 
-const Talk: React.FC<{}> = () => {
+export default function Talk() {
   const { allMdx: { nodes } }: RootTalkQuery = useStaticQuery(graphql`
 query RootTalkQuery {
   allMdx(
@@ -56,5 +56,4 @@ query RootTalkQuery {
       <SeeMore to="/talk">talks</SeeMore>
     </section>
   );
-};
-export default Talk;
+}

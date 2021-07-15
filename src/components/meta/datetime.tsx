@@ -1,16 +1,17 @@
 import React from "react";
 
-type DateTimeProps = {
+interface DateTimeProps {
+  children: React.ReactNode;
   label: string;
-  TBA?: boolean
-}
+  TBA?: boolean;
+};
 
-const DateTime: React.FC<DateTimeProps> = ({ label, children, TBA }) => {
+export default function DateTime({ label, children, TBA }: DateTimeProps) {
   if (!children) {
     return null;
   }
 
-  const date = new Date(children.toString())
+  const date = new Date(children.toString());
 
   return (
     <div>
@@ -25,6 +26,5 @@ const DateTime: React.FC<DateTimeProps> = ({ label, children, TBA }) => {
       </time>
       .
     </div>
-  )
+  );
 }
-export default DateTime;

@@ -5,11 +5,12 @@ import Navbar from "./Navbar";
 import Footer from "./Footer";
 import Cookie from "./Cookie";
 
-type LayoutProps = {
+interface LayoutProps extends SEOProps {
+  children: React.ReactNode;
   lang?: string;
-} & SEOProps;
+};
 
-const Layout: React.FC<LayoutProps> = ({ children, lang, ...props }) => {
+export default function Layout({ children, lang, ...props }: LayoutProps) {
   return (
     <div className="flex flex-col gap-y-4 min-h-screen dark:bg-gray-800 dark:text-gray-300">
       <SEO {...props} />
@@ -21,6 +22,4 @@ const Layout: React.FC<LayoutProps> = ({ children, lang, ...props }) => {
       <Footer />
     </div>
   );
-};
-
-export default Layout;
+}

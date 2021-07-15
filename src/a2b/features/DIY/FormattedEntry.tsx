@@ -4,9 +4,13 @@ import { splitter } from "../../utils";
 import EntryCard from "../EntryCard";
 import { FormValues } from "./data";
 
+interface FormattedEntryProps {
+  values: FormValues;
+}
+
 /** Takes values from the Formik context, creates an entry and formats it with `Entry`.
  */
-const FormattedEntry: React.FC<{ values: FormValues }> = ({ values }) => {
+export default function FormattedEntry({ values }: FormattedEntryProps) {
   // split on &, delete empty values, and trim
   const authors = splitter(values.authors, /&/);
   const entry = {
@@ -17,5 +21,4 @@ const FormattedEntry: React.FC<{ values: FormValues }> = ({ values }) => {
     date: values.date || "0000",
   };
   return <EntryCard entry={entry} />;
-};
-export default FormattedEntry;
+}

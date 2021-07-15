@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft, faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import { actualTitle } from "./Page";
 
-export type NextPreviousProps = {
+export interface NextOrPrevious {
   slug: string;
   frontmatter: {
     title: string;
@@ -12,11 +12,15 @@ export type NextPreviousProps = {
     location: string;
     year: string;
   };
+};
+
+interface NextPreviousProps {
+  previous: NextOrPrevious;
+  next: NextOrPrevious;
+  type: string;
 }
 
-export const NextPrevious: React.FC<{ previous: NextPreviousProps; next: NextPreviousProps; type: string; }> = ({
-  next, previous, type
-}) => {
+export default function NextPrevious({ next, previous, type }: NextPreviousProps) {
   if (!next && !previous) {
     return null;
   }
@@ -49,4 +53,4 @@ export const NextPrevious: React.FC<{ previous: NextPreviousProps; next: NextPre
       )}
     </div>
   );
-};
+}

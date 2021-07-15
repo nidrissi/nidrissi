@@ -3,7 +3,7 @@ import { Field } from "formik";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faQuestionCircle } from "@fortawesome/free-solid-svg-icons";
 
-export type StandardInputProps = {
+export interface StandardInputProps {
   as?: string;
   help?: string | JSX.Element;
   label: string;
@@ -13,7 +13,11 @@ export type StandardInputProps = {
   type?: string;
 };
 
-const Tooltip: React.FC<{ help?: string | JSX.Element }> = ({ help }) => {
+interface TooltipProps {
+  help?: string | JSX.Element;
+}
+
+function Tooltip({ help }: TooltipProps) {
   const [shown, setShown] = useState(false);
   return help ? (
     <span
@@ -27,15 +31,14 @@ const Tooltip: React.FC<{ help?: string | JSX.Element }> = ({ help }) => {
         <FontAwesomeIcon icon={faQuestionCircle} aria-label="Help" />
       </button>
       <div
-        className={`${shown ? "block" : "hidden"
-          } absolute -top-2 left-0 z-10 w-48 bg-black text-gray-300 rounded-md p-2`}
+        className={`${shown ? "block" : "hidden"} absolute -top-2 left-0 z-10 w-48 bg-black text-gray-300 rounded-md p-2`}
       >
         <FontAwesomeIcon icon={faQuestionCircle} className="mr-2" />
         {help}
       </div>
     </span>
   ) : null;
-};
+}
 
 /** Standard inputs.
  * @param halfSize Controls whether the input is half-size or full-size.
@@ -43,12 +46,7 @@ const Tooltip: React.FC<{ help?: string | JSX.Element }> = ({ help }) => {
  * @param help The help text, if any.
  * @param ...props The rest of the props, passed to the input.
  */
-const StandardInput: React.FC<StandardInputProps> = ({
-  halfSize,
-  label,
-  help,
-  ...props
-}) => {
+export default function StandardInput({ halfSize, label, help, ...props }: StandardInputProps) {
   return (
     <>
       <label className="block col-span-full sm:col-span-2" htmlFor={props.name}>
@@ -62,5 +60,4 @@ const StandardInput: React.FC<StandardInputProps> = ({
       </div>
     </>
   );
-};
-export default StandardInput;
+}

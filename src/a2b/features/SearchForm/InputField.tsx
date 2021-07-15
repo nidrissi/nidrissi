@@ -5,13 +5,13 @@ import { useField } from "formik";
     @param label The label of the input field.
     @param ...props The rest of the parameters, will be passed to a controlled input.
  */
-type InputFieldProps = {
+interface InputFieldProps {
   label: string;
   name: string;
   placeholder?: string;
   title?: string;
 };
-const InputField: React.FC<InputFieldProps> = ({ label, ...props }) => {
+export default function InputField({ label, ...props }: InputFieldProps) {
   const [field, meta] = useField(props);
   return (
     <>
@@ -24,8 +24,7 @@ const InputField: React.FC<InputFieldProps> = ({ label, ...props }) => {
           type="text"
           id={props.name}
           {...field}
-          {...props}
-        />
+          {...props} />
         {meta.error && (
           <div className="text-sm text-red-600 dark:text-red-400">
             {meta.error}
@@ -34,5 +33,4 @@ const InputField: React.FC<InputFieldProps> = ({ label, ...props }) => {
       </div>
     </>
   );
-};
-export default InputField;
+}

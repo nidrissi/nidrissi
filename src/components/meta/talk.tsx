@@ -2,7 +2,11 @@ import React from "react";
 import { Frontmatter } from ".";
 import DateTime from "./datetime";
 
-const MetaTalk: React.FC<{ frontmatter: Frontmatter }> = ({ frontmatter }) => {
+interface MetaTalkProps {
+  frontmatter: Frontmatter;
+}
+
+export default function MetaTalk({ frontmatter }: MetaTalkProps) {
   const { TBA, title, date } = frontmatter;
 
   return (
@@ -11,5 +15,4 @@ const MetaTalk: React.FC<{ frontmatter: Frontmatter }> = ({ frontmatter }) => {
       <div>Title: {title}.</div>
     </>
   );
-};
-export default MetaTalk;
+}

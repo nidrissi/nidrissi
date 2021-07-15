@@ -5,7 +5,7 @@ import { faGithub, faStackExchange, faTwitter, IconDefinition } from "@fortaweso
 import { faAt } from "@fortawesome/free-solid-svg-icons";
 import { faCopyright } from "@fortawesome/free-regular-svg-icons";
 
-type FooterQuery = {
+interface FooterQuery {
   site: {
     siteMetadata: {
       author: {
@@ -13,28 +13,25 @@ type FooterQuery = {
         email: string;
         organizations: {
           name: string;
-          url: string
+          url: string;
         }[];
         social: {
           arXiv: string;
           github: string;
           mathoverflow: string;
           twitter: string;
-        }
-      }
-    }
-  }
+        };
+      };
+    };
+  };
 };
 
-const Footer: React.FC<{}> = () => {
+export default function Footer() {
   const {
     site: {
       siteMetadata: {
         author: {
-          name,
-          email,
-          organizations,
-          social: { arXiv, github, mathoverflow, twitter },
+          name, email, organizations, social: { arXiv, github, mathoverflow, twitter },
         },
       },
     },
@@ -62,7 +59,7 @@ const Footer: React.FC<{}> = () => {
     }
   `);
 
-  type FooterLink = {
+  interface FooterLink {
     url: string;
     label: string;
     icon?: IconDefinition;
@@ -125,5 +122,4 @@ const Footer: React.FC<{}> = () => {
       ))}
     </footer>
   );
-};
-export default Footer;
+}

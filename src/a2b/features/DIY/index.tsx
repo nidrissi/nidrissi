@@ -37,10 +37,14 @@ const initialValues = {
   issue: "",
 };
 
+interface DIYBodyProps {
+  values: FormValues;
+}
+
 /** The body of the `DIY` component.
  * @param values The values provided by Formik.
  */
-const DIYBody: React.FC<{ values: FormValues }> = ({ values }) => {
+function DIYBody({ values }: DIYBodyProps) {
   return (
     <div>
       <FormattedEntry values={values} />
@@ -58,11 +62,11 @@ const DIYBody: React.FC<{ values: FormValues }> = ({ values }) => {
       </Form>
     </div>
   );
-};
+}
 
 /** The DIY component: turns values inputted in a form into a formatted entry.
  */
-const DIY: React.FC<{}> = () => {
+export default function DIY() {
   return (
     <>
       <div className="bg-yellow-100 dark:bg-yellow-800 px-3 py-2" role="alert">
@@ -73,9 +77,7 @@ const DIY: React.FC<{}> = () => {
         onSubmit={() => {
           return;
         }}
-        component={DIYBody}
-      />
+        component={DIYBody} />
     </>
   );
-};
-export default DIY;
+}

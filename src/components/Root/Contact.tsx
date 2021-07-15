@@ -10,14 +10,32 @@ import {
   faUniversity,
 } from "@fortawesome/free-solid-svg-icons";
 
-type ContactQuery = {
+interface ContactLinkProps {
+  url: string;
+  children: React.ReactNode;
+}
+
+function ContactLink({ url, children }: ContactLinkProps) {
+  return (
+    <a
+      href={url}
+      className="text-blue-800 dark:text-indigo-300 hover:underline"
+      target="_blank"
+      rel="noreferrer noopener"
+    >
+      {children}
+    </a>
+  );
+}
+
+interface ContactQuery {
   site: {
     siteMetadata: {
       author: {
         email: string;
         organizations: {
           url: string;
-          name: string
+          name: string;
         }[];
         phone: {
           pretty: string;
@@ -28,12 +46,12 @@ type ContactQuery = {
           location: string[];
         };
         office: string;
-      }
-    }
-  }
-}
+      };
+    };
+  };
+};
 
-const Contact: React.FC<{}> = () => {
+export default function Contact() {
   const {
     site: {
       siteMetadata: {
@@ -73,17 +91,6 @@ const Contact: React.FC<{}> = () => {
     { label: `Office: ${office}`, icon: faDoorOpen },
   ];
 
-  const ContactLink: React.FC<{ url: string }> = ({ url, children }) => (
-    <a
-      href={url}
-      className="text-blue-800 dark:text-indigo-300 hover:underline"
-      target="_blank"
-      rel="noreferrer noopener"
-    >
-      {children}
-    </a>
-  );
-
   return (
     <>
       <h2 className="text-3xl font-bold mb-2">Contact</h2>
@@ -113,5 +120,4 @@ const Contact: React.FC<{}> = () => {
       </ul>
     </>
   );
-};
-export default Contact;
+}

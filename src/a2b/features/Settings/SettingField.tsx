@@ -1,20 +1,15 @@
 import React from "react";
 import { Field } from "formik";
 
-type SettingFieldProps = {
+interface SettingFieldProps {
+  children?: React.ReactNode;
   as: "checkbox" | "select" | "control";
   id: string;
   label: string | JSX.Element;
   disabled?: boolean;
   margin?: number;
 };
-export const SettingField: React.FC<SettingFieldProps> = ({
-  as,
-  id,
-  label,
-  disabled,
-  children,
-}) => {
+export default function SettingField({ as, id, label, disabled, children }: SettingFieldProps) {
   const bgStyle = disabled ? "bg-gray-100 dark:bg-gray-700 cursor-not-allowed" : "dark:bg-gray-900";
   if (as === "control") {
     return (
@@ -27,24 +22,20 @@ export const SettingField: React.FC<SettingFieldProps> = ({
           className={`block w-full ${bgStyle}`}
           name={id}
           id={id}
-          disabled={disabled}
-        />
+          disabled={disabled} />
       </div>
     );
   } else if (as === "checkbox") {
     return (
       <div className="flex items-center gap-2">
         <Field
-          className={
-            disabled
-              ? "bg-gray-100 checked:bg-gray-500 text-gray-500 cursor-not-allowed"
-              : null
-          }
+          className={disabled
+            ? "bg-gray-100 checked:bg-gray-500 text-gray-500 cursor-not-allowed"
+            : null}
           type="checkbox"
           id={id}
           name={id}
-          disabled={disabled}
-        />
+          disabled={disabled} />
         <label htmlFor={id}>{label}</label>
       </div>
     );
@@ -69,4 +60,4 @@ export const SettingField: React.FC<SettingFieldProps> = ({
     // hopefully won't happen...
     throw Error("Bad type of SettingField");
   }
-};
+}

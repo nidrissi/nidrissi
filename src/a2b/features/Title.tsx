@@ -18,12 +18,14 @@ const links: {
     { icon: faCog, label: "Settings" },
   ];
 
-const buttonStyle = "block p-2 text-lg border border-blue-800 hover:bg-blue-800 hover:text-white rounded-md"
+const buttonStyle = "block p-2 text-lg border border-blue-800 hover:bg-blue-800 hover:text-white rounded-md";
+
+interface NavbarProps {
+  setCurrentPage: React.Dispatch<React.SetStateAction<string>>;
+}
 
 /** A react-router powered navigation bar. */
-const Navbar: React.FC<{
-  setCurrentPage: React.Dispatch<React.SetStateAction<string>>
-}> = ({ setCurrentPage }) => {
+export default function Navbar({ setCurrentPage }: NavbarProps) {
   return (
     <div className="flex flex-wrap mb-3 items-center gap-x-3">
       <h1 className="text-3xl font-bold px-1 dark:text-gray-200">
@@ -45,6 +47,4 @@ const Navbar: React.FC<{
       </Link>
     </div>
   );
-};
-
-export default Navbar;
+}

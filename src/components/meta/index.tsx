@@ -8,7 +8,7 @@ import Links, { Urls } from "./links";
 import MetaResearch from "./research";
 import MetaTalk from "./talk";
 
-export type LocalImage = {
+export interface LocalImage {
   childImageSharp: {
     gatsbyImageData: ImageDataLike;
     original: {
@@ -17,7 +17,7 @@ export type LocalImage = {
   };
 };
 
-export type Frontmatter = {
+export interface Frontmatter {
   title: string;
   date: string;
   lastMod?: string;
@@ -43,10 +43,12 @@ export type Frontmatter = {
   TBA?: boolean;
 };
 
-const Meta: React.FC<{ frontmatter: Frontmatter, type: string; }> = ({
-  frontmatter,
-  type
-}) => {
+interface MetaProps {
+  frontmatter: Frontmatter;
+  type: string;
+}
+
+export default function Meta({ frontmatter, type }: MetaProps) {
   return (
     <div>
       <div className="flex flex-row flex-wrap gap-x-2 gap-y-1 content-center text-gray-700 dark:text-gray-400 mb-2">
@@ -63,6 +65,4 @@ const Meta: React.FC<{ frontmatter: Frontmatter, type: string; }> = ({
       <Links urls={frontmatter.urls} title={actualTitle(frontmatter, type)} />
     </div>
   );
-};
-
-export default Meta;
+}

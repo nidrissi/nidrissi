@@ -9,7 +9,7 @@ import Class from "./Class";
 import Talk from "./Talk";
 import Post from "./Post";
 
-type IndexQuery = {
+interface IndexQuery {
   site: {
     siteMetadata: {
       siteTitle: string;
@@ -21,12 +21,11 @@ type IndexQuery = {
   };
 };
 
-const Index: React.FC<{}> = ({ children }) => {
+export default function Index({ children }: { children: React.ReactNode; }) {
   const {
     site: {
       siteMetadata: {
-        siteTitle,
-        siteDescription
+        siteTitle, siteDescription
       },
     },
   }: IndexQuery = useStaticQuery(graphql`
@@ -48,8 +47,7 @@ const Index: React.FC<{}> = ({ children }) => {
             alt="Photo of myself."
             className="rounded-md"
             loading="eager"
-            placeholder="tracedSVG"
-          />
+            placeholder="tracedSVG" />
         </div>
         <header>
           <h1 role="banner" className="text-4xl font-bold mb-4 text-black dark:text-gray-200">
@@ -69,6 +67,4 @@ const Index: React.FC<{}> = ({ children }) => {
       </div>
     </Layout>
   );
-};
-
-export default Index;
+}

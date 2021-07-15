@@ -5,13 +5,12 @@ import Layout from "../../../components/Layout";
 import store from "../../../a2b/store";
 import App from "../../../a2b/App";
 
-const A2B: React.FC<{}> = () => {
+export default function A2B() {
   return (
     <Layout title="arXiv2BibLaTeX" description="Convert an arXiv entry to a BibLaTeX entry.">
       <Provider store={store}>
         <App />
       </Provider>
     </Layout>
-  )
-};
-export default A2B;
+  );
+}
