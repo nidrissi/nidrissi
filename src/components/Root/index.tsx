@@ -1,6 +1,6 @@
 import React from "react";
 import { graphql, useStaticQuery } from "gatsby";
-import { StaticImage } from "gatsby-plugin-image"
+import { StaticImage } from "gatsby-plugin-image";
 
 import Layout from "../Layout";
 import Contact from "./Contact";
@@ -8,6 +8,18 @@ import Research from "./Research";
 import Class from "./Class";
 import Talk from "./Talk";
 import Post from "./Post";
+
+type IndexQuery = {
+  site: {
+    siteMetadata: {
+      siteTitle: string;
+      siteDescription: string;
+    };
+  };
+  file: {
+    publicURL: string;
+  };
+};
 
 const Index: React.FC<{}> = ({ children }) => {
   const {
@@ -30,11 +42,11 @@ const Index: React.FC<{}> = ({ children }) => {
   return (
     <Layout title={siteTitle} description={siteDescription}>
       <article>
-        <div className="float-right w-28 sm:w-40 md:w-56 m-3 p-1 border dark:border-gray-600 rounded-md">
+        <div className="float-right w-28 sm:w-40 md:w-56 m-3">
           <StaticImage
             src="photo.jpg"
             alt="Photo of myself."
-            className="rounded-sm"
+            className="rounded-md"
             loading="eager"
             placeholder="tracedSVG"
           />
@@ -60,12 +72,3 @@ const Index: React.FC<{}> = ({ children }) => {
 };
 
 export default Index;
-
-type IndexQuery = {
-  site: {
-    siteMetadata: {
-      siteTitle: string;
-      siteDescription: string;
-    };
-  };
-};
