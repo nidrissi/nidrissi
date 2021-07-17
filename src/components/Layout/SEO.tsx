@@ -56,6 +56,8 @@ export default function SEO({ title, description, date, lastMod }: SEOProps) {
   return (
     <Helmet
       htmlAttributes={{ lang: 'en', }}
+      title={trueTitle}
+      defer={false}
     >
       <meta charSet="utf-8" />
 
@@ -64,7 +66,6 @@ export default function SEO({ title, description, date, lastMod }: SEOProps) {
         content="default-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-eval' 'unsafe-inline' www.googletagmanager.com; img-src 'self' data: www.googletagmanager.com; connect-src 'self' analytics.google.com stats.g.doubleclick.net export.arxiv.org localhost:* ws://localhost:*; font-src 'self' data:;" />
 
       <link rel="canonical" href={`${siteUrl}${pathname}`} />
-      <title>{trueTitle}</title>
       <meta name="description" content={description} />
 
       <meta name="twitter:card" content="summary" />
