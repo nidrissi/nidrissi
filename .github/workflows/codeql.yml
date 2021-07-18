@@ -4,15 +4,19 @@ on:
   push:
     branches: [master]
     paths-ignore:
+      - ".gitignore"
       - ".vscode/**"
       - "README.md"
       - "LICENSE.md"
+      - ".eslintrc.js"
   pull_request:
     branches: [master,gatsby]
     paths-ignore:
+      - ".gitignore"
       - ".vscode/**"
       - "README.md"
       - "LICENSE.md"
+      - ".eslintrc.js"
   schedule:
     - cron: "36 0 * * 6"
 
