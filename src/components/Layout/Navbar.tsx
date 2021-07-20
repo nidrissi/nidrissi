@@ -33,7 +33,7 @@ export default function Navbar() {
   const [expanded, setExpanded] = useState(false);
   return (
     <nav
-      className={`sticky top-0 w-full gap-4 bg-green-800 text-gray-100 dark:bg-green-900 text-xl z-50`}
+      className={`sticky top-0 w-full gap-4 bg-green-800 text-gray-100 dark:bg-green-900 text-xl z-50 mb-4`}
     >
       <div className="md:hidden flex w-full items-center justify-between">
         <Link to="/" className="block p-2 font-semibold">

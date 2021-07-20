@@ -12,13 +12,13 @@ interface LayoutProps extends SEOProps {
 
 export default function Layout({ children, lang, ...props }: LayoutProps) {
   return (
-    <div className="flex flex-col gap-y-4 min-h-screen dark:bg-gray-800 dark:text-gray-300">
+    <div className="flex flex-col min-h-screen dark:bg-gray-800 dark:text-gray-300">
       <SEO {...props} />
-      <Cookie />
       <Navbar />
-      <main className="container mx-auto px-2 flex-grow" lang={lang}>
+      <main className="container mx-auto mb-4 px-2 flex-grow" lang={lang}>
         {children}
       </main>
+      <Cookie />
       <Footer />
     </div>
   );

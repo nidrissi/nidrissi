@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 
 export default function Cookie() {
-  const [show, setShow] = useState(false);
+  const [show, setShow] = useState(true);
 
   useEffect(() => {
     if (!document.cookie
@@ -17,7 +17,7 @@ export default function Cookie() {
     return null;
   } else {
     return (
-      <aside className="fixed bottom-0 left-0 w-screen bg-gray-200 dark:bg-gray-900 dark:text-gray-300 p-3 text-center content-center text-lg">
+      <aside className="sticky bottom-0 left-0 w-full bg-gray-200 dark:bg-gray-900 dark:text-gray-300 p-3 text-center content-center text-lg">
         <p>
           I use cookies to analyze traffic. To opt out, you can
           {' '}
