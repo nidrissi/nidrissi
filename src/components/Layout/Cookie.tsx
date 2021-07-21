@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 
 export default function Cookie() {
-  const [show, setShow] = useState(true);
+  const [show, setShow] = useState(false);
 
   useEffect(() => {
     if (!document.cookie
