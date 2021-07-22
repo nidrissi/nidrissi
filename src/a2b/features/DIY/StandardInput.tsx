@@ -33,7 +33,8 @@ function Tooltip({ help }: TooltipProps) {
       <div
         className={`${shown ? "block" : "hidden"} absolute -top-2 left-0 z-10 w-48 bg-black text-gray-300 rounded-md p-2`}
       >
-        <FontAwesomeIcon icon={faQuestionCircle} className="mr-2" />
+        <FontAwesomeIcon icon={faQuestionCircle} />
+        &nbsp;
         {help}
       </div>
     </span>

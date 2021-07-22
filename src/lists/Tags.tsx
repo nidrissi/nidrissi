@@ -29,7 +29,9 @@ export default function TagList({ data: { allMdx: { nodes } }, pageContext: { ta
   return (
     <Layout title={`Pages tagged ${tag}`} description={`The list of all pages tagged ${tag}`}>
       <h1 role="banner" className="text-4xl font-bold mb-4 text-black dark:text-gray-200">
-        <FontAwesomeIcon icon={faTag} size="sm" className="mr-2" />Pages tagged {tag}
+        <FontAwesomeIcon icon={faTag} size="sm" />
+        &nbsp;
+        Pages tagged {tag}
       </h1>
       <div className="flex flex-col gap-4">
         {nodes.map(({ frontmatter, fields: { type }, slug, excerpt }) => (

@@ -37,12 +37,12 @@ export default function Navbar({ setCurrentPage }: NavbarProps) {
           className={buttonStyle}
           onClick={() => setCurrentPage(l.label)}
         >
-          <FontAwesomeIcon icon={l.icon} className="mr-1" />
+          <FontAwesomeIcon icon={l.icon} />&nbsp;
           {l.label}
         </button>
       ))}
       <Link to="/misc/a2b/help" className={buttonStyle}>
-        <FontAwesomeIcon icon={faQuestion} className="mr-1" />
+        <FontAwesomeIcon icon={faQuestion} />&nbsp;
         Help
       </Link>
     </div>

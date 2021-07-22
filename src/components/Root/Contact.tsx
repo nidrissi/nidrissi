@@ -97,7 +97,7 @@ export default function Contact() {
       <ul className="text-lg">
         {contactLinks.map((link) => (
           <li key={link.icon.iconName} className={link.extraStyle}>
-            <FontAwesomeIcon icon={link.icon} fixedWidth className="mr-1" />
+            <FontAwesomeIcon icon={link.icon} fixedWidth />&nbsp;
             {link.items
               ? link.items.map((item, index) => (
                 <React.Fragment key={item.label}>

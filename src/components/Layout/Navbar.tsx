@@ -60,7 +60,8 @@ export default function Navbar() {
             activeClassName="!font-bold !text-white"
             partiallyActive={link.partiallyActive}
           >
-            <FontAwesomeIcon icon={link.icon} className="mr-2" />
+            <FontAwesomeIcon icon={link.icon} />
+            &nbsp;
             {link.label}
           </Link>
         ))}

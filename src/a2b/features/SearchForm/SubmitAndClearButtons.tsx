@@ -19,12 +19,13 @@ export default function SubmitAndClearButtons({ isLoading }: SubmitAndClearButto
       >
         {isLoading ? (
           <>
-            <FontAwesomeIcon icon={faSpinner} className="mr-1" spin />
+            <FontAwesomeIcon icon={faSpinner} spin />
+            &nbsp;
             Loading...
           </>
         ) : (
           <>
-            <FontAwesomeIcon icon={faSearch} className="mr-1" />
+            <FontAwesomeIcon icon={faSearch} />&nbsp;
             Search
           </>
         )}

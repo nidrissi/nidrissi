@@ -34,14 +34,14 @@ export default function TalkList({ data, pageContext }: TalkListProps) {
   return (
     <Layout title={title} description={`The talks I have given and/or will give in the near future (page ${currentPage} out of ${numPages}).`}>
       <h1 role="banner" className="text-4xl font-bold mb-3 text-black dark:text-gray-200">
-        <FontAwesomeIcon icon={faComments} size="sm" className="mr-2" />{title}
+        <FontAwesomeIcon icon={faComments} size="sm" />
+        &nbsp;
+        {title}
       </h1>
       <div className="flex flex-col gap-4">
-        {nodes.map(({ frontmatter, slug, wordCount: { words } }) => {
-          return (
-            <Mini key={slug} type="talk" levelUp slug={slug} frontmatter={frontmatter} noLink={words === 0} />
-          );
-        })}
+        {nodes.map(({ frontmatter, slug, wordCount: { words } }) => (
+          <Mini key={slug} type="talk" levelUp slug={slug} frontmatter={frontmatter} noLink={words === 0} />
+        ))}
       </div>
       <Pager currentPage={currentPage} numPages={numPages} type="talk" />
     </Layout>

@@ -31,7 +31,7 @@ export default function Error404() {
         <div className="my-auto mx-auto text-center">
           <h1 role="banner" className="text-4xl font-bold mb-4">404 Not Found</h1>
           <Link to="/" className="text-2xl text-blue-800 dark:text-indigo-300 hover:underline">
-            <FontAwesomeIcon icon={faUndo} className="mr-1" />
+            <FontAwesomeIcon icon={faUndo} />&nbsp;
             Go back to the front page.
           </Link>
         </div>

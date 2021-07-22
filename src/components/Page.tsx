@@ -44,11 +44,14 @@ export function actualTitle(
 
 export function heldOnline(type: string, frontmatter: Frontmatter): JSX.Element {
   return type === "talk" && frontmatter.online ? (
-    <FontAwesomeIcon
-      icon={faNetworkWired}
-      title="The talk was held online."
-      size="xs"
-      className="ml-2" />
+    <>
+      &nbsp;
+      <FontAwesomeIcon
+        icon={faNetworkWired}
+        title="The talk was held online."
+        size="xs"
+      />
+    </>
   ) : null;
 }
 

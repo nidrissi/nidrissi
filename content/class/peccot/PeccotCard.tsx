@@ -30,7 +30,7 @@ export default function PeccotCard({ link, number, date, image, children }: Pecc
         {children}
       </div>
       <a className="block p-2 bg-gray-100 dark:bg-gray-900 rounded-b-md text-center" href={link} rel="noreferrer noopener">
-        <FontAwesomeIcon icon={faVideo} className="mr-1" />
+        <FontAwesomeIcon icon={faVideo} />&nbsp;
         Video
       </a>
     </div>

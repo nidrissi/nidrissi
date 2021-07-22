@@ -105,7 +105,7 @@ export default function Footer() {
   return (
     <footer className="border-t dark:border-gray-900 w-full flex flex-wrap divide-x divide-gray-300 dark:divide-gray-600 divide-dotted text-center">
       <Link to="/" className={linkStyle}>
-        <FontAwesomeIcon icon={faCopyright} className="mr-1" />
+        <FontAwesomeIcon icon={faCopyright} />&nbsp;
         {name}
       </Link>
       {linkList.map(link => (
@@ -116,7 +116,7 @@ export default function Footer() {
           className={linkStyle + " " + (link.extraStyle || "")}
           key={link.label}
         >
-          {link.icon && <FontAwesomeIcon icon={link.icon} className="mr-1" />}
+          {link.icon && <FontAwesomeIcon icon={link.icon} /> & nbsp;}
           {link.label}
         </a>
       ))}

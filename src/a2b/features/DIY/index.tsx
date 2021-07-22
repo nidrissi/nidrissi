@@ -70,7 +70,9 @@ export default function DIY() {
   return (
     <>
       <div className="bg-yellow-100 dark:bg-yellow-800 px-3 py-2" role="alert">
-        <FontAwesomeIcon icon={faExclamationTriangle} className="mr-1" title="Warning!" />Not feature complete yet!
+        <FontAwesomeIcon icon={faExclamationTriangle} title="Warning!" />
+        &nbsp;
+        Not feature complete yet!
       </div>
       <Formik
         initialValues={initialValues}

@@ -64,7 +64,10 @@ function CourseTypeBlock({ type }: CourseTypeBlockProps) {
         expanded ? (
           `[${title}]`
         ) : (
-          <FontAwesomeIcon icon={faQuestionCircle} size="xs" className="ml-1" />
+          <>
+            &nbsp;
+            <FontAwesomeIcon icon={faQuestionCircle} size="xs" />
+          </>
         ))}
     </div>
   );

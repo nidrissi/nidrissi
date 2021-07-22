@@ -27,7 +27,8 @@ export default function HomotopyCard({ number, date, hours, children, video }: C
         target="_blank"
         rel="noreferrer noopener"
       >
-        <FontAwesomeIcon icon={faVideo} className="mr-1" />
+        <FontAwesomeIcon icon={faVideo} />
+        &nbsp;
         Video
       </a>
     </section>

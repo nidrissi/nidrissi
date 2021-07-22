@@ -42,7 +42,7 @@ export default function CopyAndTotal({ totalText, outerRef }: CopyAndTotalProps)
   return (
     <div className="bg-green-600 text-white p-2 my-2 rounded-lg block sm:flex items-center gap-3">
       <div className="flex-grow">
-        <FontAwesomeIcon icon={faCheck} className="mr-1" />
+        <FontAwesomeIcon icon={faCheck} />&nbsp;
         {totalText}
       </div>
       <div>

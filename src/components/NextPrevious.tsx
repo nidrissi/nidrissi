@@ -37,7 +37,8 @@ export default function NextPrevious({ next, previous, type }: NextPreviousProps
           to={`/${type}/${previous.slug}`}
           className={linkStyle}
         >
-          <FontAwesomeIcon icon={faArrowLeft} className="mr-1" />
+          <FontAwesomeIcon icon={faArrowLeft} />
+          &nbsp;
           {actualTitle(previous.frontmatter, type)}
         </Link>
       )}
@@ -48,7 +49,8 @@ export default function NextPrevious({ next, previous, type }: NextPreviousProps
           className={linkStyle}
         >
           {actualTitle(next.frontmatter, type)}
-          <FontAwesomeIcon icon={faArrowRight} className="ml-1" />
+          &nbsp;
+          <FontAwesomeIcon icon={faArrowRight} />
         </Link>
       )}
     </div>

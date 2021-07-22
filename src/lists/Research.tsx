@@ -30,7 +30,9 @@ export default function ResearchList({ data }: ResearchListProps) {
   return (
     <Layout title="Research" description="My research articles (both published and preprints), books, theses, etc.">
       <h1 role="banner" className="text-4xl font-bold mb-2 text-black dark:text-gray-200">
-        <FontAwesomeIcon icon={faCogs} size="sm" className="mr-2" />Research
+        <FontAwesomeIcon icon={faCogs} size="sm" />
+        &nbsp;
+        Research
       </h1>
       <div className="flex flex-col gap-6">
         {sections.map(({ key, title }) => {
@@ -38,9 +40,7 @@ export default function ResearchList({ data }: ResearchListProps) {
           return (
             <section key={key}>
               <h2 className="text-2xl font-semibold mb-1">
-                {title}
-                {" "}
-                [{filteredNodes.length}]
+                {`${title} [${filteredNodes.length}]`}
               </h2>
               <div className="flex flex-col gap-3">
                 {filteredNodes
