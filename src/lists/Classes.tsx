@@ -35,17 +35,17 @@ export default function ClassList({ data: { allMdx: { group } } }: ClassListProp
           // Sort in reverse year order
           .sort((g1, g2) => g2.fieldValue.localeCompare(g1.fieldValue))
           .map(({ fieldValue: year, nodes }) => (
-            <div key={year}>
+            <section key={year}>
               <h2 className="text-2xl font-bold mb-2">
                 Academic year {year}&ndash;{Number(year) + 1}
               </h2>
-              <div className="flex flex-col gap-2">
+              <div className="flex flex-col gap-3">
                 {nodes
                   .map(({ frontmatter, slug, wordCount: { words } }) => (
                     <Mini key={slug} type="class" slug={slug} frontmatter={frontmatter} noLink={words === 0} />
                   ))}
               </div>
-            </div>
+            </section>
           ))}
       </div>
     </Layout>

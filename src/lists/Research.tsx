@@ -39,7 +39,7 @@ export default function ResearchList({ data }: ResearchListProps) {
           const filteredNodes = nodes.filter(({ frontmatter: { status } }) => status === key);
           return (
             <section key={key}>
-              <h2 className="text-2xl font-semibold mb-1">
+              <h2 className="text-2xl font-bold mb-2">
                 {`${title} [${filteredNodes.length}]`}
               </h2>
               <div className="flex flex-col gap-3">
