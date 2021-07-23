@@ -3,6 +3,10 @@
 title: Curriculum Vitæ
 lastMod: $lastMod$
 urls:
+  custom:
+  - label: $otherVersion.label$
+    url: $otherVersion.url$
+  - label:
   customFile:
   - label: PDF version (English)
     file: cv.en.pdf

@@ -1,8 +1,12 @@
 ---
 # ⚠ Automatically generated file ⚠
 title: Curriculum Vitæ
-lastMod: 2021-07-14
+lastMod: 2021-07-21
 urls:
+  custom:
+  - label: Version française
+    url: /misc/cv/fr
+  - label:
   customFile:
   - label: PDF version (English)
     file: cv.en.pdf

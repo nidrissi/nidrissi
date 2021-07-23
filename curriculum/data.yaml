@@ -2,6 +2,9 @@
 # localization
 lang: fr ! en
 mylang: french ! english
+otherVersion:
+    label: English version ! Version française
+    url: /misc/cv ! /misc/cv/fr
 seemore: plus d'infos ! more info
 autogen: ⚠ Fichier généré automatiquement ⚠ ! ⚠ Automatically generated file ⚠
 # moderncv options
