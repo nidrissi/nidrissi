@@ -4,7 +4,7 @@ import React from "react";
 
 import Layout from "./Layout";
 import Meta, { Frontmatter } from "./meta";
-import NextPrevious, { NextOrPrevious } from "./NextPrevious";
+import NextPrevious, { NextOrPreviousItem } from "./NextPrevious";
 import Embed from "./Embed";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faNetworkWired } from "@fortawesome/free-solid-svg-icons";
@@ -19,8 +19,8 @@ interface PageTemplateProps {
       excerpt: string;
       frontmatter: Frontmatter;
     };
-    previous: NextOrPrevious;
-    next: NextOrPrevious;
+    previous: NextOrPreviousItem;
+    next: NextOrPreviousItem;
   };
 };
 

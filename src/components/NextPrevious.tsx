@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft, faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import { actualTitle } from "./Page";
 
-export interface NextOrPrevious {
+export interface NextOrPreviousItem {
   slug: string;
   frontmatter: {
     title: string;
@@ -15,8 +15,8 @@ export interface NextOrPrevious {
 };
 
 interface NextPreviousProps {
-  previous: NextOrPrevious;
-  next: NextOrPrevious;
+  previous: NextOrPreviousItem;
+  next: NextOrPreviousItem;
   type: string;
 }
 
