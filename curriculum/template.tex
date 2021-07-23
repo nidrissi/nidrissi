@@ -1,4 +1,4 @@
-% $autogen$
+% $autoGen$
 \documentclass[a4paper]{moderncv}
 
 \moderncvstyle{$style$}
@@ -17,11 +17,11 @@
 
 \usepackage[scale=0.9]{geometry}
 
-\usepackage[useregional,$mylang$]{datetime2}
+\usepackage[useregional,$myLanguage$]{datetime2}
 
 % i18n
 \usepackage{polyglossia}
-\setmainlanguage{$mylang$}
+\setmainlanguage{$myLanguage$}
 
 % bib
 \usepackage{csquotes}
@@ -80,8 +80,8 @@
 \addbibresource{mainbib.bib}
 
 \title{$title$}
-\firstname{$firstname$}
-\familyname{$familyname$}
+\firstname{$firstName$}
+\familyname{$familyName$}
 \address$for(address)${$address$}$endfor$
 \email{$email$}
 \extrainfo{\DTMdate{$lastMod$}}
@@ -90,7 +90,7 @@
 
 \begin{document}
 \maketitle
-\nocite{$nocite$}
+\nocite{$noCite$}
 
 $for(section)$
 \section{$section.title$}

@@ -1,5 +1,5 @@
 ---
-# $autogen$
+# $autoGen$
 title: Curriculum Vitæ
 lastMod: $lastMod$
 urls:

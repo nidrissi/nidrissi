@@ -1,18 +1,17 @@
 ---
 # localization
 lang: fr ! en
-mylang: french ! english
+myLanguage: french ! english
 otherVersion:
     label: English version ! Version française
     url: /misc/cv ! /misc/cv/fr
-seemore: plus d'infos ! more info
-autogen: ⚠ Fichier généré automatiquement ⚠ ! ⚠ Automatically generated file ⚠
+autoGen: ⚠ Fichier généré automatiquement ⚠ ! ⚠ Automatically generated file ⚠
 # moderncv options
 style: classic
 color: burgundy
 title: Curriculum Vitæ
-firstname: Najib
-familyname: Idrissi
+firstName: Najib
+familyName: Idrissi
 address:
   - Université de Paris -- IMJ-PRG
   - 8 place Aurélie Nemours
@@ -21,7 +20,7 @@ email: najib.idrissi-kaitouni@imj-prg.fr
 homepage: idrissi.eu
 phone: (+33) 01 57 27 91 16
 # citations
-nocite: CamposDucoulombierIdrissiWillwacher2018, CamposDucoulombierIdrissi2019, CamposIdrissiWillwacher2019, CamposIdrissiLambrechtsWillwacher2018, Idrissi2017, Idrissi2017a, Idrissi2018, Idrissi2018a, Idrissi2018b, Idrissi2016a, Idrissi2014, Idrissi2021
+noCite: CamposDucoulombierIdrissiWillwacher2018, CamposDucoulombierIdrissi2019, CamposIdrissiWillwacher2019, CamposIdrissiLambrechtsWillwacher2018, Idrissi2017, Idrissi2017a, Idrissi2018, Idrissi2018a, Idrissi2018b, Idrissi2016a, Idrissi2014, Idrissi2021
 # content
 section:
   - title: Parcours ! Academic Career
