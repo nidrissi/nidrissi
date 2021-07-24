@@ -3,8 +3,8 @@
 lang: fr ! en
 myLanguage: french ! english
 otherVersion:
-    label: English version ! Version française
-    url: /misc/cv ! /misc/cv/fr
+  label: English version ! Version française
+  url: /misc/cv ! /misc/cv/fr
 autoGen: ⚠ Fichier généré automatiquement ⚠ ! ⚠ Automatically generated file ⚠
 # moderncv options
 style: classic
@@ -25,6 +25,7 @@ noCite: CamposDucoulombierIdrissiWillwacher2018, CamposDucoulombierIdrissi2019, 
 section:
   - title: Parcours ! Academic Career
     content:
+      - table: true
       - entry:
           a: Depuis 09/2018 ! Since 09/2018
           b: Maître de conférences
@@ -49,11 +50,11 @@ section:
           e: France
           f: |
             Directeur : [Benoit Fresse](https://pro.univ-lille.fr/benoit-fresse/).
-            Titre : *Formalité opéradique et homotopie des espaces de configuration*.\
+            Titre : *Formalité opéradique et homotopie des espaces de configuration*.
             Thèse soutenue le 17 novembre 2017.
             !
             Advisor: [Benoit Fresse](https://pro.univ-lille.fr/benoit-fresse/).
-            Title: *Operadic Formality and Homotopy of Configuration Spaces*.\
+            Title: *Operadic Formality and Homotopy of Configuration Spaces*.
             Thesis defended on November 17th, 2017.
       - entry:
           a: 09/2011--08/2015
@@ -62,13 +63,13 @@ section:
           d: Paris
           e: France
           f: |
-            2014--2015 : Stage de recherche en préparation à un doctorat, Université de Lille.\
-            2013--2014 : Master Recherche en Mathématiques Fondamentales, Université Paris Diderot.\
-            Fin 2013 : Stage de recherche en topologie algébrique, Massachusetts Institute of Technology.
+            (2014--2015) Stage de recherche en préparation à un doctorat, Université de Lille.
+            (2013--2014) Master Recherche en Mathématiques Fondamentales, Université Paris Diderot.
+            (Fin 2013) Stage de recherche en topologie algébrique, Massachusetts Institute of Technology.
             !
-            2014--2015: Research internship in preparation of a doctorate, Université de Lille.\
-            2013--2014: Master's degree in Fundamental Mathematics, Université Paris Diderot.\
-            Fall 2013: Research internship in algebraic topology, Massachusetts Institute of Technology.
+            (2014--2015) Research internship in preparation of a doctorate, Université de Lille.
+            (2013--2014) Master's degree in Fundamental Mathematics, Université Paris Diderot.
+            (Fall 2013) Research internship in algebraic topology, Massachusetts Institute of Technology.
       - entry:
           a: 2009--2011
           b: Classes prépas (MPSI/MPE)
@@ -77,19 +78,20 @@ section:
           e: France
   - title: Récompenses ! Awards
     content:
-      entry:
-        a: 2019--2020
-        b: |
-          [Cours Peccot](https://www.college-de-france.fr/site/cours-peccot/guestlecturer-2020-03-04-11h00.htm)
-          !
-          [Peccot Lecture](https://www.college-de-france.fr/site/cours-peccot/guestlecturer-2020-03-04-11h00.htm)
-        c: Collège de France -- Fondation Claude-Antoine Peccot
-        d: Paris
-        e: France
-        f: |
-          «\ [...] récompense chaque année de jeunes mathématiciens de moins de 30 ans s’étant signalés dans l'ordre des mathématiques théoriques ou appliquées.\ »
-          !
-          “[...] rewards each year young mathematicians under 30 who have been noticed in theoretical or applied mathematics”
+      - table: true
+      - entry:
+          a: 2019--2020
+          b: |
+            [Cours Peccot](https://www.college-de-france.fr/site/cours-peccot/guestlecturer-2020-03-04-11h00.htm)
+            !
+            [Peccot Lecture](https://www.college-de-france.fr/site/cours-peccot/guestlecturer-2020-03-04-11h00.htm)
+          c: Collège de France -- Fondation Claude-Antoine Peccot
+          d: Paris
+          e: France
+          f: |
+            «\ [...] récompense chaque année de jeunes mathématiciens de moins de 30 ans s’étant signalés dans l'ordre des mathématiques théoriques ou appliquées.\ »
+            !
+            “[...] rewards each year young mathematicians under 30 who have been noticed in theoretical or applied mathematics”
   - title: Recherche ! Research
     more: /research
     content:
@@ -102,6 +104,7 @@ section:
   - title: Financements ! Funding
     content:
       - subtitle: Obtenus ! Obtained
+      - table: true
       - item:
           a: "2019"
           b: |
@@ -115,6 +118,7 @@ section:
             !
             Specific doctoral contract "*normalien*", École Normale Supérieure de Paris
       - subtitle: Membre ! Member
+      - table: true
       - item:
           a: 2021--2024
           b: |
@@ -129,6 +133,7 @@ section:
             Member of the ANR project ["*Homotopie algébrique, Opérades et groupes de Grothendieck--Teichmüller (HOGT)*"](https://math.univ-lille1.fr/~operads/). Coordinator: Benoit Fresse
   - title: Encadrement ! Supervision
     content:
+      - table: true
       - entry:
           a: 2020--2021
           b: Marie-Camille Delarue
@@ -146,6 +151,7 @@ section:
   - title: Service
     content:
       - subtitle: Organisation ! Organization
+      - table: true
       - entry:
           a: Depuis 10/2018 ! Since 10/2018
           b: |
@@ -174,6 +180,7 @@ section:
           c: Laboratoire Paul Painlevé
           d: Lille
       - subtitle: Jurys ! Committees
+      - table: true
       - entry:
           a: 01/2020
           b: |
@@ -193,6 +200,7 @@ section:
           b: Jury d'examen L1 MIASHS ! Exam committee for L1 MIASHS
           c: Université de Paris
       - subtitle: Autre ! Other
+      - table: true
       - entry:
           a: 06/2021--
           b: Contribution to the development of the project `ical-ufr` ! Contribution au développement du projet `ical-ufr`
@@ -225,6 +233,7 @@ section:
   - title: Exposés ! Talks
     more: /talk
     content:
+      - table: true
       - entry:
           a: 10/2021?
           b: Colloque 2021 du GDR Topologie Algébrique
@@ -420,8 +429,9 @@ section:
   - title: Enseignement ! Teaching
     more: /class
     content:
+      - table: true
       - item:
-          a : "2021--2022"
+          a: "2021--2022"
           b: '*Homotopie II*, M2 Maths fondas (cours, 24\ h) ! *Homotopy II*, M2 Fundam.\ Math (lectures, 24\ h)'
       - item:
           a: ""
@@ -497,6 +507,7 @@ section:
           b: "*Mathématiques fondamentales 2*, L1 SESI (TD, 66\ h) ! *Fundamental mathematics 2*, L1 SESI (exercises, 66\ h)"
   - title: Visites ! Visits
     content:
+      - table: true
       - item:
           a: 07/2019
           b: Université catholique de Louvain -- Pascal Lambrechts (5 j.) ! Université catholique de Louvain -- Pascal Lambrechts (5 d.)
@@ -517,6 +528,7 @@ section:
           b: ETH Zurich -- Thomas Willwacher (4 j.) ! ETH Zurich -- Thomas Willwacher (4 d.)
   - title: Participation à des conférences ! Conferences attended
     content:
+      - table: true
       - item:
           a: "2021"
           b: |
