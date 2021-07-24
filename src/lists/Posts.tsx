@@ -1,12 +1,12 @@
 import React from "react";
-import { graphql } from "gatsby";
+import { graphql, Link } from "gatsby";
 
 import Layout from "../components/Layout";
 import Mini from "../components/Mini";
 import { Frontmatter } from "../components/meta";
 import Pager from "./Pager";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPen } from "@fortawesome/free-solid-svg-icons";
+import { faPen, faRss } from "@fortawesome/free-solid-svg-icons";
 
 interface PostListProps {
   data: {
@@ -33,6 +33,9 @@ export default function PostList({ data, pageContext }: PostListProps) {
 
   return (
     <Layout title={title} description={`The blog posts I have written (page ${currentPage} out of ${numPages}).`}>
+      <Link to="/post-rss.xml" className="block float-right w-min">
+        <FontAwesomeIcon icon={faRss} title="RSS feed for posts." size="2x" />
+      </Link>
       <h1 role="banner" className="text-4xl font-bold mb-4 text-black dark:text-gray-200">
         <FontAwesomeIcon icon={faPen} size="sm" />
         &nbsp;

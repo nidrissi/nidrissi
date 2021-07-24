@@ -139,6 +139,59 @@ module.exports = {
         },
       },
     },
+    {
+      resolve: `gatsby-plugin-feed`,
+      options: {
+        query: `
+         {
+          site {
+            siteMetadata {
+              siteUrl
+              siteTitle
+              siteDescription
+              author {
+                name
+              }
+            }
+          }
+        }
+`,
+        feeds: ["post", "research", "talk"].map(type => ({
+          serialize: ({ query: { site, allMdx } }) => {
+            return allMdx.nodes.map(node => {
+              return Object.assign({}, node.frontmatter, {
+                description: node.excerpt,
+                date: node.frontmatter.date,
+                url: `${site.siteMetadata.siteUrl}/${type}/${node.slug}`,
+                categories: node.frontmatter.tags,
+                author: site.siteMetadata.author.name,
+              });
+            });
+          },
+          query: `
+              {
+                allMdx(
+                  sort: { order: DESC, fields: [frontmatter___date] },
+                  filter: {fields: {type: {eq: "${type}"}}}
+                ) {
+                  nodes {
+                    slug
+                    excerpt(pruneLength: 180)
+                    frontmatter {
+                      title
+                      date
+                      tags
+                    }
+                  }
+                }
+              }
+            `,
+          output: `/${type}-rss.xml`,
+          title: `Najib Idrissi: RSS feed for ${type}`,
+          match: `^/${type}`,
+        }))
+      },
+    },
     // needs to be after manifest
     `gatsby-plugin-offline`,
     `gatsby-plugin-sitemap`,

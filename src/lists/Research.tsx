@@ -1,11 +1,11 @@
 import React from "react";
-import { graphql } from "gatsby";
+import { graphql, Link } from "gatsby";
 
 import Layout from "../components/Layout";
 import Mini from "../components/Mini";
 import { Frontmatter } from "../components/meta";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCogs } from "@fortawesome/free-solid-svg-icons";
+import { faCogs, faRss } from "@fortawesome/free-solid-svg-icons";
 
 const sections = [
   { key: "publication", title: "Publications" },
@@ -29,6 +29,9 @@ export default function ResearchList({ data }: ResearchListProps) {
 
   return (
     <Layout title="Research" description="My research articles (both published and preprints), books, theses, etc.">
+      <Link to="/research-rss.xml" className="block float-right w-min">
+        <FontAwesomeIcon icon={faRss} title="RSS feed for talks." size="2x" />
+      </Link>
       <h1 role="banner" className="text-4xl font-bold mb-2 text-black dark:text-gray-200">
         <FontAwesomeIcon icon={faCogs} size="sm" />
         &nbsp;

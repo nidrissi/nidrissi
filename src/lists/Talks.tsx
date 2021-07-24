@@ -1,12 +1,12 @@
 import React from "react";
-import { graphql } from "gatsby";
+import { graphql, Link } from "gatsby";
 
 import Layout from '../components/Layout';
 import Mini from "../components/Mini";
 import { Frontmatter } from "../components/meta";
 import Pager from "./Pager";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faComments } from "@fortawesome/free-solid-svg-icons";
+import { faComments, faRss } from "@fortawesome/free-solid-svg-icons";
 
 interface TalkListProps {
   data: {
@@ -33,6 +33,9 @@ export default function TalkList({ data, pageContext }: TalkListProps) {
 
   return (
     <Layout title={title} description={`The talks I have given and/or will give in the near future (page ${currentPage} out of ${numPages}).`}>
+      <Link to="/talk-rss.xml" className="block float-right w-min">
+        <FontAwesomeIcon icon={faRss} title="RSS feed for talks." size="2x" />
+      </Link>
       <h1 role="banner" className="text-4xl font-bold mb-3 text-black dark:text-gray-200">
         <FontAwesomeIcon icon={faComments} size="sm" />
         &nbsp;
