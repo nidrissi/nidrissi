@@ -29,7 +29,7 @@ Basically, what this means is that if you have a set with two "compatible" laws 
 The proof is amazingly concise:
 
 $$
-\begin{align} a * b & = (a \cdot 1) * (1 \cdot b) \\ & = (a * 1) \cdot (1 * b) \\ a * b & = a \cdot b \\ & = (1 * a) \cdot (b * 1) \\ & = (1 \cdot b) * (a \cdot 1) \\ a * b & = b * a. \end{align}
+\begin{align*} a * b & = (a \cdot 1) * (1 \cdot b) \\ & = (a * 1) \cdot (1 * b) \\ a * b & = a \cdot b \\ & = (1 * a) \cdot (b * 1) \\ & = (1 \cdot b) * (a \cdot 1) \\ a * b & = b * a. \end{align*}
 $$
 
 Pretty nifty!
@@ -38,7 +38,7 @@ Pretty nifty!
 
 One can reformulate the interchange law: it is equivalent to the fact that $* : (M, \cdot)^2 \to (M, \cdot)$ is a morphism of monoids, and also equivalently, $\cdot : (M, *)^2 \to (M, *)$ is a morphism of monoids. Thus we get a reformulation of the Eckmann--Hilton argument (sorry folks, this blog will contain a lot of category theory):
 
-**Reformulation.** A [monoid object](https://en.wikipedia.org/wiki/Monoid_(category_theory)) in the category of monoids is an abelian monoid.
+**Reformulation.** A [monoid object](https://en.wikipedia.org/wiki/Monoid_(category_theory\)) in the category of monoids is an abelian monoid.
 
 Reformulated in this way, the argument immediately generalizes. Let $(\mathsf{C}, \otimes)$ be a monoidal category. The category $\mathsf{Mon}(\mathsf{C})$ is the category of monoid objects in $\mathsf{C}$: its objects are triplet $(M, \mu, \eta)$, where $M$ is an object of $\mathsf{C}$, $\mu : M^2 \to M$ and $\eta : 1_{\mathsf{C}} \to M$ satisfy the axioms of a monoid (associativity, unitality).
 
@@ -162,14 +162,14 @@ The Drinfeld center is, in many respects, the "correct" notion of center for a m
 
 By the Eckmann--Hilton argument, all these monoidal structures are equal, but the amount of commutativity one gets changes depending on $n$ and $k$. These types of categories eventually stabilize to a "fully symmetric" structure for $k > n + 1$, as in this table (Table 21 in (Baez and Dolan)):
 
-| | $n=0$ | $n=1$ | $n=2$
--|-|-|-|-
-$k=0$ | sets | categories | 2-categories
-$k=1$ | monoids | monoidal categories | monoidal 2-categories
-$k=2$ | commutative monoids | braided monoidal categories | braided monoidal 2-categories
-$k=3$ | " | symmetric monoidal categories | weakly involutory monoidal 2-categories
-$k=4$ | " | " | strongly involutory monoidal 2-categories
-$k=5$ | " | " | "
+|       | $n=0$               | $n=1$                         | $n=2$                                     |
+| ----- | ------------------- | ----------------------------- | ----------------------------------------- |
+| $k=0$ | sets                | categories                    | 2-categories                              |
+| $k=1$ | monoids             | monoidal categories           | monoidal 2-categories                     |
+| $k=2$ | commutative monoids | braided monoidal categories   | braided monoidal 2-categories             |
+| $k=3$ | "                   | symmetric monoidal categories | weakly involutory monoidal 2-categories   |
+| $k=4$ | "                   | "                             | strongly involutory monoidal 2-categories |
+| $k=5$ | "                   | "                             | "                                         |
 
 This _Stabilization Hypothesis_ is one of the features that is expected of any good notion of $\infty$-categories, inspired by the Freudenthal suspension theorem. The notion of $k$-fold monoidal categories also appears to be linked to the theory of $E_k$-operads (cf. (Balteanu et al.)), something on which I intend to speak later (cliff-hanger!).
 
@@ -177,6 +177,6 @@ This _Stabilization Hypothesis_ is one of the features that is expected of any g
 
 - Beno Eckmann and Peter J. Hilton. “Group-like structures in general categories. I. Multiplications and comultiplications”. In: _Math. Ann._ 145 (1961--1962), pp. 227--255. ISSN: 0025-5831. [MR0136642](https://www.ams.org/mathscinet-getitem?mr=0136642).
 - Shahn Majid. “Representations, duals and quantum doubles of monoidal categories”. In: _Proceedings of the Winter School on Geometry and Physics (Srní, 1990)_. 26. 1991, pp. 197--206. [MR1151906](https://www.ams.org/mathscinet-getitem?mr=1151906). _(Note: Majid cites a personal communication of Drinfeld where Drinfeld tells him about the Drinfeld center.)_
-- André Joyal and Ross Street. “Tortile Yang-Baxter operators in tensor categories”. In: _J. Pure Appl. Algebra_ 71.1 (1991), pp. 43--51. ISSN: 0022-4049. DOI: [10.1016/0022-4049(91)90039-5](http://dx.doi.org/10.1016/0022-4049(91)90039-5>). [MR1107651](https://www.ams.org/mathscinet-getitem?mr=1107651).
+- André Joyal and Ross Street. “Tortile Yang-Baxter operators in tensor categories”. In: _J. Pure Appl. Algebra_ 71.1 (1991), pp. 43--51. ISSN: 0022-4049. DOI: [10.1016/0022-4049(91)90039-5](http://dx.doi.org/10.1016/0022-4049(91\)90039-5). [MR1107651](https://www.ams.org/mathscinet-getitem?mr=1107651).
 - John C. Baez and James Dolan. “Higher-dimensional algebra and topological quantum field theory”. In: _J. Math. Phys._ 36.11 (1995), pp. 6073--6105. ISSN: 0022-2488. DOI: [10.1063/1.531236](http://dx.doi.org/10.1063/1.531236). arXiv: [q-alg/9503002 [math.QA]](https://arxiv.org/abs/q-alg/9503002). [MR1355899](https://www.ams.org/mathscinet-getitem?mr=1355899).
-- Cornel Balteanu, Zbigniew Fiedorowicz, Roland Schwänzl, and Rainer M. Vogt. “Iterated monoidal categories”. In: _Adv. Math._ 176.2 (2003), pp. 277--349. ISSN: 0001-8708. DOI: [10.1016/S0001-8708(03)00065-3](http://dx.doi.org/10.1016/S0001-8708(03)00065-3>). arXiv: [math/9808082 [math.AT]](https://arxiv.org/abs/math/9808082). [MR1982884](https://www.ams.org/mathscinet-getitem?mr=1982884).
+- Cornel Balteanu, Zbigniew Fiedorowicz, Roland Schwänzl, and Rainer M. Vogt. “Iterated monoidal categories”. In: _Adv. Math._ 176.2 (2003), pp. 277--349. ISSN: 0001-8708. DOI: [10.1016/S0001-8708(03)00065-3](http://dx.doi.org/10.1016/S0001-8708(03\)00065-3). arXiv: [math/9808082 [math.AT]](https://arxiv.org/abs/math/9808082). [MR1982884](https://www.ams.org/mathscinet-getitem?mr=1982884).
