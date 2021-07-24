@@ -11,54 +11,31 @@ In some cases I may use cookies to collect personal information, or that becomes
 
 Cookies are small data files that are placed on your computer or mobile device when you visit a website. Cookies are widely used by website owners in order to make their websites work, or to work more efficiently, as well as to provide reporting information.
 
-Cookies set by the website owner (in this case, Hahaha) are called \"first party cookies\". Cookies set by parties other than the website owner are called \"third party cookies\". Third party cookies enable third party features or functionality to be provided on or through the website (e.g. like advertising, interactive content and analytics). The parties that set these third party cookies can recognize your computer both when it visits the website in question and also when it visits certain other websites.
+Cookies set by the website owner (in this case, Hahaha) are called "first party cookies". Cookies set by parties other than the website owner are called "third party cookies". Third party cookies enable third party features or functionality to be provided on or through the website (e.g. like advertising, interactive content and analytics). The parties that set these third party cookies can recognize your computer both when it visits the website in question and also when it visits certain other websites.
 
 ## Why do I use cookies?
 
-I use first and third party cookies for several reasons. Some cookies are required for technical reasons in order for my Websites to operate, and I refer to these as \"essential\" or \"strictly necessary\" cookies. Other cookies also enable us to track and target the interests of my users to enhance the experience on my Online Properties. Third parties serve cookies through my Websites for advertising, analytics and other purposes. This is described in more detail below.
+I use first and third party cookies for several reasons. Some cookies are required for technical reasons in order for my website to operate, and I refer to these as "essential" or "strictly necessary" cookies. Other cookies also enable us to track and target the interests of my users to enhance the experience on my Online Properties. Third parties serve cookies through my website for advertising, analytics and other purposes. This is described in more detail below.
 
-The specific types of first and third party cookies served through my Websites and the purposes they perform are described below (please note that the specific cookies served may vary depending on the specific Online Properties you visit):
+The specific types of first and third party cookies served through my website and the purposes they perform are described below (please note that the specific cookies served may vary depending on the specific Online Properties you visit):
 
 ## How can I control cookies?
 
 You have the right to decide whether to accept or reject cookies. You can exercise your cookie rights by setting your preferences in the Cookie Consent Manager. The Cookie Consent Manager allows you to select which categories of cookies you accept or reject. Essential cookies cannot be rejected as they are strictly necessary to provide you with services.
 
-The Cookie Consent Manager can be found in the notification banner and on my website. If you choose to reject cookies, you may still use my website though your access to some functionality and areas of my website may be restricted. You may also set or amend your web browser controls to accept or refuse cookies. As the means by which you can refuse cookies through your web browser controls vary from browser-to-browser, you should visit your browser's help menu for more information.
+If you choose to reject cookies, you may still use my website. You may also set or amend your web browser controls to accept or refuse cookies. As the means by which you can refuse cookies through your web browser controls vary from browser-to-browser, you should visit your browser's help menu for more information.
 
-In addition, most advertising networks offer you a way to opt out of targeted advertising. If you would like to find out more information, please visit http://www.aboutads.info/choices/ or http://www.youronlinechoices.com.
+The specific types of first and third party cookies served through my website and the purposes they perform are described in the table below:
 
-The specific types of first and third party cookies served through my Websites and the purposes they perform are described in the table below (please note that the specific cookies served may vary depending on the specific Online Properties you visit):
-
-## Essential website cookies:
-
-These cookies are strictly necessary to provide you with my website and to use some of its features, such as access to secure areas.
-
-- Name: cookieToastShown
-- Purpose: Used to record unique visitor views of the cookie banner. It expires after a year.
-- Provider: .idrissi.eu
-- Type: `http_cookie`
-
-# Analytics cookies:
-
-These cookies collect information that is used in aggregate form to help us understand how my website is being used.
-
-- Name: `_ga_#`
-- Purpose: Used to distinguish individual users by means of designation of a randomly generated number as client identifier, which allows calculation of visits and sessions
-- Provider: .idrissi.eu
-- Service: Google analytics ([privacy policy](https://policies.google.com/privacy))
-- Country: United States
-- Type: `http_cookie`
-
-- Name: `_ga`
-- Purpose: It records a particular ID used to come up with data about website usage by the user. It is a HTTP cookie that expires after 2 years.
-- Provider: .idrissi.eu
-- Service: Google Analytics ([privacy policy](https://policies.google.com/privacy))
-- Country: United States
-- Type: `http_cookie`
+|           | Name               | Purpose                                                                                                                                                            | Service                                                                  | Country       | Type          |
+| --------- | ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------ | ------------- | ------------- |
+| Essential | `cookieToastShown` | Used to record unique visitor views of the cookie banner. It expires after a year.                                                                                 | n/a                                                                      | France        | `http_cookie` |
+| Analytics | `_ga_#`            | Used to distinguish individual users by means of designation of a randomly generated number as client identifier, which allows calculation of visits and sessions. | Google analytics ([privacy policy](https://policies.google.com/privacy)) | United States | `http_cookie` |
+| Analytics | `_ga`              | It records a particular ID used to come up with data about website usage by the user. It is a HTTP cookie that expires after 2 years.                              | Google analytics ([privacy policy](https://policies.google.com/privacy)) | United States | `http_cookie` |
 
 ## What about other tracking technologies, like web beacons?
 
-Cookies are not the only way to recognize or track visitors to a website. I may use other, similar technologies from time to time, like web beacons (sometimes called \"tracking pixels\" or \"clear gifs\"). These are tiny graphics files that contain a unique identifier that enable us to recognize when someone has visited my Websites or opened an e-mail including them. This allows us, for example, to monitor the traffic patterns of users from one page within a website to another, to deliver or communicate with cookies, to understand whether you have come to the website from an online advertisement displayed on a third-party website, to improve site performance, and to measure the success of e-mail marketing campaigns. In many instances, these technologies are reliant on cookies to function properly, and so declining cookies will impair their functioning.
+Cookies are not the only way to recognize or track visitors to a website. I may use other, similar technologies from time to time, like web beacons (sometimes called "tracking pixels" or "clear gifs"). These are tiny graphics files that contain a unique identifier that enable us to recognize when someone has visited my website or opened an e-mail including them. This allows us, for example, to monitor the traffic patterns of users from one page within a website to another, to deliver or communicate with cookies, to understand whether you have come to the website from an online advertisement displayed on a third-party website, to improve site performance, and to measure the success of e-mail marketing campaigns. In many instances, these technologies are reliant on cookies to function properly, and so declining cookies will impair their functioning.
 
 ## Where can I get further information?
 

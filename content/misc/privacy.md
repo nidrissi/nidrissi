@@ -14,7 +14,6 @@ Please read this privacy notice carefully as it will help you understand what I 
 _In Short:  Some information —- such as your Internet Protocol (IP) address and/or browser and device characteristics — is collected automatically when you visit my website._
 
 I automatically collect certain information when you visit, use or navigate the website. This information does not reveal your specific identity (like your name or contact information) but may include device and usage information, such as your IP address, browser and device characteristics, operating system, language preferences, referring URLs, device name, country, location, information about how and when you use my website and other technical information. This information is primarily needed to maintain the security and operation of my website, and for my internal analytics and reporting purposes.
-
 I also collect information through cookies and similar technologies.
 
 The information I collect includes:
@@ -35,7 +34,7 @@ I may process or share your data that I hold based on the following legal basis:
 - Legal Obligations: I may disclose your information where I are legally required to do so in order to comply with applicable law, governmental requests, a judicial proceeding, court order, or legal process, such as in response to a court order or a subpoena (including in response to public authorities to meet national security or law enforcement requirements).
 - Vital Interests: I may disclose your information where I believe it is necessary to investigate, prevent, or take action regarding potential violations of my policies, suspected fraud, situations involving potential threats to the safety of any person and illegal activities, or as evidence in litigation in which I are involved.
 
-## Do i use cookies and other tracking technologies?
+## Do I use cookies and other tracking technologies?
 
 _In Short:  I may use cookies and other tracking technologies to collect and store your information._
 
@@ -49,7 +48,7 @@ My servers are located in Azure's cloud. If you are accessing my website from 
 
 If you are a resident in the European Economic Area (EEA) or United Kingdom (UK), then these countries may not necessarily have data protection laws or other similar laws as comprehensive as those in your country. I will however take all necessary measures to protect your personal information in accordance with this privacy notice and applicable law.
 
-## How long do i keep your information?
+## How long do I keep your information?
 
 _In Short:  I keep your information for as long as necessary to fulfill the purposes outlined in this privacy notice unless otherwise required by law._
 
@@ -57,13 +56,13 @@ I will only keep your personal information for as long as it is necessary for th
 
 When I have no ongoing legitimate need to process your personal information, I will either delete or anonymize such information, or, if this is not possible (for example, because your personal information has been stored in backup archives), then I will securely store your personal information and isolate it from any further processing until deletion is possible.
 
-## How do i keep your information safe?
+## How do I keep your information safe?
 
 _In Short: I aim to protect your personal information through a system of organizational and technical security measures._
 
 I have implemented appropriate technical and organizational security measures designed to protect the security of any personal information I process. However, despite my safeguards and efforts to secure your information, no electronic transmission over the Internet or information storage technology can be guaranteed to be 100% secure, so I cannot promise or guarantee that hackers, cybercriminals, or other unauthorized third parties will not be able to defeat my security, and improperly collect, access, steal, or modify your information. Although I will do my best to protect your personal information, transmission of personal information to and from my website is at your own risk. You should only access the website within a secure environment.
 
-## Do i collect information from minors?
+## Do I collect information from minors?
 
 _In Short: I do not knowingly collect data from or market to children under 18 years of age._
 
@@ -79,7 +78,7 @@ If you are a resident in Switzerland, the contact details for the data protectio
 
 Cookies and similar technologies: Most Web browsers are set to accept cookies by default. If you prefer, you can usually choose to set your browser to remove cookies and to reject cookies.
 
-## Do i make updates to this notice?
+## Do I make updates to this notice?
 
 _In Short: Yes, I will update this notice as necessary to stay compliant with relevant laws._
 
