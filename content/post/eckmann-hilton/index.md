@@ -77,7 +77,7 @@ This has immediate consequences: a space like $S^1 \vee S^1$ with a nonabelian f
 
 This section can be summarized by this picture:
 
-![Homotopy between fg and gf](./arg-htpy.png)
+![Homotopy between fg and gf](./argument-homotopy.svg)
 
 It is a depiction of the Eckmann--Hilton argument applied to $\pi_2(X)$. To understand it, consider a set $M$ with two monoid structures; instead of writing them with two different operators, represent one of them with horizontal multiplication and the other with vertical multiplication, like this:
 
