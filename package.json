@@ -60,7 +60,7 @@
     "rehype-slug": "^4.0.1",
     "remark-external-links": "^8.0.0",
     "remark-math": "^3.0.1",
-    "tailwindcss": "^2.2.6"
+    "tailwindcss": "^2.2.7"
   },
   "browserslist": {
     "production": [
