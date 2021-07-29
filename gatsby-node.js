@@ -1,18 +1,18 @@
 const path = require("path");
 
 exports.onCreateNode = ({ node, actions, getNode }) => {
-  const { createNodeField } = actions
+  const { createNodeField } = actions;
 
   if (node.internal.type === 'Mdx') {
-    const { sourceInstanceName } = getNode(node.parent)
+    const { sourceInstanceName } = getNode(node.parent);
 
     createNodeField({
       node,
       name: 'type',
       value: sourceInstanceName
-    })
+    });
   }
-}
+};
 
 exports.createPages = async ({ graphql, actions, reporter }) => {
   const { createPage } = actions;
@@ -64,7 +64,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
     if (listAssociation[type]) {
       const { component, perPage } = listAssociation[type];
       if (perPage) {
-        const numPages = Math.ceil(totalCount / perPage)
+        const numPages = Math.ceil(totalCount / perPage);
         Array.from({ length: numPages }).forEach((_, i) => {
           createPage({
             path: i === 0 ? `/${type}` : `/${type}/${i + 1}`,
@@ -75,13 +75,13 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
               numPages,
               currentPage: i + 1,
             },
-          })
-        })
+          });
+        });
       } else {
         createPage({
           path: `/${type}`,
           component: path.resolve(component),
-        })
+        });
       }
     };
 
@@ -95,7 +95,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
       next
     }) => {
       createPage({
-        path: path.join(type, slug),
+        path: `${type}/${slug}`,
         component: path.resolve(`./src/components/Page.tsx`),
         context: {
           id,
@@ -116,8 +116,8 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
     }
   }`);
   if (tagResult.errors) {
-    reporter.panicOnBuild(`Error while running tags GraphQL query.`)
-    return
+    reporter.panicOnBuild(`Error while running tags GraphQL query.`);
+    return;
   }
   const tags = tagResult.data.allMdx.group;
   tags.forEach(tag => {
@@ -127,6 +127,6 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
       context: {
         tag: tag.fieldValue,
       },
-    })
-  })
+    });
+  });
 };
