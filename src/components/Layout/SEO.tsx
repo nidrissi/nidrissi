@@ -60,11 +60,6 @@ export default function SEO({ title, description, date, lastMod }: SEOProps) {
       defer={false}
     >
       <meta charSet="utf-8" />
-
-      <meta
-        http-equiv="Content-Security-Policy"
-        content="default-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-eval' 'unsafe-inline' www.googletagmanager.com; img-src 'self' data: www.googletagmanager.com; connect-src 'self' analytics.google.com stats.g.doubleclick.net export.arxiv.org localhost:* ws://localhost:*; font-src 'self' data:;" />
-
       <link rel="canonical" href={`${siteUrl}${pathname}`} />
       <meta name="description" content={description} />
 
