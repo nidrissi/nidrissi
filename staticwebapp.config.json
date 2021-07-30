@@ -32,6 +32,9 @@
     "responseOverrides": {
         "404": {
             "rewrite": "/404.html"
+        },
+        "403": {
+            "rewrite": "/403.html"
         }
     },
     "globalHeaders": {
