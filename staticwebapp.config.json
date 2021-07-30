@@ -19,6 +19,10 @@
         {
             "route": "/fr/expose/*",
             "redirect": "/talk/"
+        },
+        {
+            "route": "/fr",
+            "redirect": "/"
         }
     ],
     "responseOverrides": {
