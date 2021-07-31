@@ -70,8 +70,8 @@ export default function PageTemplate({ data }: PageTemplateProps) {
       lastMod={frontmatter.lastMod}
       lang={frontmatter.lang}
     >
-      <header className="mb-4">
-        <h1 role="banner" className="text-3xl font-bold mb-1 text-gray-900 dark:text-gray-200">
+      <header className="mb-6">
+        <h1 role="banner" className="text-3xl font-extrabold mb-2 text-gray-900 dark:text-gray-200">
           {parsedTitle}
           {heldOnline(type, frontmatter)}
         </h1>
@@ -80,7 +80,7 @@ export default function PageTemplate({ data }: PageTemplateProps) {
 
       {/* Large prose if research or talk abstract. */}
       <div
-        className={`prose prose-blue dark:prose-dark max-w-none ${["research", "talk"].includes(type) ? "prose-lg" : ""}`}
+        className={`prose prose-blue dark:prose-dark ${["research", "talk"].includes(type) ? "prose-lg" : ""}`}
       >
         <MDXRenderer localImages={frontmatter.localImages} urls={frontmatter.urls}>
           {body}

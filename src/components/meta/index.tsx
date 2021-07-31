@@ -51,7 +51,7 @@ interface MetaProps {
 export default function Meta({ frontmatter, type }: MetaProps) {
   return (
     <div>
-      <div className="flex flex-row flex-wrap gap-x-2 gap-y-1 content-center text-gray-700 dark:text-gray-400 mb-2">
+      <div className="flex flex-wrap gap-2 content-center text-gray-700 dark:text-gray-400 mb-2">
         {type === 'research' ? (
           <MetaResearch frontmatter={frontmatter} />
         ) : type === 'class' ? (

@@ -36,7 +36,7 @@ export default function PostList({ data, pageContext }: PostListProps) {
       <Link to="/post-rss.xml" className="block float-right w-min">
         <FontAwesomeIcon icon={faRss} title="RSS feed for posts." size="2x" />
       </Link>
-      <h1 role="banner" className="text-4xl font-bold mb-4 text-black dark:text-gray-200">
+      <h1 role="banner" className="text-4xl font-extrabold mb-6 text-black dark:text-gray-200">
         <FontAwesomeIcon icon={faPen} size="sm" />
         &nbsp;
         {title}

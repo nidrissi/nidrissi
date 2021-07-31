@@ -2,7 +2,7 @@ import React from "react";
 
 interface DateTimeProps {
   children: React.ReactNode;
-  label: string;
+  label: string | JSX.Element;
   TBA?: boolean;
 };
 

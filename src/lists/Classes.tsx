@@ -25,7 +25,7 @@ export default function ClassList({ data: { allMdx: { group } } }: ClassListProp
 
   return (
     <Layout title="Teaching" description="The classes I have taught and/or am currently teaching.">
-      <h1 role="banner" className="text-4xl font-bold mb-3 text-black dark:text-gray-200">
+      <h1 role="banner" className="text-4xl font-extrabold mb-4 text-black dark:text-gray-200">
         <FontAwesomeIcon icon={faChalkboardTeacher} size="sm" />
         &nbsp;
         Teaching
@@ -36,10 +36,10 @@ export default function ClassList({ data: { allMdx: { group } } }: ClassListProp
           .sort((g1, g2) => g2.fieldValue.localeCompare(g1.fieldValue))
           .map(({ fieldValue: year, nodes }) => (
             <section key={year}>
-              <h2 className="text-2xl font-bold mb-2">
+              <h2 className="text-2xl font-bold mb-4">
                 Academic year {year}&ndash;{Number(year) + 1}
               </h2>
-              <div className="flex flex-col gap-3">
+              <div className="flex flex-col gap-4">
                 {nodes
                   .map(({ frontmatter, slug, wordCount: { words } }) => (
                     <Mini key={slug} type="class" slug={slug} frontmatter={frontmatter} noLink={words === 0} />

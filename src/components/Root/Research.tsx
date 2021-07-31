@@ -40,8 +40,8 @@ query RootResearchQuery {
 
   return (
     <section>
-      <h2 className="text-4xl font-bold mb-3">Research</h2>
-      <div className="flex flex-col gap-4">
+      <h2 className="text-4xl font-bold mb-4">Research</h2>
+      <div className="grid gap-4" style={{ gridTemplateColumns: "repeat(auto-fit, minmax(24rem, 1fr))" }}>
         {nodes.map(({ frontmatter, slug }) => {
           return (
             <Mini key={slug} type="research" slug={slug} frontmatter={frontmatter} />

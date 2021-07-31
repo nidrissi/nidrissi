@@ -5,7 +5,7 @@ accepted: 2021-07-01
 lastMod: 2021-07-03
 authors: [ricardo, julien, me]
 status: publication
-publication: To appear in <em>Higher Structures</em>, 69 pages.
+publication: <strong>To appear in <em>Higher Structures</em></strong>, 69 pages.
 urls:
   read: bar-cobar.pdf
   code:

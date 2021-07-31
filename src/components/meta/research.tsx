@@ -63,7 +63,7 @@ export default function MetaResearch({ frontmatter: { date, lastMod, accepted, p
       <div dangerouslySetInnerHTML={{ __html: publication }} />
       <DateTime label="Online on">{date}</DateTime>
       <DateTime label="Updated on">{lastMod}</DateTime>
-      <DateTime label="Accepted on">{accepted}</DateTime>
+      <DateTime label={<><strong>Accepted</strong> on</>}>{accepted}</DateTime>
     </>
   );
 }

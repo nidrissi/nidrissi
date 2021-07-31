@@ -28,7 +28,7 @@ interface TagListProps {
 export default function TagList({ data: { allMdx: { nodes } }, pageContext: { tag } }: TagListProps) {
   return (
     <Layout title={`Pages tagged ${tag}`} description={`The list of all pages tagged ${tag}`}>
-      <h1 role="banner" className="text-4xl font-bold mb-4 text-black dark:text-gray-200">
+      <h1 role="banner" className="text-4xl font-extrabold mb-6 text-black dark:text-gray-200">
         <FontAwesomeIcon icon={faTag} size="sm" />
         &nbsp;
         Pages tagged {tag}

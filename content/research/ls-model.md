@@ -4,7 +4,7 @@ status: publication
 date: 2016-10-29
 lastMod: 2018-12-08
 accepted: 2018-11-15
-publication: "In: <em>Invent. Math.</em> (2019) 216.1, pp. 1&ndash;68."
+publication: "<strong>In: <em>Invent. Math.</em> (2019) 216.1, pp. 1&ndash;68.</strong>"
 title: The Lambrechts–Stanley Model of Configuration Spaces
 urls:
   read: ls-model.pdf

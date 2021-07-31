@@ -26,12 +26,12 @@ export default function Mini({ frontmatter, slug, levelUp, excerpt, type, noLink
   );
 
   const header = levelUp ? (
-    <h2 className="text-2xl font-semibold">
+    <h2 className="text-2xl font-bold mb-2">
       {linkedTitle}
       {heldOnline(type, frontmatter)}
     </h2>
   ) : (
-    <h3 className="text-xl font-semibold">
+    <h3 className="text-xl font-semibold mb-1">
       {linkedTitle}
       {heldOnline(type, frontmatter)}
     </h3>
@@ -51,7 +51,7 @@ export default function Mini({ frontmatter, slug, levelUp, excerpt, type, noLink
   return (
     <article
       lang={frontmatter?.lang}
-      className="border border-gray-400 border-opacity-20 rounded-md p-2"
+      className="border border-gray-400 border-opacity-20 rounded-md px-3 py-2"
     >
       {header}
       <div className="mb-2">

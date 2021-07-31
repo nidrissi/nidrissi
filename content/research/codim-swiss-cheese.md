@@ -6,7 +6,7 @@ accepted: 2020-12-08
 status: publication
 authors:
   - me
-publication: "To appear in <em>Algebr. Geom. Topol.</em>, 47 p."
+publication: "<strong>To appear in <em>Algebr. Geom. Topol.</em></strong>, 47 p."
 urls:
   read: codim-swiss-cheese.pdf
   arxiv: "1809.07667"

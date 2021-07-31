@@ -48,7 +48,7 @@ export default function Index({ children }: { children: React.ReactNode; }) {
           loading="eager"
           placeholder="tracedSVG"
         />
-        <div className="prose prose-blue dark:prose-dark max-w-none mb-3">
+        <div className="prose prose-blue dark:prose-dark mb-3">
           <h1>
             {siteTitle}
           </h1>
