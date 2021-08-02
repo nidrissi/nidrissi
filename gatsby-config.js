@@ -90,7 +90,7 @@ module.exports = {
         },
         extensions: [`.mdx`, `.md`],
         remarkPlugins: [
-          require("remark-math"),
+          require("remark-math-legacy"),
           require("remark-external-links"),
           [require("@silvenon/remark-smartypants"), { "dashes": "oldschool" }],
         ],

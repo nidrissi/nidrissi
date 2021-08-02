@@ -80,10 +80,7 @@
       ],
       "type": "process",
       "dependsOn": "clean (functions)",
-      "group": {
-        "kind": "build",
-        "isDefault": true
-      },
+      "group": "build",
       "problemMatcher": "$msCompile",
       "options": {
         "cwd": "${workspaceFolder}/api"

@@ -8,10 +8,12 @@ import NextPrevious, { NextOrPreviousItem } from "./NextPrevious";
 import Embed from "./Embed";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faNetworkWired } from "@fortawesome/free-solid-svg-icons";
+import CommentList from "./CommentList";
 
 interface PageTemplateProps {
   data: {
     mdx: {
+      slug: string;
       body: string;
       fields: {
         type: string;
@@ -57,7 +59,7 @@ export function heldOnline(type: string, frontmatter: Frontmatter): JSX.Element 
 
 export default function PageTemplate({ data }: PageTemplateProps) {
   const {
-    body, frontmatter, excerpt, fields: { type }
+    body, frontmatter, excerpt, fields: { type }, slug,
   } = data.mdx;
 
   const parsedTitle = actualTitle(frontmatter, type);
@@ -97,6 +99,8 @@ export default function PageTemplate({ data }: PageTemplateProps) {
         <Embed url={frontmatter.urls.read.publicURL} alt={`Read the research document: ${parsedTitle}`} />
       )}
 
+      {type === "post" && <CommentList slug={slug} />}
+
       <NextPrevious next={data.next} previous={data.previous} type={type} />
     </Layout>
   );
@@ -109,6 +113,7 @@ export const query = graphql`
     $nextId: String,
     ) {
     mdx(id: { eq: $id }) {
+      slug
       body
       fields {
         type
