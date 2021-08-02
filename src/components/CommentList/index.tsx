@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSpinner, faTimes } from "@fortawesome/free-solid-svg-icons";
 
@@ -14,21 +14,22 @@ export default function Comments({ slug }: CommentListProp) {
   const [error, setError] = useState(false);
   const [comments, setComments] = useState<Comment[]>([]);
 
-  useEffect(() => {
-    async function fetchComments() {
-      setLoading(true);
-      setError(false);
-      const response = await fetch(`/api/comment/${slug}`);
-      setLoading(false);
-      if (response.ok) {
-        const body = await response.json();
-        setComments(body);
-      } else {
-        setError(true);
-      }
+  const fetchComments = useCallback(async function () {
+    setLoading(true);
+    setError(false);
+    const response = await fetch(`/api/comment/${slug}`);
+    setLoading(false);
+    if (response.ok) {
+      const body = await response.json();
+      setComments(body);
+    } else {
+      setError(true);
     }
-    fetchComments();
   }, [slug]);
+
+  useEffect(() => {
+    fetchComments();
+  }, [slug, fetchComments]);
 
   if (loading) {
     return (
@@ -45,6 +46,18 @@ export default function Comments({ slug }: CommentListProp) {
           <FontAwesomeIcon icon={faTimes} />
           &nbsp;
           An error occurred fetching comments.
+          {" "}
+          <button
+            onClick={() => {
+              if (!loading) {
+                setLoading(true);
+                setTimeout(() => fetchComments(), 500);
+              }
+            }}
+            className="font-semibold hover:font-bold"
+          >
+            Retry?
+          </button>
         </div>
       </CommentListWrapper>
     );
