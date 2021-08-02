@@ -75,6 +75,9 @@ export default function CommentBlock({ slug }: CommentBlockProps) {
           {comments?.map(c => (
             <Single key={c.id} comment={c} />
           ))}
+          {comments.length === 0 && (
+            <em className="text-opacity-60 italic">(no comments on this page yet)</em>
+          )}
         </div>
       </Wrapper>
     );
