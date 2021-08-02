@@ -21,12 +21,12 @@ export default function PeccotCard({ link, number, date, image, children }: Pecc
           image={getImage(image)}
           imgClassName="rounded-t-md" />
       </a>
-      <div className="px-2 py-1">
+      <div className="p-2 leading-none">
         <span className="font-bold text-xl">Lesson {number}</span>
         <br />
         <span className="text-gray-700 dark:text-gray-300 font-semibold">{date}</span>
       </div>
-      <div className="flex-grow px-2 py-1">
+      <div className="flex-grow p-2 leading-none py-1">
         {children}
       </div>
       <a className="block p-2 bg-gray-100 dark:bg-gray-900 rounded-b-md text-center" href={link} rel="noreferrer noopener">

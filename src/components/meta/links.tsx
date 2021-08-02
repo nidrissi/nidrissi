@@ -152,7 +152,7 @@ function EntryLink({ url, definition, title }: EntryLinkProps) {
     // eslint-disable-next-line react/jsx-no-target-blank
     <a
       href={href}
-      className="block border border-gray-200 text-gray-900 hover:bg-blue-800 hover:border-transparent hover:text-white hover:shadow-md dark:text-gray-300 dark:border-gray-700 rounded-md px-2 py-1 text-sm"
+      className="block border border-gray-200 text-gray-900 hover:bg-blue-800 hover:border-transparent hover:text-white hover:shadow-md dark:text-gray-300 dark:border-gray-700 rounded-md p-2 leading-none py-1 text-sm"
       target={href.startsWith("http") ? "_blank" : null}
       rel={href.startsWith("http") ? "noopener noreferrer" : null}
       title={definition.titleBuilder ? definition.titleBuilder(title) : null}

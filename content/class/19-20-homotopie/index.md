@@ -26,7 +26,7 @@ import { faExclamationTriangle } from "@fortawesome/free-solid-svg-icons";
 
 The goal of this course is to give an introduction to modern homotopy theory, its tools, and its applications, as well as to introduce the notion of $\infty$-category. We will essentially follow two examples: the founding example of topological spaces and the example of chain complexes (in the sense of homological algebra and algebraic topology). We will present the modern axiomatic treatement of homotopy theory -- Quillen's model categories -- and we will explain the equivalence between topological spaces and simplicial sets. We will illustrate these methods through the example of rational homotopy theory, showing how the multiplicative structure of cochains -- singular or de Rham -- encode topological spaces up to rational homotopy.
 
-<div class="bg-red-200 text-red-800 dark:bg-red-800 dark:text-red-100 py-1 px-2 rounded-sm">
+<div class="bg-red-200 text-red-800 dark:bg-red-800 dark:text-red-100 p-2 leading-none rounded-sm">
   <FontAwesomeIcon icon={faExclamationTriangle} title="Warning!" />
   &nbsp;
   This is the page for the 2019&ndash;2020 lecture. <a href="/class/21-22-homotopie">See here for the 2021&ndash;2022 page</a>.
@@ -68,21 +68,21 @@ The [exam](/examen.pdf) was on Tuesday, February 18th, between 14:00 and 17:00, 
 It covered chapters 1 and 2.
 [The solution can be found here.](/examen-corrigé.pdf)
 
-| Date | Content |
-|------|---------|
-| Monday January 6th | Section 1.1: Motivation, parallels between topological spaces and chain complexes (homotopy equivalences, weak equivalences, Whitehead theorem(s), models). |
-| Tuesday January 7th | Section 1.2: Fibrations, cofibrations, lifting properties, long exact sequences. |
-| Monday January 13th | Section 1.3: Categorical reminders. Beginning of Section 1.4: Definition of model categories. |
-| Tuesday January 14th | Section 1.4: some examples of model categories, a few properties. Section 1.5: Localization in the general case, definition of left homotopies. |
-| Tuesday January 21th | Section 1.5: end of the description of the homotopy category as a quotient of the category of fibrant-cofibrant objects. |
-| Thursday January 23rd | Section 1.6: Cofibrantly generated model categories, small object argument. |
-| Tuesday January 28th | Section 1.7: Quillen adjunctions and equivalences. Section 1.8: Homotopy (co)limits. |
-| Thursday January 30th | Sections 2.1--2.3: Introduction to simplicial sets. |
-| Monday February 3rd (<FontAwesomeIcon icon={faExclamationTriangle} title="Warning!" />&nbsp;16:15--18:15) | Sections 2.4--2.5: Model structure on simplicial sets, beginning of the equivalence with topological spaces. |
-| Tuesday February 4th | Sections 2.5--2.6: End of the equivalence with topological spaces. Dold--Kan correspondence. Section 3.1: Localization with respect to rational equivalences. |
-| ~~Thursday February 6th~~ | Moved to February 3rd. |
-| Tuesday February 11th (<FontAwesomeIcon icon={faExclamationTriangle} title="Warning!" />&nbsp;room 2017) | Sections 3.2--3.3: Model structure on CDGAs, Sullivan theory, comparison with simplicial sets up to rational equivalence. |
-| Thursday February 13th | Chapter 3: Some applications of rational homotopy theory. Chapter 4: Very bried introduction to $\infty$-categories. |
+| Date                                                                                                      | Content                                                                                                                                                       |
+| --------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Monday January 6th                                                                                        | Section 1.1: Motivation, parallels between topological spaces and chain complexes (homotopy equivalences, weak equivalences, Whitehead theorem(s), models).   |
+| Tuesday January 7th                                                                                       | Section 1.2: Fibrations, cofibrations, lifting properties, long exact sequences.                                                                              |
+| Monday January 13th                                                                                       | Section 1.3: Categorical reminders. Beginning of Section 1.4: Definition of model categories.                                                                 |
+| Tuesday January 14th                                                                                      | Section 1.4: some examples of model categories, a few properties. Section 1.5: Localization in the general case, definition of left homotopies.               |
+| Tuesday January 21th                                                                                      | Section 1.5: end of the description of the homotopy category as a quotient of the category of fibrant-cofibrant objects.                                      |
+| Thursday January 23rd                                                                                     | Section 1.6: Cofibrantly generated model categories, small object argument.                                                                                   |
+| Tuesday January 28th                                                                                      | Section 1.7: Quillen adjunctions and equivalences. Section 1.8: Homotopy (co)limits.                                                                          |
+| Thursday January 30th                                                                                     | Sections 2.1--2.3: Introduction to simplicial sets.                                                                                                           |
+| Monday February 3rd (<FontAwesomeIcon icon={faExclamationTriangle} title="Warning!" />&nbsp;16:15--18:15) | Sections 2.4--2.5: Model structure on simplicial sets, beginning of the equivalence with topological spaces.                                                  |
+| Tuesday February 4th                                                                                      | Sections 2.5--2.6: End of the equivalence with topological spaces. Dold--Kan correspondence. Section 3.1: Localization with respect to rational equivalences. |
+| ~~Thursday February 6th~~                                                                                 | Moved to February 3rd.                                                                                                                                        |
+| Tuesday February 11th (<FontAwesomeIcon icon={faExclamationTriangle} title="Warning!" />&nbsp;room 2017)  | Sections 3.2--3.3: Model structure on CDGAs, Sullivan theory, comparison with simplicial sets up to rational equivalence.                                     |
+| Thursday February 13th                                                                                    | Chapter 3: Some applications of rational homotopy theory. Chapter 4: Very bried introduction to $\infty$-categories.                                          |
 
 ## Bibliography
 

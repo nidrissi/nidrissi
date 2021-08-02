@@ -13,7 +13,7 @@ export default function Pager({ numPages, currentPage, type }: PagerProps) {
     return null;
   }
 
-  const buttonStyle = "block border text-purple-700 border-purple-700 hover:bg-purple-700 hover:text-white dark:text-purple-400 dark:border-purple-400 dark:hover:bg-purple-400 dark:hover:text-black px-2 rounded-md";
+  const buttonStyle = "block border text-purple-700 border-purple-700 hover:bg-purple-700 hover:text-white dark:text-purple-400 dark:border-purple-400 dark:hover:bg-purple-400 dark:hover:text-black p-2 leading-none rounded-md";
   const disabledStyle = "text-gray-600 border-gray-600 pointer-events-none";
 
   function indexToLink(i: number): string {

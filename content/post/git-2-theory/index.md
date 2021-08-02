@@ -15,7 +15,7 @@ Let us now dive into the second part, in which I explain a little what's going "
 While it is not strictly necessary to know all this to use Git, I think that understanding the mechanics helps in actually using it correctly and efficiently.
 Commands like `git push` or `git pull` are actually a bit complex and it is useful to know what words like "commit", "branch", "remote", etc. refer to, especially when there is a conflict between branches.
 
-<div class="bg-red-100 text-red-900 dark:bg-red-900 dark:text-red-100 py-1 px-2 rounded-md">
+<div class="bg-red-100 text-red-900 dark:bg-red-900 dark:text-red-100 p-2 leading-none rounded-md">
 Of course, I will not be able to explain <em>everything</em> about Git's inner workings!
 That is what the <a href="https://git-scm.com/docs" className="!text-red-800 dark:!text-red-200">reference documentation</a> is for.
 </div>
@@ -179,7 +179,7 @@ Git was smart enough to notice that there was no conflict: the header file that 
 Thus, Git just merged to two changes gracefully.
 This resulted in [this merge commit](https://github.com/nidrissi/nidrissi/commit/152e9d2f12778a947f0e6318efc0d36a5a21066b).
 
-<div class="bg-blue-200 text-blue-900 dark:bg-blue-900 dark:text-blue-100 py-1 px-2 rounded-sm">
+<div class="bg-blue-200 text-blue-900 dark:bg-blue-900 dark:text-blue-100 p-2 leading-none rounded-sm">
 There exists a lightweight version of pointers called <em>tags</em>.
 Tags live separately from branches.
 There are two mains difference between tags and branches: 1. a tag is typically immutable: when you make new commits to a branch, the tag stays where it is; 2. in addition to the name of the tag, one can add a message to a tag, much like a commit message.

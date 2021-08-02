@@ -239,10 +239,10 @@ export default function EntryCard({ entry }: EntryCardProps) {
   const formattedEntry = formatEntry({ type, pairing, key });
 
   return (
-    <div className="bg-gray-200 text-black py-1 px-2 border border-black rounded-md my-2">
+    <div className="bg-gray-200 text-black p-2 leading-none border border-black rounded-md my-2">
       <button
         onClick={onClickCopy}
-        className="float-right bg-blue-600 hover:bg-blue-700 text-white py-1 px-2 rounded-sm"
+        className="float-right bg-blue-600 hover:bg-blue-700 text-white p-2 leading-none rounded-sm"
       >
         <FontAwesomeIcon icon={copied ? faCheck : faClipboard} />{" "}
         {copied ? "Copied!" : "Copy"}

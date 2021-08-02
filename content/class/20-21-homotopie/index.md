@@ -37,7 +37,7 @@ We will be particularly interested in two examples: chain complexes (see the pre
 We will present Quillen's model categories, and we will explain the equivalence between topological spaces and simplicial sets.
 We will illustrate these methods with rational homotopy theory by showing that multiplicative structures of cochains encodes rational homotopy types of topological spaces.
 
-<div class="bg-red-200 text-red-800 dark:bg-red-800 dark:text-red-100 py-1 px-2 rounded-sm">
+<div class="bg-red-200 text-red-800 dark:bg-red-800 dark:text-red-100 p-2 leading-none rounded-sm">
   <FontAwesomeIcon icon={faExclamationTriangle} title="Warning!" />
   &nbsp;
   This is the page for the 2020&ndash;2021 lecture. <a href="/class/21-22-homotopie">See here for the 2021&ndash;2022 page</a>.
@@ -71,7 +71,7 @@ The exam was on Friday, March 5th, 14:00--17:00, in room 207C of the [Halle aux 
 It was an open-book exam: students had access to printed and handwritten lecture notes.
 Electronic devices were forbidden.
 
-The retake exam (*rattrapage*) was be on June 15<sup>th</sup>.
+The retake exam (_rattrapage_) was be on June 15<sup>th</sup>.
 It consisted in oral exams lasting around 30 minutes total per student.
 In-person sessions were in the morning between 9AM and 1PM, in the Sophie Germain building, room 1014.
 Online sessions for students that cannot be physically present in Paris at that time were in the afternoon.
