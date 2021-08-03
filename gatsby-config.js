@@ -97,7 +97,6 @@ module.exports = {
         rehypePlugins: [
           require("rehype-katex"),
           require("@mapbox/rehype-prism"),
-          require("rehype-slug"),
         ],
         gatsbyRemarkPlugins: [
           {
