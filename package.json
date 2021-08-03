@@ -58,7 +58,7 @@
     "react-redux": "^7.2.4",
     "rehype-katex": "^5.0.0",
     "remark-external-links": "^8.0.0",
-    "remark-math": "^3.0.1",
+    "remark-math": "^4.0.0",
     "tailwindcss": "^2.2.7"
   },
   "browserslist": {
