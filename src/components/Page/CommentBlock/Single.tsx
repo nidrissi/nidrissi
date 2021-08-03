@@ -5,12 +5,15 @@ import ReactMarkdown from "react-markdown";
 import remarkExternalLinks from "remark-external-links";
 
 import Identicon from "./Identicon";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBan } from "@fortawesome/free-solid-svg-icons";
 
 export interface Comment {
   id: string;
   pageId: string;
   timestamp: number;
   content: string;
+  deleted: boolean;
   authorId: string;
   authorName: string;
 }
@@ -30,6 +33,15 @@ export default function Single({ comment }: SingleProps) {
       <div>
         <div>
           <p className="leading-none border-b pb-1 border-opacity-50 border-dashed">
+            {comment.deleted && (
+              <>
+                <FontAwesomeIcon
+                  icon={faBan}
+                  title="This comment has been deleted."
+                />
+                &nbsp;
+              </>
+            )}
             <strong>
               {comment.authorName}
             </strong>
@@ -42,7 +54,7 @@ export default function Single({ comment }: SingleProps) {
         <ReactMarkdown
           remarkPlugins={[remarkMath, remarkExternalLinks]}
           rehypePlugins={[rehypeKatex]}
-          children={comment.content} />
+          children={comment.content ?? "*[deleted]*"} />
       </div>
     </div>
   );
