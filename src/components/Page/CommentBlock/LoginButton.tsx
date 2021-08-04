@@ -43,33 +43,38 @@ const providers: Provider[] = [
 ];
 
 export default function LoginButton() {
-  const [expanded, setExpanded] = useState(false);
+  const [clicked, setClicked] = useState(true);
 
   return (
     <div className="w-full">
-      <button
-        className="block w-full p-2 leading-none rounded-md hover:bg-yellow-400 dark:hover:bg-yellow-800"
-        onClick={() => setExpanded(e => !e)}
-      >
-        <FontAwesomeIcon icon={faSignInAlt} />
-        &nbsp;
-        Login to comment
-      </button>
-      <div className={expanded ? "flex flex-wrap gap-1" : "hidden"}>
-        {providers.map(p => (
-          <button
-            className="text-sm p-1 leading-none hover:bg-yellow-400 dark:hover:bg-yellow-800 rounded-md"
-            onClick={() => {
-              const location = window.location.pathname;
-              window.location.assign(`/.auth/login/${p.url}?post_login_redirect_uri=${encodeURI(location)}#__comments`);
-            }}
-          >
-            <FontAwesomeIcon icon={p.icon} />
-            &nbsp;
-            {p.label}
-          </button>
-        ))}
-      </div>
+      {!clicked ? (
+        <button
+          className="block w-full p-2 leading-none rounded-md hover:bg-yellow-400 dark:hover:bg-yellow-800"
+          onClick={() => setClicked(false)}
+        >
+          <FontAwesomeIcon icon={faSignInAlt} />
+          &nbsp;
+          Login to comment
+        </button>
+      ) : (
+        <div className={clicked ? "w-full flex flex-wrap gap-1 justify-evenly" : "hidden"}>
+          {providers.map(p => (
+            <button
+              key={p.url}
+              title={`Login with ${p.label}`}
+              className="text-sm p-1 leading-none hover:bg-yellow-400 dark:hover:bg-yellow-800 rounded-md"
+              onClick={() => {
+                const location = window.location.pathname;
+                window.location.assign(`/.auth/login/${p.url}?post_login_redirect_uri=${encodeURI(location)}#__comments`);
+              }}
+            >
+              <FontAwesomeIcon icon={p.icon} />
+              &nbsp;
+              {p.label}
+            </button>
+          ))}
+        </div>
+      )}
     </div>
   );
 }
