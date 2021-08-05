@@ -6,7 +6,7 @@ import remarkExternalLinks from "remark-external-links";
 
 import Identicon from "./Identicon";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBan, faTrash } from "@fortawesome/free-solid-svg-icons";
+import { faBan, faEraser, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { ClientPrincipal } from "./ClientPrincipal";
 
 export interface Comment {
@@ -27,11 +27,11 @@ interface SingleProps {
 export default function Single({ client, comment }: SingleProps) {
   const date = new Date(comment.timestamp);
 
-  const onClickDelete = async () => {
-    if (window.confirm("Are you sure that you want to delete this comment?")) {
+  const onClickDelete = async (superDelete?: boolean) => {
+    if (window.confirm(`Are you sure that you want to${superDelete ? " **TRULY** " : " "}delete this comment?`)) {
       try {
         const response = await fetch(
-          `/api/comment/${comment.pageId}/${comment.id}`,
+          `/api/comment/${comment.pageId}/${comment.id}${superDelete ? "?super=1" : ""}`,
           { method: "DELETE" }
         );
         if (!response.ok) {
@@ -73,9 +73,17 @@ export default function Single({ client, comment }: SingleProps) {
           {comment.userId === client?.userId && !comment.deleted && (
             <button
               className="block p-1 hover:bg-red-700 dark:hover:bg-red-400"
-              onClick={onClickDelete}
+              onClick={() => onClickDelete()}
             >
               <FontAwesomeIcon icon={faTrash} title="Delete this comment" />
+            </button>
+          )}
+          {client?.userRoles.includes("admin") && (
+            <button
+              className="block p-1 hover:bg-yellow-700 dark:hover:bg-yellow-400"
+              onClick={() => onClickDelete(true)}
+            >
+              <FontAwesomeIcon icon={faEraser} title="Delete this comment, for real." />
             </button>
           )}
         </div>

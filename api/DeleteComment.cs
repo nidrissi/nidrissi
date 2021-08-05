@@ -32,11 +32,19 @@ namespace Idrissi.Blogging
                 {
                     return new UnauthorizedResult();
                 }
+
                 var userId = principal.FindFirst(ClaimTypes.NameIdentifier).Value;
-                log.LogInformation("Request to deleted {commentId} from {userId}.", commentId, userId);
+                log.LogInformation("Request to delete {commentId} from {userId}.", commentId, userId);
 
                 var commentUri = UriFactory.CreateDocumentUri("Blogging", "Comments", commentId);
                 RequestOptions requestOptions = new RequestOptions { PartitionKey = new PartitionKey(pageId) };
+
+                if (principal.IsInRole("admin") && req.Query.ContainsKey("super"))
+                {
+                    log.LogWarning("Admin-erasure of comment {commentId}", commentId);
+                    await client.DeleteDocumentAsync(commentUri, requestOptions, token);
+                    return new OkResult();
+                }
 
                 var response = await client.ReadDocumentAsync<Comment>(commentUri, requestOptions, token);
                 var comment = response.Document;
