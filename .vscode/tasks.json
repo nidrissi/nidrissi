@@ -54,7 +54,8 @@
       "script": "develop",
       "problemMatcher": [],
       "label": "npm: develop",
-      "detail": "gatsby develop"
+      "detail": "gatsby develop",
+      "isBackground": true
     },
     {
       "label": "clean (functions)",
@@ -140,6 +141,7 @@
       ],
       "label": "swa: start",
       "detail": "Start service the Static Web App",
+      "isBackground": true,
       "problemMatcher": []
     }
   ]

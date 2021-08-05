@@ -8,11 +8,12 @@ import { ClientPrincipal } from "./ClientPrincipal";
 import UserName from "./UserName";
 
 interface UserDetailsProps {
+  client: ClientPrincipal;
+  setClient: React.Dispatch<React.SetStateAction<ClientPrincipal>>;
   onOk: () => void;
 }
 
-export default function UserDetails({ onOk }: UserDetailsProps) {
-  const [client, setClient] = useState<ClientPrincipal>(null);
+export default function UserDetails({ onOk, client, setClient }: UserDetailsProps) {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
 
@@ -33,7 +34,7 @@ export default function UserDetails({ onOk }: UserDetailsProps) {
     } finally {
       setLoading(false);
     }
-  }, []);
+  }, [setClient]);
 
   useEffect(() => { fetchClient(); }, [fetchClient]);
 
