@@ -26,29 +26,22 @@ namespace Idrissi.Blogging
         {
             try
             {
-                log.LogInformation("Parsing identity");
-                var identity = Auth.Parse(req);
-
-                if (!identity.IsInRole("authenticated"))
+                ClaimsPrincipal identity;
+                if (!Auth.TryParse(req, log, out identity))
                 {
-                    log.LogWarning("Got a request from an unauthenticated user");
                     return new UnauthorizedResult();
                 }
 
                 var userId = identity.FindFirst(ClaimTypes.NameIdentifier);
 
-                if (String.IsNullOrWhiteSpace(userId.Value))
-                {
-                    log.LogError("Got a request from a user without a userId.");
-                    return new UnauthorizedResult();
-                }
-
-                log.LogInformation("Getting username of {userId}", userId.Value);
+                log.LogInformation("Getting username of user #{userId}..", userId.Value);
 
                 var userUri = UriFactory.CreateDocumentUri("Blogging", "Users", userId.Value);
                 var partitionKey = new PartitionKey(userId.Value);
                 var requestOptions = new RequestOptions() { PartitionKey = partitionKey };
                 UserDetails details = await client.ReadDocumentAsync<UserDetails>(userUri, requestOptions, token);
+
+                log.LogInformation("Found username {name}", details.userName);
                 return new OkObjectResult(new { userId = userId.Value, userName = details.userName });
             }
             catch (DocumentClientException ex)

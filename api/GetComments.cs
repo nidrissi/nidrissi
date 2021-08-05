@@ -25,10 +25,7 @@ namespace Idrissi.Blogging
                 return new BadRequestResult();
             }
 
-            log.LogInformation("Parsing identity");
-            var identity = Auth.Parse(req);
-
-            log.LogInformation("Fetching comments for {pageId}", pageId);
+            log.LogInformation("Fetching comments for {pageId}...", pageId);
 
             var commentsCollectionUri = UriFactory.CreateDocumentCollectionUri("Blogging", "Comments");
 
@@ -39,9 +36,13 @@ namespace Idrissi.Blogging
                 select c;
 
             var comments = query.ToArray();
+            log.LogInformation("Found {num} comments", comments.Length);
+
+            Auth.TryParse(req, log, out var identity);
 
             if (!identity.IsInRole("admin"))
             {
+                log.LogDebug("Deleting deleted comments...");
                 foreach (var c in comments)
                 {
                     if (c.deleted)

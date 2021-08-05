@@ -27,22 +27,13 @@ namespace Idrissi.Blogging
         {
             try
             {
-                log.LogDebug("Parsing identity");
-                var identity = Auth.Parse(req);
-
-                if (!identity.IsInRole("authenticated"))
+                ClaimsPrincipal identity;
+                if (!Auth.TryParse(req, log, out identity))
                 {
-                    log.LogWarning("Got a request from an unauthenticated user");
                     return new UnauthorizedResult();
                 }
 
                 var userId = identity.FindFirst(ClaimTypes.NameIdentifier);
-
-                if (String.IsNullOrWhiteSpace(userId.Value))
-                {
-                    log.LogError("Got a request from a user without a userId.");
-                    return new UnauthorizedResult();
-                }
 
                 log.LogDebug("Parsing body of the request");
                 UserDetails details = await JsonSerializer.DeserializeAsync<UserDetails>(req.Body);
@@ -64,14 +55,15 @@ namespace Idrissi.Blogging
                 var response = await client.CreateDocumentAsync(collectionUri, details, requestOptions, cancellationToken: token);
                 return new CreatedResult("user", details);
             }
-            catch (JsonException e)
+            catch (JsonException ex)
             {
-                return new BadRequestObjectResult(e.Message);
+                log.LogError("JSON error: {msg}", ex.Message);
+                return new BadRequestObjectResult(ex.Message);
             }
-            catch (DocumentClientException e)
+            catch (DocumentClientException ex)
             {
-                log.LogError(e.Message);
-                switch (e.StatusCode)
+                log.LogError("Client error: {msg}", ex.Message);
+                switch (ex.StatusCode)
                 {
                     case HttpStatusCode.BadRequest:
                     case HttpStatusCode.RequestEntityTooLarge:
@@ -79,7 +71,7 @@ namespace Idrissi.Blogging
                     case HttpStatusCode.Conflict:
                         return new ConflictResult();
                     default:
-                        throw e;
+                        throw ex;
                 }
             }
             catch (Exception e)

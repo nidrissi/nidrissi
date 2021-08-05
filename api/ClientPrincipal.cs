@@ -5,6 +5,7 @@ using System.Security.Claims;
 using System.Text;
 using System.Text.Json;
 using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Logging;
 
 namespace Idrissi.Blogging
 {
@@ -44,6 +45,28 @@ namespace Idrissi.Blogging
             identity.AddClaims(principal.UserRoles.Select(r => new Claim(ClaimTypes.Role, r)));
 
             return new ClaimsPrincipal(identity);
+        }
+
+        public static bool TryParse(HttpRequest req, ILogger log, out ClaimsPrincipal identity)
+        {
+            log.LogInformation("Parsing identity...");
+            identity = Parse(req);
+
+            if (!identity.IsInRole("authenticated"))
+            {
+                log.LogWarning("Got a request from an unauthenticated user.");
+                return false;
+            }
+
+            var userId = identity.FindFirst(ClaimTypes.NameIdentifier);
+
+            if (String.IsNullOrWhiteSpace(userId.Value))
+            {
+                log.LogError("Got a request from a user without a userId.");
+                return false;
+            }
+
+            return true;
         }
     }
 }
