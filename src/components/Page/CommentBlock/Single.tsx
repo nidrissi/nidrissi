@@ -26,13 +26,13 @@ export default function Single({ comment }: SingleProps) {
   const date = new Date(comment.timestamp);
 
   return (
-    <div className="flex items-start">
+    <div className={`flex items-start ${comment.deleted ? "text-opacity-50" : ""}`}>
       <div className="mr-2">
         <Identicon size={36} seed={comment.userId} />
       </div>
       <div>
-        <div>
-          <p className="leading-none border-b pb-1 border-opacity-50 border-dashed">
+        <div className="flex">
+          <div className="flex-grow leading-none border-b pb-1 border-opacity-50 border-dashed">
             {comment.deleted && (
               <>
                 <FontAwesomeIcon
@@ -49,7 +49,7 @@ export default function Single({ comment }: SingleProps) {
             <em>
               {date.toLocaleString()}
             </em>
-          </p>
+          </div>
         </div>
         <ReactMarkdown
           remarkPlugins={[remarkMath, remarkExternalLinks]}

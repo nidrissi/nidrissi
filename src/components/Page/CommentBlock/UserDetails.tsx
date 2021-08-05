@@ -13,7 +13,6 @@ interface UserDetailsProps {
 
 export default function UserDetails({ onOk }: UserDetailsProps) {
   const [client, setClient] = useState<ClientPrincipal>(null);
-
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
 
