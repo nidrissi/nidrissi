@@ -27,13 +27,13 @@ namespace Idrissi.Blogging
         {
             try
             {
-                ClaimsPrincipal identity;
-                if (!Auth.TryParse(req, log, out identity))
+                ClaimsPrincipal principal;
+                if (!Auth.TryParse(req, log, out principal))
                 {
                     return new UnauthorizedResult();
                 }
 
-                var userId = identity.FindFirst(ClaimTypes.NameIdentifier);
+                var userId = principal.FindFirst(ClaimTypes.NameIdentifier);
 
                 log.LogDebug("Parsing body of the request");
                 UserDetails details = await JsonSerializer.DeserializeAsync<UserDetails>(req.Body);
@@ -50,8 +50,7 @@ namespace Idrissi.Blogging
 
                 log.LogDebug("Setting username of {userId}", userId.Value);
                 var collectionUri = UriFactory.CreateDocumentCollectionUri("Blogging", "Users");
-                var partitionKey = new PartitionKey(userId.Value);
-                var requestOptions = new RequestOptions() { PartitionKey = partitionKey };
+                var requestOptions = new RequestOptions() { PartitionKey = new PartitionKey(userId.Value) };
                 var response = await client.CreateDocumentAsync(collectionUri, details, requestOptions, cancellationToken: token);
                 return new CreatedResult("user", details);
             }

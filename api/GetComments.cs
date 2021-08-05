@@ -38,9 +38,9 @@ namespace Idrissi.Blogging
             var comments = query.ToArray();
             log.LogInformation("Found {num} comments", comments.Length);
 
-            Auth.TryParse(req, log, out var identity);
+            Auth.TryParse(req, log, out var principal);
 
-            if (!identity.IsInRole("admin"))
+            if (!principal.IsInRole("admin"))
             {
                 log.LogDebug("Deleting deleted comments...");
                 foreach (var c in comments)

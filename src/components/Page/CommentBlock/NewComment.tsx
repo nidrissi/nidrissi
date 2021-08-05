@@ -67,7 +67,11 @@ function NewCommentForm({ pageId }: { pageId: string; }) {
           window.location.reload();
         }
         else {
-          throw new Error();
+          if (response.status === 429) {
+            setError("You are posting too much. Please wait 10 seconds between two comments.");
+          } else {
+            throw new Error();
+          }
         }
       }
     } catch {

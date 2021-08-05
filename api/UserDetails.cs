@@ -4,5 +4,7 @@ namespace Idrissi.Blogging
     {
         public string id { get; set; }
         public string userName { get; set; }
+        public bool banned { get; set; }
+        public long lastAttemptToPost { get; set; }
     }
 }

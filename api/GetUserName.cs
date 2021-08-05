@@ -26,23 +26,29 @@ namespace Idrissi.Blogging
         {
             try
             {
-                ClaimsPrincipal identity;
-                if (!Auth.TryParse(req, log, out identity))
+                ClaimsPrincipal principal;
+                if (!Auth.TryParse(req, log, out principal))
                 {
                     return new UnauthorizedResult();
                 }
 
-                var userId = identity.FindFirst(ClaimTypes.NameIdentifier);
+                var userId = principal.FindFirst(ClaimTypes.NameIdentifier).Value;
 
-                log.LogInformation("Getting username of user #{userId}..", userId.Value);
+                log.LogInformation("Getting username of user #{userId}...", userId);
 
-                var userUri = UriFactory.CreateDocumentUri("Blogging", "Users", userId.Value);
-                var partitionKey = new PartitionKey(userId.Value);
+                var userUri = UriFactory.CreateDocumentUri("Blogging", "Users", userId);
+                var partitionKey = new PartitionKey(userId);
                 var requestOptions = new RequestOptions() { PartitionKey = partitionKey };
                 UserDetails details = await client.ReadDocumentAsync<UserDetails>(userUri, requestOptions, token);
 
                 log.LogInformation("Found username {name}", details.userName);
-                return new OkObjectResult(new { userId = userId.Value, userName = details.userName });
+                if (details.banned)
+                {
+                    log.LogWarning("Rejecting request from banned user #{id}.", details.id);
+                    return new UnauthorizedResult();
+                }
+
+                return new OkObjectResult(new { userId = details.id, userName = details.userName });
             }
             catch (DocumentClientException ex)
             {
