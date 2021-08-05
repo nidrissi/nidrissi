@@ -13,11 +13,6 @@ using Microsoft.Extensions.Logging;
 
 namespace Idrissi.Blogging
 {
-    public class UserDetails
-    {
-        public string id { get; set; }
-        public string userName { get; set; }
-    }
     public static class GetUserName
     {
         [FunctionName("GetUserName")]
@@ -29,25 +24,28 @@ namespace Idrissi.Blogging
             ILogger log,
             CancellationToken token)
         {
-            log.LogInformation("Parsing identity");
-            var identity = Auth.Parse(req);
-
-            if (!identity.IsInRole("authenticated"))
-            {
-                return new ForbidResult();
-            }
-
-            var userId = identity.FindFirst(ClaimTypes.NameIdentifier);
-
-            if (String.IsNullOrWhiteSpace(userId.Value))
-            {
-                return new ForbidResult();
-            }
-
-            var userUri = UriFactory.CreateDocumentUri("Blogging", "Users", userId.Value);
-
             try
             {
+                log.LogInformation("Parsing identity");
+                var identity = Auth.Parse(req);
+
+                if (!identity.IsInRole("authenticated"))
+                {
+                    log.LogWarning("Got a request from an unauthenticated user");
+                    return new ForbidResult();
+                }
+
+                var userId = identity.FindFirst(ClaimTypes.NameIdentifier);
+
+                if (String.IsNullOrWhiteSpace(userId.Value))
+                {
+                    log.LogError("Got a request from a user without a userId.");
+                    return new ForbidResult();
+                }
+
+                log.LogInformation("Getting username of {userId}", userId.Value);
+
+                var userUri = UriFactory.CreateDocumentUri("Blogging", "Users", userId.Value);
                 var partitionKey = new PartitionKey(userId.Value);
                 var requestOptions = new RequestOptions() { PartitionKey = partitionKey };
                 UserDetails details = await client.ReadDocumentAsync<UserDetails>(userUri, requestOptions, token);
@@ -55,21 +53,15 @@ namespace Idrissi.Blogging
             }
             catch (DocumentClientException ex)
             {
-                if (ex.StatusCode.HasValue)
+                log.LogError(ex.Message);
+                switch (ex.StatusCode.Value)
                 {
-                    switch (ex.StatusCode.Value)
-                    {
-                        case HttpStatusCode.NotFound:
-                            return new NotFoundResult();
-                        case HttpStatusCode.TooManyRequests:
-                            return new StatusCodeResult((int)HttpStatusCode.TooManyRequests);
-                        default:
-                            throw ex;
-                    }
-                }
-                else
-                {
-                    throw ex;
+                    case HttpStatusCode.NotFound:
+                        return new NotFoundResult();
+                    case HttpStatusCode.TooManyRequests:
+                        return new StatusCodeResult((int)HttpStatusCode.TooManyRequests);
+                    default:
+                        throw ex;
                 }
             }
         }

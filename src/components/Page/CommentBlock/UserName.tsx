@@ -70,15 +70,16 @@ export default function UserName({ onOk, client }: UserNameProps) {
       </>
     );
   } else {
-    return <UserNameForm setUserName={setUserName} />;
+    return <UserNameForm id={client.userId} setUserName={setUserName} />;
   }
 }
 
 interface UserNameFormProps {
+  id: string;
   setUserName: React.Dispatch<React.SetStateAction<string>>;
 }
 
-function UserNameForm({ setUserName }: UserNameFormProps) {
+function UserNameForm({ id, setUserName }: UserNameFormProps) {
   const [currentInput, setCurrentInput] = useState("");
   const [sending, setSending] = useState(false);
   const [inputError, setInputError] = useState<string>(null);
@@ -94,18 +95,22 @@ function UserNameForm({ setUserName }: UserNameFormProps) {
       if (currentInput.length < 3 || currentInput.length > 25) {
         setInputError("Username must be between 3 and 25 characters.");
       } else {
+        const requestBody = {
+          userName: currentInput,
+          id: id,
+        };
         const response = await fetch(`/api/user`, {
           method: "POST",
-          body: JSON.stringify({ userName: currentInput })
+          body: JSON.stringify(requestBody)
         });
         const body = await response.json();
+        // must be before setUserName as otherwise the component is unmounted before the state change
+        setSending(false);
         setUserName(body.userName);
       }
     }
     catch {
       setInputError("There was an error submitting the form. Try again or contact me.");
-    }
-    finally {
       setSending(false);
     }
   };
