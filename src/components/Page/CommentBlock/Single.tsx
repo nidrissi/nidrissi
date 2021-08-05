@@ -6,7 +6,7 @@ import remarkExternalLinks from "remark-external-links";
 
 import Identicon from "./Identicon";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBan, faTrash } from "@fortawesome/free-solid-svg-icons";
+import { faBan, faCrown, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { ClientPrincipal } from "./ClientPrincipal";
 
 export interface Comment {
@@ -52,8 +52,8 @@ export default function Single({ client, comment }: SingleProps) {
         <Identicon size={36} seed={comment.userId} />
       </div>
       <div>
-        <div className="flex leading-none border-b pb-1 border-opacity-50 border-dashed">
-          <div className="flex-grow">
+        <div className="flex leading-none border-b border-opacity-50 border-dashed">
+          <div className="flex-grow p-1">
             {comment.deleted && (
               <>
                 <FontAwesomeIcon
@@ -64,6 +64,12 @@ export default function Single({ client, comment }: SingleProps) {
               </>
             )}
             <strong>
+              {client?.userId === comment.userId && (
+                <>
+                  <FontAwesomeIcon icon={faCrown} title="You posted this comment" />
+                  &nbsp;
+                </>
+              )}
               {comment.userName}
             </strong>
             {", "}
