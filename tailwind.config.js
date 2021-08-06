@@ -16,6 +16,12 @@ module.exports = {
               "text-decoration": "none",
               "&:hover": { "text-decoration": "underline" },
             },
+            "code::before": {
+              "content": '""',
+            },
+            "code::after": {
+              "content": '""',
+            },
           },
         },
         dark: {
