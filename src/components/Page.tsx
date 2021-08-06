@@ -71,7 +71,7 @@ export default function PageTemplate({ data }: PageTemplateProps) {
       lang={frontmatter.lang}
     >
       <header className="mb-6">
-        <h1 role="banner" className="font-serif text-4xl font-extrabold mb-2 text-gray-900 dark:text-gray-200">
+        <h1 role="banner" className="font-serif text-4xl font-extrabold text-gray-900 dark:text-gray-200">
           {parsedTitle}
           {heldOnline(type, frontmatter)}
         </h1>
