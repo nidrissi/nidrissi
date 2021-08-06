@@ -47,7 +47,7 @@ namespace Idrissi.Blogging
 
                 var userId = principal.FindFirst(ClaimTypes.NameIdentifier).Value;
 
-                log.LogInformation("Getting details of user #{userId}...", userId);
+                log.LogInformation("Getting details of user {userId}...", userId);
 
                 var userUri = UriFactory.CreateDocumentUri("Blogging", "Users", userId);
                 var userRequestOptions = new RequestOptions() { PartitionKey = new PartitionKey(userId) };
@@ -55,7 +55,7 @@ namespace Idrissi.Blogging
 
                 if (details.banned)
                 {
-                    log.LogWarning("Rejecting request from banned user #{id}.", details.id);
+                    log.LogWarning("Rejecting request from banned user {id}.", details.id);
                     return new UnauthorizedResult();
                 }
 
@@ -63,12 +63,12 @@ namespace Idrissi.Blogging
                 // convert to JS time
                 details.lastAttemptToPost = ToJSTime(DateTime.UtcNow);
 
-                log.LogInformation("Updating last attempt time for user#{id}", details.id);
+                log.LogInformation("Updating last attempt time for user {id}.", details.id);
                 await client.ReplaceDocumentAsync(userUri, details, userRequestOptions, token);
 
                 if (lastTime.AddSeconds(10) > DateTime.UtcNow)
                 {
-                    log.LogWarning("User #{id} posting too much!", details.id);
+                    log.LogWarning("User {id} posting too much!", details.id);
                     return new StatusCodeResult((int)HttpStatusCode.TooManyRequests);
                 }
 
@@ -101,7 +101,7 @@ namespace Idrissi.Blogging
                     comment,
                     new RequestOptions { PartitionKey = new PartitionKey(pageId) },
                     cancellationToken: token);
-                log.LogInformation("Successfully posted comment #{id}", response.Resource.Id);
+                log.LogInformation("Successfully posted comment {id}.", response.Resource.Id);
 
                 return new CreatedResult(response.Resource.Id, comment);
             }

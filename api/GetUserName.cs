@@ -34,7 +34,7 @@ namespace Idrissi.Blogging
             try
             {
 
-                log.LogInformation("Getting username of user #{userId}...", userId);
+                log.LogInformation("Getting username of user {userId}...", userId);
 
                 var userUri = UriFactory.CreateDocumentUri("Blogging", "Users", userId);
                 var partitionKey = new PartitionKey(userId);
@@ -44,7 +44,7 @@ namespace Idrissi.Blogging
                 log.LogInformation("Found username {name}", details.userName);
                 if (details.banned)
                 {
-                    log.LogWarning("Rejecting request from banned user #{id}.", details.id);
+                    log.LogWarning("Rejecting request from banned user {id}.", details.id);
                     return new UnauthorizedResult();
                 }
 
@@ -58,7 +58,7 @@ namespace Idrissi.Blogging
                         log.LogInformation("No user with id {id}", userId);
                         return new NotFoundResult();
                     case HttpStatusCode.TooManyRequests:
-                        log.LogWarning("User #{id} is making too many requests", userId);
+                        log.LogWarning("User {id} is making too many requests", userId);
                         return new StatusCodeResult((int)HttpStatusCode.TooManyRequests);
                     default:
                         log.LogError(ex.Message);
