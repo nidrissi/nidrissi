@@ -96,7 +96,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
     }) => {
       createPage({
         path: `${type}/${slug}`,
-        component: path.resolve(`./src/components/Page.tsx`),
+        component: path.resolve(`./src/components/Page/index.tsx`),
         context: {
           id,
           previousId: previous?.id,

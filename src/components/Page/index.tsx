@@ -1,13 +1,14 @@
-import { MDXRenderer } from "gatsby-plugin-mdx";
-import { graphql } from "gatsby";
 import React from "react";
+import { graphql } from "gatsby";
+import { MDXRenderer } from "gatsby-plugin-mdx";
 
-import Layout from "./Layout";
-import Meta, { Frontmatter } from "./meta";
-import NextPrevious, { NextOrPreviousItem } from "./NextPrevious";
-import Embed from "./Embed";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faNetworkWired } from "@fortawesome/free-solid-svg-icons";
+
+import Layout from "../Layout";
+import Meta, { Frontmatter } from "../meta";
+import NextPrevious, { NextOrPreviousItem } from "../NextPrevious";
+import Embed from "../Embed";
 
 interface PageTemplateProps {
   data: {
