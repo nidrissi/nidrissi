@@ -31,7 +31,7 @@ The gist includes an example CSV file.
 In the example, the exam of student Doe (Moodle participant ID 12345) is from page 1 to 4, and so on.
 This produces a zip file that you can simply send to Moodle, and it will automatically pair students and exams.
 
-<div class="bg-red-200 text-red-900 dark:bg-red-900 dark:text-red-100 p-2 leading-none rounded-md">
+<div class="bg-red-200 text-red-900 dark:bg-red-900 dark:text-red-100 p-2 rounded-md">
   <FontAwesomeIcon icon={faExclamationTriangle} title="Warning" />
   &nbsp;
   The Moodle participant ID is <em>not</em> the student's user ID (that you can see on e.g. <a href={props.localImages[0].childImageSharp.original.src}>this image</a>).

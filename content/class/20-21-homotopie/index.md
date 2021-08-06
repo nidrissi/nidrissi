@@ -37,7 +37,7 @@ We will be particularly interested in two examples: chain complexes (see the pre
 We will present Quillen's model categories, and we will explain the equivalence between topological spaces and simplicial sets.
 We will illustrate these methods with rational homotopy theory by showing that multiplicative structures of cochains encodes rational homotopy types of topological spaces.
 
-<div class="bg-red-200 text-red-800 dark:bg-red-800 dark:text-red-100 p-2 leading-none rounded-sm">
+<div class="bg-red-200 text-red-800 dark:bg-red-800 dark:text-red-100 p-2 rounded-sm">
   <FontAwesomeIcon icon={faExclamationTriangle} title="Warning!" />
   &nbsp;
   This is the page for the 2020&ndash;2021 lecture. <a href="/class/21-22-homotopie">See here for the 2021&ndash;2022 page</a>.
