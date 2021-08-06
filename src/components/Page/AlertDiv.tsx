@@ -13,10 +13,10 @@ const colorAssociation = {
 };
 
 export default function AlertDiv({ color, extraStyle, children }: AlertDivProps) {
-  const style = colorAssociation[color] ?? "bg-gray-300 dark:bg-gray-700";
+  const colorStyle = colorAssociation[color] ?? "bg-gray-300 dark:bg-gray-700";
 
   return (
-    <div className={"p-2 rounded-md " + style + (extraStyle ?? "")}>
+    <div className={`p-2 rounded-md ${colorStyle} ${extraStyle ?? ""}`}>
       {children}
     </div>
   );

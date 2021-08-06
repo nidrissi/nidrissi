@@ -13,7 +13,7 @@ urls:
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTools, faKeyboard, faExclamationTriangle } from "@fortawesome/free-solid-svg-icons";
 
-<AlertDiv color="red">
+<AlertDiv color="red" extraStyle="font-bold text-lg">
 <FontAwesomeIcon icon={faTools} />&nbsp;This post is still a work-in-progress!
 </AlertDiv>
 
