@@ -18,7 +18,7 @@ If you have not read the previous parts of the series, you can find them there:
 - [Part 2: The Theory](/post/git-2-theory), where I explain at a high level the inner workings and the data models used by Git.
 
 <div class="p-2 rounded-md bg-yellow-300 dark:bg-yellow-800">
-I will assume some level of familiarity with using a terminal to run commands. If you are not comfortable with that, then I suggest that you wait for the "Bonus" part of the series, where I will mention some alternatives.
+I will assume some level of familiarity with using a terminal to run commands. If you are not comfortable with that, then I suggest that you wait for the "Bonus" part of the series, where I will mention some alternatives, including GitHub Desktop and Visual Studio Code.
 </div>
 
 ## Setup
@@ -56,3 +56,11 @@ Afterwards, the file should look like this:
 email = your@email.com
 name = Your Name
 ```
+
+## Further reading
+
+Here are some more resources to learn using Git:
+
+- [GitHub's Git Guide.](https://github.com/git-guides/) This is a great resource if you want to quickly get up to speed.
+- [GitHub's "Hello World" tutorial.](https://guides.github.com/activities/hello-world/)
+- [The Pro Git Book.](https://git-scm.com/book/en/v2)
