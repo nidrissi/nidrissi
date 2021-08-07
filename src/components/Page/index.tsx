@@ -1,13 +1,13 @@
 import React from "react";
 import { graphql } from "gatsby";
 import { MDXRenderer } from "gatsby-plugin-mdx";
+import { MDXProvider } from "@mdx-js/react";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faNetworkWired } from "@fortawesome/free-solid-svg-icons";
-import CommentBlock from "./CommentBlock";
 
-import { MDXProvider } from "@mdx-js/react";
 import AlertDiv from "./AlertDiv";
+import CommentBlock from "./CommentBlock";
 
 import Layout from "../Layout";
 import Meta, { Frontmatter } from "../meta";
@@ -104,10 +104,11 @@ export default function PageTemplate({ data }: PageTemplateProps) {
           <MDXRenderer
             localImages={frontmatter.localImages}
             urls={frontmatter.urls}
-          >
-            {body}
-          </MDXRenderer>
+            children={body}
+          />
         </MDXProvider>
+
+        {type === "post" && <CommentBlock pageId={`${type}__${slug}`} />}
       </div>
 
       {type === "talk" && frontmatter.urls?.slides && (
@@ -128,8 +129,6 @@ export default function PageTemplate({ data }: PageTemplateProps) {
           alt={`Read the research document: ${parsedTitle}`}
         />
       )}
-
-      {type === "post" && <CommentBlock pageId={`${type}__${slug}`} />}
 
       <NextPrevious next={data.next} previous={data.previous} type={type} />
     </Layout>
