@@ -1,4 +1,9 @@
-import { faCheck, faEdit, faSpinner, faTimes } from "@fortawesome/free-solid-svg-icons";
+import {
+  faCheck,
+  faEdit,
+  faSpinner,
+  faTimes,
+} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useRef, useState } from "react";
 import { useEffect } from "react";
@@ -12,22 +17,29 @@ interface NewCommentProps {
   setClient: React.Dispatch<React.SetStateAction<ClientPrincipal>>;
 }
 
-export default function NewComment({ client, setClient, pageId }: NewCommentProps) {
+export default function NewComment({
+  client,
+  setClient,
+  pageId,
+}: NewCommentProps) {
   const [userName, setUserName] = useState<string>(null);
 
   return (
     <div className="mb-4">
       <div className="mb-2">
-        <UserDetails client={client} setClient={setClient} userName={userName} setUserName={setUserName} />
+        <UserDetails
+          client={client}
+          setClient={setClient}
+          userName={userName}
+          setUserName={setUserName}
+        />
       </div>
-      {client !== null && userName && (
-        <NewCommentForm pageId={pageId} />
-      )}
+      {client !== null && userName && <NewCommentForm pageId={pageId} />}
     </div>
   );
 }
 
-function NewCommentForm({ pageId }: { pageId: string; }) {
+function NewCommentForm({ pageId }: { pageId: string }) {
   const [expanded, setExpanded] = useState(false);
   const [currentInput, setCurrentInput] = useState("");
   const [error, setError] = useState<string>(null);
@@ -55,20 +67,18 @@ function NewCommentForm({ pageId }: { pageId: string; }) {
       } else if (trueInput.length > 512) {
         setError("Comments must be at most 512 characters long.");
       } else {
-        const response = await fetch(
-          `/api/comment/${pageId}`,
-          {
-            method: "POST",
-            body: JSON.stringify({ content: trueInput })
-          }
-        );
+        const response = await fetch(`/api/comment/${pageId}`, {
+          method: "POST",
+          body: JSON.stringify({ content: trueInput }),
+        });
         if (response.ok) {
           // TODO do better than a full window reload
           window.location.reload();
-        }
-        else {
+        } else {
           if (response.status === 429) {
-            setError("You are posting too much. Please wait 10 seconds between two comments.");
+            setError(
+              "You are posting too much. Please wait 10 seconds between two comments."
+            );
           } else {
             throw new Error();
           }
@@ -83,8 +93,10 @@ function NewCommentForm({ pageId }: { pageId: string; }) {
 
   function handleReset() {
     const shouldReset =
-      currentInput.trim().length === 0
-      || window.confirm("Are you sure that you want to cancel writing this comment?");
+      currentInput.trim().length === 0 ||
+      window.confirm(
+        "Are you sure that you want to cancel writing this comment?"
+      );
 
     if (shouldReset) {
       setExpanded(false);
@@ -100,13 +112,12 @@ function NewCommentForm({ pageId }: { pageId: string; }) {
           onClick={() => setExpanded(true)}
         >
           <FontAwesomeIcon icon={faEdit} />
-          &nbsp;
-          Write comment
+          &nbsp; Write comment
         </button>
       )}
       <form
         className={expanded ? null : "hidden"}
-        onKeyPress={e => {
+        onKeyPress={(e) => {
           if (e.ctrlKey && e.code === "Enter") {
             handleSubmit();
           }
@@ -114,7 +125,7 @@ function NewCommentForm({ pageId }: { pageId: string; }) {
             handleReset();
           }
         }}
-        onSubmit={e => {
+        onSubmit={(e) => {
           e.preventDefault();
           handleSubmit();
         }}
@@ -122,10 +133,13 @@ function NewCommentForm({ pageId }: { pageId: string; }) {
       >
         <textarea
           ref={formRef}
-          className={"w-full text-black " + (error ? "focus:ring-red-400 dark:focus:ring-red-600" : "")}
+          className={
+            "w-full text-black " +
+            (error ? "focus:ring-red-400 dark:focus:ring-red-600" : "")
+          }
           rows={5}
           value={currentInput}
-          onChange={e => setCurrentInput(e.target.value)}
+          onChange={(e) => setCurrentInput(e.target.value)}
           disabled={sending}
           placeholder="Type a comment (up to 512 characters) here..."
         />
@@ -145,7 +159,11 @@ function NewCommentForm({ pageId }: { pageId: string; }) {
             disabled={sending}
             className="block p-1 leading-none bg-green-300 hover:bg-green-400 dark:bg-green-800 dark:hover:bg-green-900"
           >
-            <FontAwesomeIcon icon={sending ? faSpinner : faCheck} spin={sending} className="mr-1" />
+            <FontAwesomeIcon
+              icon={sending ? faSpinner : faCheck}
+              spin={sending}
+              className="mr-1"
+            />
             Submit
           </button>
           <button

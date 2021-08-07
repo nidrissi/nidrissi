@@ -28,10 +28,18 @@ export default function Single({ client, comment }: SingleProps) {
   const date = new Date(comment.timestamp);
 
   const onClickDelete = async (superDelete?: boolean) => {
-    if (window.confirm(`Are you sure that you want to${superDelete ? " **TRULY** " : " "}delete this comment?`)) {
+    if (
+      window.confirm(
+        `Are you sure that you want to${
+          superDelete ? " **TRULY** " : " "
+        }delete this comment?`
+      )
+    ) {
       try {
         const response = await fetch(
-          `/api/comment/${comment.pageId}/${comment.id}${superDelete ? "?super=1" : ""}`,
+          `/api/comment/${comment.pageId}/${comment.id}${
+            superDelete ? "?super=1" : ""
+          }`,
           { method: "DELETE" }
         );
         if (!response.ok) {
@@ -39,8 +47,7 @@ export default function Single({ client, comment }: SingleProps) {
         }
         // TODO do better than a full page reload
         document.location.reload();
-      }
-      catch {
+      } catch {
         alert("Error deleting comment!");
       }
     }
@@ -62,13 +69,9 @@ export default function Single({ client, comment }: SingleProps) {
       <div className="w-full">
         <div className="w-full flex items-start leading-none">
           <div className="flex-grow pb-1 border-b border-opacity-50 border-dashed">
-            <strong>
-              {comment.userName}
-            </strong>
+            <strong>{comment.userName}</strong>
             {", "}
-            <em>
-              {date.toLocaleString()}
-            </em>
+            <em>{date.toLocaleString()}</em>
           </div>
           {comment.userId === client?.userId && !comment.deleted && (
             <button
@@ -83,14 +86,18 @@ export default function Single({ client, comment }: SingleProps) {
               className="block p-1 hover:bg-yellow-700 dark:hover:bg-yellow-400"
               onClick={() => onClickDelete(true)}
             >
-              <FontAwesomeIcon icon={faEraser} title="Delete this comment, for real." />
+              <FontAwesomeIcon
+                icon={faEraser}
+                title="Delete this comment, for real."
+              />
             </button>
           )}
         </div>
         <ReactMarkdown
           remarkPlugins={[remarkMath, remarkExternalLinks]}
           rehypePlugins={[rehypeKatex]}
-          children={comment.content ?? "*[deleted]*"} />
+          children={comment.content ?? "*[deleted]*"}
+        />
       </div>
     </div>
   );

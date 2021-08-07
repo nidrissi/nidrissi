@@ -14,7 +14,12 @@ interface UserDetailsProps {
   setUserName: React.Dispatch<React.SetStateAction<string>>;
 }
 
-export default function UserDetails({ client, setClient, userName, setUserName }: UserDetailsProps) {
+export default function UserDetails({
+  client,
+  setClient,
+  userName,
+  setUserName,
+}: UserDetailsProps) {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
 
@@ -25,8 +30,7 @@ export default function UserDetails({ client, setClient, userName, setUserName }
         const body = await response.json();
         setClient(body.clientPrincipal);
         setError(false);
-      }
-      else {
+      } else {
         throw new Error();
       }
     } catch {
@@ -37,40 +41,48 @@ export default function UserDetails({ client, setClient, userName, setUserName }
     }
   }, [setClient]);
 
-  useEffect(() => { fetchClient(); }, [fetchClient]);
+  useEffect(() => {
+    fetchClient();
+  }, [fetchClient]);
 
   if (error) {
     return (
-      <Alert retry={() => {
-        setError(false);
-        if (!loading) {
-          setLoading(true);
-          setTimeout(() => fetchClient(), 500);
-        }
-      }}>
+      <Alert
+        retry={() => {
+          setError(false);
+          if (!loading) {
+            setLoading(true);
+            setTimeout(() => fetchClient(), 500);
+          }
+        }}
+      >
         There was an error fetching your login details.
       </Alert>
     );
-  }
-  else if (loading) {
+  } else if (loading) {
     return (
       <>
         <FontAwesomeIcon icon={faSpinner} spin />
-        &nbsp;
-        Loading login details...
+        &nbsp; Loading login details...
       </>
     );
-  }
-  else if (client) {
+  } else if (client) {
     return (
       <>
-        <UserName client={client} userName={userName} setUserName={setUserName} />
-        {" "}
+        <UserName
+          client={client}
+          userName={userName}
+          setUserName={setUserName}
+        />{" "}
         <button
           className="hover:bg-red-400 dark:hover:bg-red-900 leading-none p-2 rounded-md text-sm"
           onClick={() => {
             const location = window.location.pathname;
-            window.location.assign(`/.auth/logout?post_logout_redirect_uri=${encodeURI(location)}#__comments`);
+            window.location.assign(
+              `/.auth/logout?post_logout_redirect_uri=${encodeURI(
+                location
+              )}#__comments`
+            );
           }}
         >
           <FontAwesomeIcon icon={faSignOutAlt} className="mr-1" />
@@ -78,10 +90,7 @@ export default function UserDetails({ client, setClient, userName, setUserName }
         </button>
       </>
     );
-  }
-  else {
-    return (
-      <LoginButton />
-    );
+  } else {
+    return <LoginButton />;
   }
 }

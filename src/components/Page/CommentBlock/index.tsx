@@ -23,17 +23,15 @@ export default function CommentBlock({ pageId }: CommentBlockProps) {
     try {
       const response = await fetch(`/api/comment/${pageId}`);
       if (response.ok) {
-        const body = await response.json() as Comment[];
+        const body = (await response.json()) as Comment[];
         setComments(body);
         setErrorLoadingComments(false);
       } else {
         throw new Error();
       }
-    }
-    catch {
+    } catch {
       setErrorLoadingComments(true);
-    }
-    finally {
+    } finally {
       setLoadingComments(false);
     }
   }, [pageId]);
@@ -46,8 +44,7 @@ export default function CommentBlock({ pageId }: CommentBlockProps) {
     return (
       <Wrapper>
         <FontAwesomeIcon icon={faSpinner} spin />
-        &nbsp;
-        Loading comments...
+        &nbsp; Loading comments...
       </Wrapper>
     );
   }
@@ -55,15 +52,16 @@ export default function CommentBlock({ pageId }: CommentBlockProps) {
   if (errorLoadingComments) {
     return (
       <Wrapper>
-        <Alert retry={() => {
-          setErrorLoadingComments(false);
-          if (!loadingComments) {
-            setLoadingComments(true);
-            setTimeout(() => fetchComments(), 500);
-          }
-        }}>
-          &nbsp;
-          An error occurred fetching comments.
+        <Alert
+          retry={() => {
+            setErrorLoadingComments(false);
+            if (!loadingComments) {
+              setLoadingComments(true);
+              setTimeout(() => fetchComments(), 500);
+            }
+          }}
+        >
+          &nbsp; An error occurred fetching comments.
         </Alert>
       </Wrapper>
     );
@@ -73,7 +71,7 @@ export default function CommentBlock({ pageId }: CommentBlockProps) {
     <Wrapper num={comments.length}>
       <NewComment client={client} setClient={setClient} pageId={pageId} />
       <div className="flex flex-col gap-4">
-        {comments?.map(c => (
+        {comments?.map((c) => (
           <Single key={c.id} comment={c} client={client} />
         ))}
       </div>

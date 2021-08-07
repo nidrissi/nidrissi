@@ -8,17 +8,16 @@ interface CommentListWrapperProps {
   num?: number;
 }
 
-export default function CommentListWrapper({ children, num }: CommentListWrapperProps) {
+export default function CommentListWrapper({
+  children,
+  num,
+}: CommentListWrapperProps) {
   return (
     <ErrorBoundary>
-      <section className="max-w-lg border-t mt-4">
-        <h2
-          className="text-xl font-semibold mb-2"
-          id="__comments"
-        >
+      <section className="border-t mt-4">
+        <h2 className="text-xl font-semibold mb-2" id="__comments">
           <FontAwesomeIcon icon={faComments} />
-          &nbsp;
-          Comments
+          &nbsp; Comments
           {num !== undefined && ` [${num}]`}
         </h2>
         {children}
@@ -27,7 +26,7 @@ export default function CommentListWrapper({ children, num }: CommentListWrapper
   );
 }
 
-class ErrorBoundary extends React.Component<{}, { hasError: boolean; }> {
+class ErrorBoundary extends React.Component<{}, { hasError: boolean }> {
   constructor(props) {
     super(props);
     this.state = { hasError: false };
@@ -39,11 +38,7 @@ class ErrorBoundary extends React.Component<{}, { hasError: boolean; }> {
 
   render() {
     if (this.state.hasError) {
-      return (
-        <Alert>
-          The whole comment section encountered a bug.
-        </Alert>
-      );
+      return <Alert>The whole comment section encountered a bug.</Alert>;
     }
 
     return this.props.children;

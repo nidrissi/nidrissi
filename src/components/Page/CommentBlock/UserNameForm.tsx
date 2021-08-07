@@ -1,4 +1,8 @@
-import { faArrowRight, faSpinner, faTimes } from "@fortawesome/free-solid-svg-icons";
+import {
+  faArrowRight,
+  faSpinner,
+  faTimes,
+} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useState } from "react";
 
@@ -12,7 +16,9 @@ export function UserNameForm({ id, setUserName }: UserNameFormProps) {
   const [sending, setSending] = useState(false);
   const [inputError, setInputError] = useState<string>(null);
 
-  const onSubmit = async (e: React.FormEvent<HTMLFormElement>): Promise<void> => {
+  const onSubmit = async (
+    e: React.FormEvent<HTMLFormElement>
+  ): Promise<void> => {
     e.preventDefault();
     if (sending) {
       return;
@@ -29,23 +35,25 @@ export function UserNameForm({ id, setUserName }: UserNameFormProps) {
         };
         const response = await fetch(`/api/user`, {
           method: "POST",
-          body: JSON.stringify(requestBody)
+          body: JSON.stringify(requestBody),
         });
         const body = await response.json();
         // must be before setUserName as otherwise the component is unmounted before the state change
         setSending(false);
         setUserName(body.userName);
       }
-    }
-    catch {
-      setInputError("There was an error submitting the form. Try again or contact me.");
+    } catch {
+      setInputError(
+        "There was an error submitting the form. Try again or contact me."
+      );
       setSending(false);
     }
   };
 
   return (
     <form
-      onSubmit={e => onSubmit(e)} onReset={() => setCurrentInput("")}
+      onSubmit={(e) => onSubmit(e)}
+      onReset={() => setCurrentInput("")}
       className="mb-1"
     >
       <p>
@@ -56,10 +64,13 @@ export function UserNameForm({ id, setUserName }: UserNameFormProps) {
           type="text"
           placeholder="Jane Doe"
           value={currentInput}
-          onChange={e => setCurrentInput(e.target.value)}
+          onChange={(e) => setCurrentInput(e.target.value)}
           disabled={sending}
-          className={"block flex-grow text-black leading-none p-1 " + (inputError ? "bg-red-200" : sending ? "bg-gray-300" : "")} />
-        {" "}
+          className={
+            "block flex-grow text-black leading-none p-1 " +
+            (inputError ? "bg-red-200" : sending ? "bg-gray-300" : "")
+          }
+        />{" "}
         <button
           disabled={sending}
           type="submit"
@@ -68,14 +79,13 @@ export function UserNameForm({ id, setUserName }: UserNameFormProps) {
           <FontAwesomeIcon
             icon={sending ? faSpinner : inputError ? faTimes : faArrowRight}
             spin={sending}
-            title="Submit" />
+            title="Submit"
+          />
         </button>
       </div>
       {inputError && (
         <>
-          <p className="text-red-800 dark:text-red-500">
-            {inputError}
-          </p>
+          <p className="text-red-800 dark:text-red-500">{inputError}</p>
         </>
       )}
     </form>

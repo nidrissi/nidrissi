@@ -1,7 +1,14 @@
 import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSignInAlt, IconDefinition } from "@fortawesome/free-solid-svg-icons";
-import { faApple, faFacebook, faGithub, faGoogle, faMicrosoft, faTwitter } from "@fortawesome/free-brands-svg-icons";
+import {
+  faApple,
+  faFacebook,
+  faGithub,
+  faGoogle,
+  faMicrosoft,
+  faTwitter,
+} from "@fortawesome/free-brands-svg-icons";
 
 interface Provider {
   url: string;
@@ -39,7 +46,7 @@ const providers: Provider[] = [
     url: "apple",
     label: "Apple",
     icon: faApple,
-  }
+  },
 ];
 
 export default function LoginButton() {
@@ -53,19 +60,24 @@ export default function LoginButton() {
           onClick={() => setClicked(true)}
         >
           <FontAwesomeIcon icon={faSignInAlt} />
-          &nbsp;
-          Login to comment
+          &nbsp; Login to comment
         </button>
       ) : (
-        <div className={clicked ? "w-full flex flex-wrap gap-1 justify-evenly" : "hidden"}>
-          {providers.map(p => (
+        <div
+          className={
+            clicked ? "w-full flex flex-wrap gap-1 justify-evenly" : "hidden"
+          }
+        >
+          {providers.map((p) => (
             <button
               key={p.url}
               title={`Login with ${p.label}`}
               className="text-sm p-1 leading-none hover:bg-yellow-400 dark:hover:bg-yellow-800 rounded-md"
               onClick={() => {
                 const location = window.location.pathname;
-                const loginUri = `/.auth/login/${p.url}?post_login_redirect_uri=${encodeURI(location)}#__comments`;
+                const loginUri = `/.auth/login/${
+                  p.url
+                }?post_login_redirect_uri=${encodeURI(location)}#__comments`;
                 window.location.assign(loginUri);
               }}
             >

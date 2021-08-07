@@ -9,7 +9,11 @@ interface UserNameProps {
   client: ClientPrincipal;
 }
 
-export default function UserName({ client, userName, setUserName }: UserNameProps) {
+export default function UserName({
+  client,
+  userName,
+  setUserName,
+}: UserNameProps) {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
 
@@ -20,11 +24,9 @@ export default function UserName({ client, userName, setUserName }: UserNameProp
         const body = await response.json();
         setUserName(body.userName);
         setError(false);
-      }
-      else if (response.status === 404) {
+      } else if (response.status === 404) {
         setUserName(null);
-      }
-      else {
+      } else {
         throw new Error();
       }
     } catch {
@@ -35,32 +37,30 @@ export default function UserName({ client, userName, setUserName }: UserNameProp
     }
   }, [setUserName]);
 
-  useEffect(() => { fetchUserName(); }, [fetchUserName]);
+  useEffect(() => {
+    fetchUserName();
+  }, [fetchUserName]);
 
   if (error) {
     return (
-      <Alert retry={() => {
-        setError(false);
-        if (!loading) {
-          setLoading(true);
-          setTimeout(() => fetchUserName(), 500);
-        }
-      }}>
+      <Alert
+        retry={() => {
+          setError(false);
+          if (!loading) {
+            setLoading(true);
+            setTimeout(() => fetchUserName(), 500);
+          }
+        }}
+      >
         There was an error fetching your username.
       </Alert>
     );
-  }
-  else if (loading) {
+  } else if (loading) {
     return null;
-  }
-  else if (userName) {
+  } else if (userName) {
     return (
       <>
-        Logged-in as
-        {" "}
-        <strong title={formatClient(client)}>
-          {userName}
-        </strong>.
+        Logged-in as <strong title={formatClient(client)}>{userName}</strong>.
       </>
     );
   } else {
