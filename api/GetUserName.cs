@@ -41,7 +41,6 @@ namespace Idrissi.Blogging
                 var requestOptions = new RequestOptions()
                 {
                     PartitionKey = partitionKey,
-                    ConsistencyLevel = ConsistencyLevel.Strong
                 };
                 UserDetails details = await client.ReadDocumentAsync<UserDetails>(userUri, requestOptions, token);
 

@@ -43,7 +43,6 @@ namespace Idrissi.Blogging
                     RequestOptions requestOptions = new RequestOptions
                     {
                         PartitionKey = new PartitionKey(pageId),
-                        ConsistencyLevel = ConsistencyLevel.Eventual
                     };
                     log.LogWarning("Admin-erasure of comment {commentId}", commentId);
                     await client.DeleteDocumentAsync(commentUri, requestOptions, token);
@@ -54,7 +53,6 @@ namespace Idrissi.Blogging
                     RequestOptions requestOptions = new RequestOptions
                     {
                         PartitionKey = new PartitionKey(pageId),
-                        ConsistencyLevel = ConsistencyLevel.Strong
                     };
 
                     var response = await client.ReadDocumentAsync<Comment>(commentUri, requestOptions, token);

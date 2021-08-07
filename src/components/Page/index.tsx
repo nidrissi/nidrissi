@@ -95,18 +95,20 @@ export default function PageTemplate({ data }: PageTemplateProps) {
       </header>
 
       {/* Large prose if research or talk abstract. */}
-      <div
-        className={`mx-auto max-w-2xl prose prose-blue dark:prose-dark ${
-          ["research", "talk"].includes(type) ? "prose-lg" : ""
-        }`}
-      >
-        <MDXProvider components={{ AlertDiv }}>
-          <MDXRenderer
-            localImages={frontmatter.localImages}
-            urls={frontmatter.urls}
-            children={body}
-          />
-        </MDXProvider>
+      <div className="mx-auto max-w-2xl">
+        <div
+          className={`prose prose-blue dark:prose-dark ${
+            ["research", "talk"].includes(type) ? "prose-lg" : ""
+          }`}
+        >
+          <MDXProvider components={{ AlertDiv }}>
+            <MDXRenderer
+              localImages={frontmatter.localImages}
+              urls={frontmatter.urls}
+              children={body}
+            />
+          </MDXProvider>
+        </div>
 
         {type === "post" && <CommentBlock pageId={`${type}__${slug}`} />}
       </div>
