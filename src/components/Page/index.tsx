@@ -4,6 +4,7 @@ import { MDXRenderer } from "gatsby-plugin-mdx";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faNetworkWired } from "@fortawesome/free-solid-svg-icons";
+import CommentBlock from "./CommentBlock";
 
 import { MDXProvider } from "@mdx-js/react";
 import AlertDiv from "./AlertDiv";
@@ -16,6 +17,7 @@ import Embed from "../Embed";
 interface PageTemplateProps {
   data: {
     mdx: {
+      slug: string;
       body: string;
       fields: {
         type: string;
@@ -68,6 +70,7 @@ export default function PageTemplate({ data }: PageTemplateProps) {
     frontmatter,
     excerpt,
     fields: { type },
+    slug,
   } = data.mdx;
 
   const parsedTitle = actualTitle(frontmatter, type);
@@ -126,6 +129,8 @@ export default function PageTemplate({ data }: PageTemplateProps) {
         />
       )}
 
+      {type === "post" && <CommentBlock pageId={`${type}__${slug}`} />}
+
       <NextPrevious next={data.next} previous={data.previous} type={type} />
     </Layout>
   );
@@ -134,6 +139,7 @@ export default function PageTemplate({ data }: PageTemplateProps) {
 export const query = graphql`
   query ($id: String, $previousId: String, $nextId: String) {
     mdx(id: { eq: $id }) {
+      slug
       body
       fields {
         type

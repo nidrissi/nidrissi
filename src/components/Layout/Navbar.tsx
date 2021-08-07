@@ -4,9 +4,9 @@ import {
   faBoxOpen,
   faChalkboardTeacher,
   faCogs,
-  faComments,
   faHome,
   faListUl,
+  faMicrophoneAlt,
   faPencilAlt,
   faPortrait,
 } from "@fortawesome/free-solid-svg-icons";
@@ -23,7 +23,7 @@ const navbarLinks: navbarLink[] = [
   { to: "/", icon: faHome, label: "Home" },
   { to: "/misc/cv", icon: faPortrait, label: "CV" },
   { to: "/research", icon: faCogs, label: "Research", partiallyActive: true },
-  { to: "/talk", icon: faComments, label: "Talks", partiallyActive: true },
+  { to: "/talk", icon: faMicrophoneAlt, label: "Talks", partiallyActive: true },
   {
     to: "/class",
     icon: faChalkboardTeacher,

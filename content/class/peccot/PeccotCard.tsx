@@ -40,6 +40,7 @@ export default function PeccotCard({
           {date}
         </span>
       </div>
+      <div className="flex-grow p-2 leading-none py-1">{children}</div>
       <div className="flex-grow p-2 leading-none">{children}</div>
       <a
         className="block p-2 bg-gray-100 dark:bg-gray-900 rounded-b-md text-center"

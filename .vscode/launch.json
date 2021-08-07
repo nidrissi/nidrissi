@@ -6,7 +6,7 @@
       "request": "launch",
       "type": "pwa-msedge",
       "url": "http://localhost:8000",
-      "webRoot": "${workspaceFolder}",
+      "webRoot": "${workspaceFolder}"
     },
     {
       "type": "pwa-node",
@@ -43,6 +43,12 @@
         "--nolazy"
       ],
       "console": "integratedTerminal"
+    },
+    {
+      "name": "Attach to .NET Functions",
+      "type": "coreclr",
+      "request": "attach",
+      "processId": "${command:azureFunctions.pickProcess}"
     }
   ]
 }
