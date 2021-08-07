@@ -100,6 +100,7 @@ function NewCommentForm({ pageId }: { pageId: string }) {
 
     if (shouldReset) {
       setExpanded(false);
+      setError(null);
       setCurrentInput("");
     }
   }
@@ -118,10 +119,9 @@ function NewCommentForm({ pageId }: { pageId: string }) {
       <form
         className={expanded ? null : "hidden"}
         onKeyPress={(e) => {
-          if (e.ctrlKey && e.code === "Enter") {
+          if (e.ctrlKey && e.key === "Enter") {
             handleSubmit();
-          }
-          if (e.code === "Escape") {
+          } else if (e.key === "Escape") {
             handleReset();
           }
         }}
