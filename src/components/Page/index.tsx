@@ -123,7 +123,7 @@ export default function PageTemplate({ data }: PageTemplateProps) {
         />
       )}
 
-      {type === "post" && <CommentBlock pageId={`${type}/${slug}`} />}
+      {type === "post" && <CommentBlock pageId={`${type}__${slug}`} />}
 
       <NextPrevious next={data.next} previous={data.previous} type={type} />
     </Layout>

@@ -42,7 +42,7 @@ namespace Idrissi.Blogging
 
             if (!principal.IsInRole("admin"))
             {
-                log.LogDebug("Deleting deleted comments...");
+                log.LogDebug("Removing deleted comments' contents.");
                 foreach (var c in comments)
                 {
                     if (c.deleted)

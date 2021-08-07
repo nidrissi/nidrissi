@@ -12,6 +12,7 @@ using System.Security.Claims;
 using System.Text.Json;
 using Microsoft.Azure.Documents;
 using System.Net;
+using System.Linq;
 
 namespace Idrissi.Blogging
 {
@@ -39,6 +40,12 @@ namespace Idrissi.Blogging
         {
             try
             {
+                if (!Pages.allowedPageIds.TryGetValue(pageId, out var allowed) || !allowed)
+                {
+                    log.LogWarning("Received a request to post on an unauthorized page: {pageId}.", pageId);
+                    return new UnauthorizedResult();
+                }
+
                 ClaimsPrincipal principal;
                 if (!Auth.TryParse(req, log, out principal))
                 {
