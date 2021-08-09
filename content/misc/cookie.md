@@ -11,7 +11,7 @@ In some cases I may use cookies to collect personal information, or that becomes
 
 Cookies are small data files that are placed on your computer or mobile device when you visit a website. Cookies are widely used by website owners in order to make their websites work, or to work more efficiently, as well as to provide reporting information.
 
-Cookies set by the website owner (in this case, Hahaha) are called "first party cookies". Cookies set by parties other than the website owner are called "third party cookies". Third party cookies enable third party features or functionality to be provided on or through the website (e.g. like advertising, interactive content and analytics). The parties that set these third party cookies can recognize your computer both when it visits the website in question and also when it visits certain other websites.
+Cookies set by the website owner are called "first party cookies". Cookies set by parties other than the website owner are called "third party cookies". Third party cookies enable third party features or functionality to be provided on or through the website (e.g. like advertising, interactive content and analytics). The parties that set these third party cookies can recognize your computer both when it visits the website in question and also when it visits certain other websites.
 
 ## Why do I use cookies?
 
@@ -27,11 +27,12 @@ If you choose to reject cookies, you may still use my website. You may also set 
 
 The specific types of first and third party cookies served through my website and the purposes they perform are described in the table below:
 
-|           | Name               | Purpose                                                                                                                                                            | Service                                                                  | Country       | Type          |
-| --------- | ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------ | ------------- | ------------- |
-| Essential | `cookieToastShown` | Used to record unique visitor views of the cookie banner. It expires after a year.                                                                                 | n/a                                                                      | France        | `http_cookie` |
-| Analytics | `_ga_#`            | Used to distinguish individual users by means of designation of a randomly generated number as client identifier, which allows calculation of visits and sessions. | Google analytics ([privacy policy](https://policies.google.com/privacy)) | United States | `http_cookie` |
-| Analytics | `_ga`              | It records a particular ID used to come up with data about website usage by the user. It is a HTTP cookie that expires after 2 years.                              | Google analytics ([privacy policy](https://policies.google.com/privacy)) | United States | `http_cookie` |
+|           | Name                      | Purpose                                                                                                                                                            | Service                                                                  | Country       |
+| --------- | ------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------ | ------------- |
+| Essential | `cookieToastShown`        | Used to record unique visitor views of the cookie banner. It expires after a year.                                                                                 | n/a                                                                      | France        |
+| Essential | `StaticWebAppsAuthCookie` | Used to retain your login information for the comment system.                                                                                                      | Azure Static Web Apps                                                    | United States |
+| Analytics | `_ga_#`                   | Used to distinguish individual users by means of designation of a randomly generated number as client identifier, which allows calculation of visits and sessions. | Google analytics ([privacy policy](https://policies.google.com/privacy)) | United States |
+| Analytics | `_ga`                     | It records a particular ID used to come up with data about website usage by the user. It is a HTTP cookie that expires after 2 years.                              | Google analytics ([privacy policy](https://policies.google.com/privacy)) | United States |
 
 ## What about other tracking technologies, like web beacons?
 
