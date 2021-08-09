@@ -40,7 +40,7 @@ namespace Idrissi.Blogging
 
             Auth.TryParse(req, log, out var principal);
 
-            if (!principal.IsInRole("admin"))
+            if (!principal.IsInRole("administrator"))
             {
                 log.LogDebug("Removing deleted comments' contents.");
                 foreach (var c in comments)

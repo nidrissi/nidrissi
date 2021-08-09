@@ -38,15 +38,22 @@ namespace Idrissi.Blogging
 
                 var commentUri = UriFactory.CreateDocumentUri("Blogging", "Comments", commentId);
 
-                if (principal.IsInRole("admin") && req.Query.ContainsKey("super"))
+                if (req.Query.ContainsKey("super"))
                 {
-                    RequestOptions requestOptions = new RequestOptions
+                    if (principal.IsInRole("administrator"))
                     {
-                        PartitionKey = new PartitionKey(pageId),
-                    };
-                    log.LogWarning("Admin-erasure of comment {commentId}", commentId);
-                    await client.DeleteDocumentAsync(commentUri, requestOptions, token);
-                    return new OkResult();
+                        RequestOptions requestOptions = new RequestOptions
+                        {
+                            PartitionKey = new PartitionKey(pageId),
+                        };
+                        log.LogWarning("Administrator erasure of comment {commentId}", commentId);
+                        await client.DeleteDocumentAsync(commentUri, requestOptions, token);
+                        return new OkResult();
+                    }
+                    else
+                    {
+                        return new UnauthorizedResult();
+                    }
                 }
                 else
                 {

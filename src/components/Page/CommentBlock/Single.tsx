@@ -81,7 +81,7 @@ export default function Single({ client, comment }: SingleProps) {
               <FontAwesomeIcon icon={faTrash} title="Delete this comment" />
             </button>
           )}
-          {client?.userRoles.includes("admin") && (
+          {client?.userRoles.includes("administrator") && (
             <button
               className="block p-1 hover:bg-yellow-700 dark:hover:bg-yellow-400"
               onClick={() => onClickDelete(true)}

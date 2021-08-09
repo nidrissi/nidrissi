@@ -1,43 +1,56 @@
 {
-    "routes": [
-        {
-            "route": "/en/*",
-            "redirect": "/"
-        },
-        {
-            "route": "/fr/cours/*",
-            "redirect": "/class/"
-        },
-        {
-            "route": "/fr/recherche/*",
-            "redirect": "/research/"
-        },
-        {
-            "route": "/fr/billet/*",
-            "redirect": "/blog/"
-        },
-        {
-            "route": "/fr/expose/*",
-            "redirect": "/talk/"
-        },
-        {
-            "route": "/fr",
-            "redirect": "/"
-        }
-    ],
-    "responseOverrides": {
-        "404": {
-            "rewrite": "/404.html"
-        },
-        "403": {
-            "rewrite": "/403.html"
-        }
+  "routes": [
+    {
+      "route": "/en/*",
+      "redirect": "/"
     },
-    "globalHeaders": {
-        "content-security-policy": "default-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-eval' 'unsafe-inline' www.googletagmanager.com; img-src 'self' data: www.googletagmanager.com; connect-src 'self' analytics.google.com stats.g.doubleclick.net export.arxiv.org localhost:* ws://localhost:*; font-src 'self' data:; frame-ancestors 'none'; child-src 'self'; block-all-mixed-content; upgrade-insecure-requests;",
-        "permissions-policy": "accelerometer=(),autoplay=(),camera=(),display-capture=(),document-domain=(),encrypted-media=(),fullscreen=(),geolocation=(),gyroscope=(),magnetometer=(),microphone=(),midi=(),payment=(),picture-in-picture=(),publickey-credentials-get=(),screen-wake-lock=(),sync-xhr=(self),usb=(),web-share=(),xr-spatial-tracking=()"
+    {
+      "route": "/fr/cours/*",
+      "redirect": "/class"
     },
-    "mimeTypes": {
-        ".webmanifest": "application/manifest+json"
+    {
+      "route": "/fr/recherche/*",
+      "redirect": "/research"
+    },
+    {
+      "route": "/fr/billet/*",
+      "redirect": "/blog"
+    },
+    {
+      "route": "/fr/expose/*",
+      "redirect": "/talk"
+    },
+    {
+      "route": "/fr",
+      "redirect": "/"
+    },
+    {
+      "route": "/api/*",
+      "methods": ["POST", "DELETE", "PUT"],
+      "allowedRoles": ["authenticated"]
+    },
+    {
+      "route": "/api/user",
+      "allowedRoles": ["authenticated"]
     }
+  ],
+  "responseOverrides": {
+    "401": {
+      "redirect": "/.auth/login",
+      "statusCode": 302
+    },
+    "404": {
+      "rewrite": "/404.html"
+    },
+    "403": {
+      "rewrite": "/403.html"
+    }
+  },
+  "globalHeaders": {
+    "content-security-policy": "default-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-eval' 'unsafe-inline' www.googletagmanager.com; img-src 'self' data: www.googletagmanager.com; connect-src 'self' analytics.google.com stats.g.doubleclick.net export.arxiv.org localhost:* ws://localhost:*; font-src 'self' data:; frame-ancestors 'none'; child-src 'self'; block-all-mixed-content; upgrade-insecure-requests;",
+    "permissions-policy": "accelerometer=(),autoplay=(),camera=(),display-capture=(),document-domain=(),encrypted-media=(),fullscreen=(),geolocation=(),gyroscope=(),magnetometer=(),microphone=(),midi=(),payment=(),picture-in-picture=(),publickey-credentials-get=(),screen-wake-lock=(),sync-xhr=(self),usb=(),web-share=(),xr-spatial-tracking=()"
+  },
+  "mimeTypes": {
+    ".webmanifest": "application/manifest+json"
+  }
 }
