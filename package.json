@@ -21,9 +21,6 @@
     "@mapbox/rehype-prism": "^0.7.0",
     "@reduxjs/toolkit": "^1.6.1",
     "@silvenon/remark-smartypants": "^1.0.0",
-    "@tailwindcss/aspect-ratio": "^0.2.1",
-    "@tailwindcss/forms": "^0.3.3",
-    "@tailwindcss/typography": "^0.4.1",
     "@types/crypto-js": "^4.0.2",
     "@types/mdx-js__react": "^1.5.4",
     "@types/node": "^16.4.13",
@@ -56,6 +53,7 @@
     "gatsby-transformer-sharp": "^3.11.0",
     "hast-util-heading-rank": "^1.0.1",
     "katex": "^0.13.13",
+    "normalize.css": "^8.0.1",
     "postcss": "^8.3.6",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
@@ -69,7 +67,7 @@
     "remark-external-links": "^8.0.0",
     "remark-math": "^4.0.0",
     "remark-math-legacy": "npm:remark-math@^3.0.1",
-    "tailwindcss": "^2.2.7"
+    "typescript-plugin-css-modules": "^3.4.0"
   },
   "browserslist": {
     "production": [
