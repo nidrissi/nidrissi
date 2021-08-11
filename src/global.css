@@ -19,6 +19,26 @@
   --blue-700: #1d4ed8;
   --blue-800: #1e40af;
   --blue-900: #1e3a8a;
+
+  --green-100: #d1fae5;
+  --green-200: #a7f3d0;
+  --green-300: #6ee7b7;
+  --green-400: #34d399;
+  --green-500: #10b981;
+  --green-600: #059669;
+  --green-700: #047857;
+  --green-800: #065f46;
+  --green-900: #064e3b;
+}
+
+body {
+  font-family: system-ui;
+  color: var(--gray-900);
+  background-color: var(--gray-100);
+}
+
+h1 {
+  font-family: serif;
 }
 
 a,

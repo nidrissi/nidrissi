@@ -10,7 +10,7 @@ import {
 import { faAt } from "@fortawesome/free-solid-svg-icons";
 import { faCopyright } from "@fortawesome/free-regular-svg-icons";
 
-import { siteFooter } from "./Footer.module.css";
+import { footer } from "./Footer.module.css";
 
 interface FooterQuery {
   site: {
@@ -109,7 +109,7 @@ export default function Footer() {
   ].flat();
 
   return (
-    <footer className={siteFooter}>
+    <footer className={footer}>
       <Link to="/">
         <FontAwesomeIcon icon={faCopyright} />
         &nbsp;

@@ -1,4 +1,4 @@
-.siteFooter {
+.footer {
   display: flex;
   flex-wrap: wrap;
   text-align: center;
@@ -7,23 +7,23 @@
   width: 100%;
 }
 
-.siteFooter > * + * {
+.footer > * + * {
   border-right: 1px dotted var(--gray-600);
   border-left: 1px dotted var(--gray-600);
 }
 
-.siteFooter a {
+.footer a {
   display: block;
   flex: 1 1 auto;
   padding: 0.5rem;
 }
 
 @media (prefers-color-scheme: dark) {
-  .siteFooter {
+  .footer {
     border-color: var(--gray-900);
   }
 
-  .siteFooter > * + * {
+  .footer > * + * {
     border-color: var(--gray-600);
   }
 }

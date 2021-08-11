@@ -1,0 +1,81 @@
+.navbar {
+  z-index: 2;
+  position: sticky;
+  top: 0;
+  width: 100%;
+  margin-bottom: 1rem;
+  gap: 1rem;
+  font-size: 1.25rem;
+  color: var(--gray-100);
+  background-color: var(--green-800);
+}
+
+@media (prefers-color-scheme: dark) {
+  .navbar {
+    background-color: var(--green-900);
+  }
+}
+
+#content {
+  display: none;
+  flex-wrap: wrap;
+}
+
+#content.expanded {
+  display: flex;
+}
+
+#content > a,
+#content > a:visited {
+  display: block;
+  padding: 0.75rem;
+  text-decoration: none;
+  color: var(--gray-200);
+}
+
+#content > a.active {
+  font-weight: 700;
+  color: white;
+}
+
+.expander {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.expander > * {
+  display: block;
+}
+
+.expander > a,
+.expander > a:visited {
+  color: white;
+  padding: 0.5rem;
+  font-weight: 700;
+  font-size: 1.5rem;
+}
+
+.expander > button {
+  padding: 0.25rem;
+  margin: 0.5rem;
+  background-color: var(--green-700);
+  color: white;
+  border: 1px solid black;
+  border-radius: 0.25rem;
+}
+
+.expander > button:focus {
+  outline: none;
+}
+
+@media (min-width: 768px) {
+  #content {
+    display: flex;
+  }
+
+  .expander {
+    display: none;
+  }
+}

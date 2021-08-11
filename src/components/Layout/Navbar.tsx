@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { Link } from "gatsby";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { IconDefinition } from "@fortawesome/fontawesome-svg-core";
 import {
   faBoxOpen,
@@ -10,8 +12,8 @@ import {
   faPencilAlt,
   faPortrait,
 } from "@fortawesome/free-solid-svg-icons";
-import { Link } from "gatsby";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
+import * as styles from "./Navbar.module.css";
 
 interface navbarLink {
   to: string;
@@ -37,32 +39,23 @@ const navbarLinks: navbarLink[] = [
 export default function Navbar() {
   const [expanded, setExpanded] = useState(false);
   return (
-    <nav
-      className={`sticky top-0 w-full gap-4 bg-green-800 text-gray-100 dark:bg-green-900 text-xl z-50 mb-4`}
-    >
-      <div className="md:hidden flex w-full items-center justify-between">
-        <Link to="/" className="block p-2 font-semibold">
-          Najib Idrissi
-        </Link>
+    <nav className={styles.navbar}>
+      <div className={styles.expander}>
+        <Link to="/">Najib Idrissi</Link>
         <button
-          className="block p-1 m-2 bg-green-700 text-white border border-black focus:outline-none rounded-md"
           onClick={() => setExpanded(!expanded)}
-          aria-controls="navbar-content"
+          aria-controls={styles.content}
           title={`${expanded ? "Collapse" : "Expand"} the navbar`}
         >
           <FontAwesomeIcon size="lg" fixedWidth icon={faListUl} />
         </button>
       </div>
-      <div
-        id="navbar-content"
-        className={`${expanded ? "flex" : "hidden md:flex"} flex-row flex-wrap`}
-      >
+      <div id={styles.content} className={expanded ? styles.expanded : ""}>
         {navbarLinks.map((link) => (
           <Link
             key={link.to}
             to={link.to}
-            className="block p-3"
-            activeClassName="!font-bold !text-white"
+            activeClassName={styles.active}
             partiallyActive={link.partiallyActive}
           >
             <FontAwesomeIcon icon={link.icon} />
