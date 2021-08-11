@@ -9,6 +9,8 @@ import Class from "./Class";
 import Talk from "./Talk";
 import Post from "./Post";
 
+import { photo, root } from "./index.module.css";
+
 interface IndexQuery {
   site: {
     siteMetadata: {
@@ -40,20 +42,21 @@ export default function Index({ children }: { children: React.ReactNode }) {
   return (
     <Layout title={siteTitle} description={siteDescription}>
       <article>
-        <StaticImage
-          src="photo.jpg"
-          alt="Photo of myself."
-          className="block rounded-md float-right w-28 sm:w-40 md:w-56 m-3"
-          loading="eager"
-          placeholder="tracedSVG"
-        />
-        <div className="prose prose-blue dark:prose-dark mb-3">
+        <div id={photo}>
+          <StaticImage
+            src="photo.jpg"
+            alt="Photo of myself."
+            loading="eager"
+            placeholder="tracedSVG"
+          />
+        </div>
+        <div className="prose">
           <h1 role="banner">{siteTitle}</h1>
           {children}
         </div>
         <Contact />
       </article>
-      <div className="grid grid-cols-1 gap-8 mt-8">
+      <div id={root}>
         <Research />
         <Class />
         <Talk />

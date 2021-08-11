@@ -2,11 +2,24 @@ import React from "react";
 import { graphql, useStaticQuery } from "gatsby";
 import Mini from "../Mini";
 import SeeMore from "./SeeMore";
+import { Frontmatter } from "../meta";
+
+import { section } from "./index.module.css";
+
+interface PostResearchQuery {
+  allMdx: {
+    nodes: {
+      slug: string;
+      frontmatter: Frontmatter;
+      excerpt: string;
+    }[];
+  };
+}
 
 export default function Post() {
   const {
     allMdx: { nodes },
-  } = useStaticQuery(graphql`
+  }: PostResearchQuery = useStaticQuery(graphql`
     query RootPostQuery {
       allMdx(
         filter: { fields: { type: { eq: "post" } } }
@@ -30,14 +43,9 @@ export default function Post() {
   `);
 
   return (
-    <section>
-      <h2 className="text-4xl font-bold mb-3">Posts</h2>
-      <div
-        className="grid gap-4"
-        style={{
-          gridTemplateColumns: "repeat(auto-fit, minmax(24rem, 1fr))",
-        }}
-      >
+    <section className={section}>
+      <h2>Posts</h2>
+      <div>
         {nodes.map(({ frontmatter, slug, excerpt }) => (
           <Mini
             key={slug}

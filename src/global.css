@@ -38,27 +38,64 @@ body {
 }
 
 h1 {
-  font-family: serif;
+  font-family: ui-serif;
 }
 
 a,
 a:visited {
-  color: var(--blue-800);
+  color: inherit;
   text-decoration: none;
 }
 
-a:hover {
+hr {
+  margin-top: 12px;
+  margin-bottom: 12px;
+}
+
+blockquote {
+  font-size: large;
+  border-left: 8px solid var(--gray-400);
+  padding-left: 1rem;
+  margin-left: 0px;
+}
+
+.prose {
+  line-height: 1.25;
+}
+
+.prose a {
+  font-weight: 600;
+  color: var(--blue-800);
+}
+
+.prose a:hover {
   text-decoration: underline;
 }
 
 @media (prefers-color-scheme: dark) {
   body {
     background-color: var(--gray-800);
+    color: var(--gray-300);
+  }
+
+  .prose a,
+  .prose a:visited {
+    color: var(--blue-400);
+  }
+
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  th,
+  code,
+  pre {
     color: var(--gray-200);
   }
 
-  a,
-  a:visited {
-    color: var(--blue-400);
+  h1,
+  strong {
+    color: var(--gray-100);
   }
 }

@@ -1,0 +1,28 @@
+.seemore {
+  margin-top: 1rem;
+  text-align: center;
+  color: var(--green-800);
+  border-width: thin;
+  border-color: var(--green-800);
+  border-radius: 0.25rem;
+  line-height: 1;
+  padding: 0.5rem;
+}
+
+.seemore:hover {
+  color: white;
+  background-color: var(--green-700);
+  text-decoration: none;
+}
+
+@media (prefers-color-scheme: dark) {
+  .seemore {
+    color: var(--green-500);
+    border-color: var(--green-500);
+  }
+
+  .seemore:hover {
+    color: black;
+    background-color: var(--green-500);
+  }
+}

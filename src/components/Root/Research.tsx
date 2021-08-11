@@ -4,6 +4,8 @@ import Mini from "../Mini";
 import SeeMore from "./SeeMore";
 import { Frontmatter } from "../meta";
 
+import { section } from "./index.module.css";
+
 interface RootResearchQuery {
   allMdx: {
     nodes: {
@@ -45,12 +47,9 @@ export default function Research() {
   `);
 
   return (
-    <section>
-      <h2 className="text-4xl font-bold mb-4">Research</h2>
-      <div
-        className="grid gap-4"
-        style={{ gridTemplateColumns: "repeat(auto-fit, minmax(24rem, 1fr))" }}
-      >
+    <section className={section}>
+      <h2>Research</h2>
+      <div>
         {nodes.map(({ frontmatter, slug }) => {
           return (
             <Mini

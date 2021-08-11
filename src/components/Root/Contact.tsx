@@ -10,6 +10,8 @@ import {
   faUniversity,
 } from "@fortawesome/free-solid-svg-icons";
 
+import { contactList } from "./index.module.css";
+
 interface ContactLinkProps {
   url: string;
   children: React.ReactNode;
@@ -17,12 +19,7 @@ interface ContactLinkProps {
 
 function ContactLink({ url, children }: ContactLinkProps) {
   return (
-    <a
-      href={url}
-      className="text-blue-800 dark:text-blue-300 hover:underline"
-      target="_blank"
-      rel="noreferrer noopener"
-    >
+    <a href={url} target="_blank" rel="noreferrer noopener">
       {children}
     </a>
   );
@@ -88,7 +85,6 @@ export default function Contact() {
       label: email,
       url: `mailto:${email}`,
       icon: faAt,
-      extraStyle: "font-mono tracking-tighter",
     },
     {
       icon: faUniversity,
@@ -105,11 +101,11 @@ export default function Contact() {
 
   return (
     <>
-      <h2 className="text-3xl font-bold mb-2">Contact</h2>
-      <ul className="text-lg">
+      <h2>Contact</h2>
+      <ul className="fa-ul" id={contactList}>
         {contactLinks.map((link) => (
-          <li key={link.icon.iconName} className={link.extraStyle}>
-            <FontAwesomeIcon icon={link.icon} fixedWidth />
+          <li key={link.icon.iconName}>
+            <FontAwesomeIcon icon={link.icon} listItem />
             &nbsp;
             {link.items ? (
               link.items.map((item, index) => (

@@ -1,0 +1,45 @@
+#photo {
+  float: right;
+  max-width: 16vw;
+  margin: 0.5rem;
+}
+
+#photo img {
+  border-radius: 0.25rem;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.section > h2 {
+  font-size: xx-large;
+}
+
+.section > div {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(24rem, 1fr));
+}
+
+#contact-list > li {
+  line-height: 1.25;
+  font-size: 1.125rem;
+}
+
+#contact-list > li > a {
+  color: var(--blue-800);
+}
+
+#contact-list > li > a:hover {
+  text-decoration: underline;
+}
+
+@media (prefers-color-scheme: dark) {
+  #contact-list > li > a {
+    color: var(--blue-400);
+  }
+}

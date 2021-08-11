@@ -4,6 +4,8 @@ import Mini from "../Mini";
 import SeeMore from "./SeeMore";
 import { Frontmatter } from "../meta";
 
+import { section } from "./index.module.css";
+
 export default function Class() {
   const {
     allMdx: { nodes },
@@ -48,14 +50,9 @@ export default function Class() {
   `);
 
   return (
-    <section>
-      <h2 className="text-4xl font-bold mb-4">Teaching (2021&ndash;2022)</h2>
-      <div
-        className="grid gap-4"
-        style={{
-          gridTemplateColumns: "repeat(auto-fit, minmax(24rem, 1fr))",
-        }}
-      >
+    <section className={section}>
+      <h2>Teaching (2021&ndash;2022)</h2>
+      <div>
         {nodes.map(({ frontmatter, slug, wordCount: { words } }) => (
           <Mini
             key={slug}
