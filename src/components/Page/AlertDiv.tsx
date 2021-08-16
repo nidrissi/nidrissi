@@ -1,6 +1,6 @@
 import React from "react";
 
-import { alertDiv } from "./AlertDiv.module.css";
+import * as styles from "./AlertDiv.module.css";
 
 interface AlertDivProps {
   color?: string;
@@ -9,7 +9,7 @@ interface AlertDivProps {
 
 export default function AlertDiv({ color, children }: AlertDivProps) {
   return (
-    <div className={alertDiv} data-color={color}>
+    <div className={styles.alertDiv} data-color={color}>
       {children}
     </div>
   );

@@ -24,6 +24,9 @@
   .alert-div[data-color="red"] {
     background-color: var(--red-800);
   }
+  .alert-div[data-color="blue"] {
+    background-color: var(--blue-800);
+  }
   .alert-div[data-color="green"] {
     background-color: var(--green-800);
   }
