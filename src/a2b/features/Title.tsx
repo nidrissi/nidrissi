@@ -9,17 +9,16 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "gatsby";
 
+import * as styles from "./Title.module.css";
+
 const links: {
   icon: IconDefinition;
   label: string;
 }[] = [
   { icon: faSearch, label: "Search" },
-  { icon: faTools, label: "DIY" },
+  // { icon: faTools, label: "DIY" },
   { icon: faCog, label: "Settings" },
 ];
-
-const buttonStyle =
-  "block p-2 text-lg border border-blue-800 hover:bg-blue-800 hover:text-white rounded-md";
 
 interface NavbarProps {
   setCurrentPage: React.Dispatch<React.SetStateAction<string>>;
@@ -28,25 +27,21 @@ interface NavbarProps {
 /** A react-router powered navigation bar. */
 export default function Navbar({ setCurrentPage }: NavbarProps) {
   return (
-    <div className="flex flex-wrap mb-3 items-center gap-x-3">
-      <h1 className="text-4xl font-bold px-1 dark:text-gray-200">
-        arXiv2BibLaTeX
-      </h1>
-      {links.map((l) => (
-        <button
-          key={l.label}
-          className={buttonStyle}
-          onClick={() => setCurrentPage(l.label)}
-        >
-          <FontAwesomeIcon icon={l.icon} />
-          &nbsp;
-          {l.label}
-        </button>
-      ))}
-      <Link to="/misc/a2b/help" className={buttonStyle}>
-        <FontAwesomeIcon icon={faQuestion} />
-        &nbsp; Help
-      </Link>
-    </div>
+    <>
+      <h1>arXiv2BibLaTeX</h1>
+      <div className={styles.buttonWrapper}>
+        {links.map((l) => (
+          <button key={l.label} onClick={() => setCurrentPage(l.label)}>
+            <FontAwesomeIcon icon={l.icon} />
+            &nbsp;
+            {l.label}
+          </button>
+        ))}
+        <Link to="/misc/a2b/help">
+          <FontAwesomeIcon icon={faQuestion} />
+          &nbsp;Help
+        </Link>
+      </div>
+    </>
   );
 }

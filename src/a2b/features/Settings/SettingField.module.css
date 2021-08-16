@@ -1,0 +1,38 @@
+.label-block {
+  display: block;
+  margin-bottom: 0.25rem;
+}
+
+.input {
+  display: block;
+  width: 100%;
+  padding: 0.5rem;
+}
+
+.input[disabled] {
+  background-color: black;
+  cursor: not-allowed;
+}
+
+.input[type="checkbox"][disabled] {
+  background-color: var(--gray-500);
+  color: var(--gray-500);
+}
+
+.check-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+@media (prefers-color-scheme: dark) {
+  .input {
+    background-color: var(--gray-900);
+    color: white;
+  }
+
+  .input[disabled] {
+    background-color: var(--gray-700);
+    color: white;
+  }
+}

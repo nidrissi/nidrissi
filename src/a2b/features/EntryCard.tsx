@@ -8,6 +8,8 @@ import { removeAccents, splitter } from "../utils";
 import { selectSettings } from "./Settings/settingsSlice";
 import { Entry, Settings } from "../types";
 
+import * as styles from "./EntryCard.module.css";
+
 // TODO Better pairing type
 interface Pairing {
   abstract?: string | null;
@@ -234,25 +236,15 @@ export default function EntryCard({ entry }: EntryCardProps) {
   const formattedEntry = formatEntry({ type, pairing, key });
 
   return (
-    <div className="bg-gray-200 text-black p-2 leading-none border border-black rounded-md my-2">
-      <button
-        onClick={onClickCopy}
-        className="float-right bg-blue-600 hover:bg-blue-700 text-white p-2 leading-none rounded-sm"
-      >
+    <div className={styles.card}>
+      <button onClick={onClickCopy}>
         <FontAwesomeIcon icon={copied ? faCheck : faClipboard} />{" "}
         {copied ? "Copied!" : "Copy"}
       </button>
-      <pre ref={preRef} className="m-0 overflow-hidden">
+      <pre ref={preRef} data-body>
         {formattedEntry}
       </pre>
-      {settings.includeWget && wget && (
-        <div className="mt-2 flex">
-          <pre className="bg-black text-white whitespace-normal p-1">
-            {wget}
-          </pre>
-          <div className="flex-grow"></div>
-        </div>
-      )}
+      {settings.includeWget && wget && <pre data-wget>{wget}</pre>}
     </div>
   );
 }

@@ -1,0 +1,23 @@
+.alert {
+  display: grid;
+  grid-template-columns: 1fr min-content;
+  align-items: center;
+  font-weight: bold;
+  background-color: var(--red-100);
+  color: var(--red-900);
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  margin: 0.5rem 0;
+}
+
+.alert > button {
+  display: block;
+  padding: 0.25rem;
+}
+
+@media (prefers-color-scheme: dark) {
+  .alert {
+    background-color: var(--red-900);
+    color: var(--red-100);
+  }
+}

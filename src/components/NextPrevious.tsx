@@ -43,7 +43,7 @@ export default function NextPrevious({
           {actualTitle(previous.frontmatter, type)}
         </Link>
       )}
-      <div className="flex-grow"></div>
+      <div></div>
       {next && (
         <Link to={`/${type}/${next.slug}`}>
           {actualTitle(next.frontmatter, type)}

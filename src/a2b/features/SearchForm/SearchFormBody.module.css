@@ -1,0 +1,12 @@
+.body {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  align-items: center;
+  gap: 1rem;
+}
+
+.body > label {
+  display: block;
+  grid-column: span 1;
+  font-weight: bold;
+}

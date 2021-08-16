@@ -21,11 +21,13 @@ export default function Settings() {
           return;
         }}
       />
-      <p className="text-muted">
-        Settings are saved in your browser's{" "}
-        <a href="https://en.wikipedia.org/wiki/Web_storage">local storage</a>{" "}
-        (you may need to enable some permissions).
-      </p>
+      <div className="prose">
+        <p>
+          Settings are saved in your browser's{" "}
+          <a href="https://en.wikipedia.org/wiki/Web_storage">local storage</a>{" "}
+          (you may need to enable some permissions).
+        </p>
+      </div>
     </div>
   );
 }

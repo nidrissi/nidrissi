@@ -49,16 +49,16 @@ export default function App() {
 
   // the page we are currently on
   const [currentPage, setCurrentPage] = useState("Search");
-  const pageAssociation = {
-    Search: <Search />,
-    Settings: <Settings />,
-    DIY: <DIY />,
-  };
+  const pageAssociation = new Map([
+    ["Search", <Search />],
+    ["Settings", <Settings />],
+    ["DIY", <DIY />],
+  ]);
 
   return (
     <>
       <Title setCurrentPage={setCurrentPage} />
-      {pageAssociation[currentPage]}
+      {pageAssociation.get(currentPage)}
     </>
   );
 }

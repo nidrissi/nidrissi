@@ -6,6 +6,8 @@ import {
   faSave,
 } from "@fortawesome/free-solid-svg-icons";
 
+import * as styles from "./CopyAndTotal.module.css";
+
 interface CopyAndTotalProps {
   totalText: JSX.Element;
   outerRef: React.RefObject<HTMLDivElement>;
@@ -43,28 +45,18 @@ export default function CopyAndTotal({
   }
 
   return (
-    <div className="bg-green-600 text-white p-2 my-2 rounded-lg block sm:flex items-center gap-3">
-      <div className="flex-grow">
+    <div className={styles.successBlock}>
+      <div>
         <FontAwesomeIcon icon={faCheck} />
         &nbsp;
         {totalText}
       </div>
-      <div>
-        <button
-          onClick={onClickCopyAll}
-          className="hover:underline focus:bg-green-800 p-1"
-        >
-          <FontAwesomeIcon icon={faClipboard} /> Copy all
-        </button>
-      </div>
-      <div>
-        <button
-          onClick={onClickDownloadAll}
-          className="hover:underline focus:bg-green-800 p-1"
-        >
-          <FontAwesomeIcon icon={faSave} /> Download all
-        </button>
-      </div>
+      <button onClick={onClickCopyAll}>
+        <FontAwesomeIcon icon={faClipboard} /> Copy all
+      </button>
+      <button onClick={onClickDownloadAll}>
+        <FontAwesomeIcon icon={faSave} /> Download all
+      </button>
     </div>
   );
 }

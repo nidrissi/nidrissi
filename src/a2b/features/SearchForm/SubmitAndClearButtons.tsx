@@ -6,6 +6,8 @@ import {
   faTrashAlt,
 } from "@fortawesome/free-solid-svg-icons";
 
+import * as styles from "./SubmitAndClearButtons.module.css";
+
 interface SubmitAndClearButtonsProps {
   isLoading: boolean;
 }
@@ -17,32 +19,17 @@ export default function SubmitAndClearButtons({
   isLoading,
 }: SubmitAndClearButtonsProps) {
   return (
-    <div className="row-span-full flex space-x-2">
-      <button
-        className={`block flex-grow p-2 bg-blue-800 text-white rounded-md ${
-          isLoading ? "cursor-wait" : ""
-        }`}
-        disabled={isLoading}
-        type="submit"
-      >
-        {isLoading ? (
-          <>
-            <FontAwesomeIcon icon={faSpinner} spin />
-            &nbsp; Loading...
-          </>
-        ) : (
-          <>
-            <FontAwesomeIcon icon={faSearch} />
-            &nbsp; Search
-          </>
-        )}
+    <>
+      <button className={styles.btn} type="submit" disabled={isLoading}>
+        <FontAwesomeIcon
+          icon={isLoading ? faSpinner : faSearch}
+          spin={isLoading}
+        />
+        &nbsp; {isLoading ? "Loading..." : "Search"}
       </button>
-      <button
-        className="block w-1/4 flex-shrink p-2 bg-gray-300 dark:bg-gray-700 dark:text-white rounded-md"
-        type="reset"
-      >
+      <button className={styles.btn} type="reset" disabled={isLoading}>
         <FontAwesomeIcon icon={faTrashAlt} /> Clear
       </button>
-    </div>
+    </>
   );
 }

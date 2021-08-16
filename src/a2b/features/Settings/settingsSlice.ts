@@ -21,7 +21,7 @@ export const settingsSlice = createSlice({
   name: "settings",
   initialState,
   reducers: {
-    saveSettings(state, action) {
+    saveSettings(_state, action) {
       const settings: Settings = action.payload;
       const json = JSON.stringify(settings);
       localStorage.setItem("settings", json);

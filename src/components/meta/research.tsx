@@ -1,40 +1,58 @@
 import React from "react";
+import ReactMarkdown from "react-markdown";
 
 import { Frontmatter } from ".";
 import DateTime from "./datetime";
 
-const people: { [id: string]: { name: string; url?: string } } = {
-  me: {
-    name: "Najib Idrissi",
-  },
-  ricardo: {
-    name: "Ricardo Campos",
-    url: "http://imag.umontpellier.fr/~campos/",
-  },
-  julien: {
-    name: "Julien Ducoulombier",
-    url: "https://julien-ducoulombie.wixsite.com/ducoulombiermaths",
-  },
-  pascal: {
-    name: "Pascal Lambrechts",
-    url: "https://uclouvain.be/fr/repertoires/pascal.lambrechts",
-  },
-  thomas: {
-    name: "Thomas Willwacher",
-    url: "https://people.math.ethz.ch/~wilthoma/",
-  },
-};
+import * as styles from "./research.module.css";
+
+interface People {
+  name: string;
+  url?: string;
+}
+
+const people: Map<string, People> = new Map([
+  [
+    "me",
+    {
+      name: "Najib Idrissi",
+    },
+  ],
+  [
+    "ricardo",
+    {
+      name: "Ricardo Campos",
+      url: "http://imag.umontpellier.fr/~campos/",
+    },
+  ],
+  [
+    "julien",
+    {
+      name: "Julien Ducoulombier",
+      url: "https://julien-ducoulombie.wixsite.com/ducoulombiermaths",
+    },
+  ],
+  [
+    "pascal",
+    {
+      name: "Pascal Lambrechts",
+      url: "https://uclouvain.be/fr/repertoires/pascal.lambrechts",
+    },
+  ],
+  [
+    "thomas",
+    {
+      name: "Thomas Willwacher",
+      url: "https://people.math.ethz.ch/~wilthoma/",
+    },
+  ],
+]);
 
 function formatAuthor(author: string): string | JSX.Element {
-  const person = people[author];
+  const person = people.get(author);
   if (person) {
     return person.url ? (
-      <a
-        href={person.url}
-        className="text-blue-800 dark:text-blue-300 hover:underline"
-        target="_blank"
-        rel="noopener nofollow noreferrer"
-      >
+      <a href={person.url} target="_blank" rel="noopener nofollow noreferrer">
         {person.name}
       </a>
     ) : (
@@ -59,7 +77,7 @@ export default function MetaResearch({
   return (
     <>
       {authors.length > 1 && (
-        <div>
+        <div className={styles.authors}>
           {authors.map((a, i) => (
             <React.Fragment key={a}>
               {i > 0 && ", "}
@@ -69,7 +87,11 @@ export default function MetaResearch({
           .
         </div>
       )}
-      <div dangerouslySetInnerHTML={{ __html: publication ?? "" }} />
+      {publication && (
+        <div className={styles.publication}>
+          <ReactMarkdown children={publication} />
+        </div>
+      )}
       <DateTime label="Online on">{date}</DateTime>
       <DateTime label="Updated on">{lastMod}</DateTime>
       <DateTime

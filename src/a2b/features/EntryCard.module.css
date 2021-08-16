@@ -1,0 +1,40 @@
+.card {
+  color: black;
+  background-color: var(--gray-200);
+  padding: 0.5rem;
+  border: 1px solid black;
+  border-radius: 0.33rem;
+}
+
+.card > button {
+  float: right;
+  background-color: var(--blue-600);
+  color: white;
+  padding: 0.5rem;
+  border-radius: 0.25rem;
+}
+
+.card > button:hover {
+  background-color: var(--blue-700);
+}
+
+.card > pre {
+  margin: 0;
+}
+
+.card > pre[data-body] {
+  color: black;
+  overflow: hidden;
+}
+
+.card > pre a {
+  color: var(--blue-700);
+}
+
+.card > pre[data-wget] {
+  color: white;
+  background-color: black;
+  white-space: normal;
+  padding: 0.25rem;
+  margin-top: 0.5rem;
+}

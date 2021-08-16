@@ -26,7 +26,7 @@ export default function PeccotCard({
     throw new Error(`Bad image: ${image}`);
   }
   return (
-    <article className={styles.card + " prose"}>
+    <article className={`${styles.card} prose`}>
       <a href={link} target="_blank" rel="noreferrer noopener">
         <GatsbyImage
           alt={`Photo of the lecture ${number}`}

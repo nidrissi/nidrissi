@@ -1,0 +1,24 @@
+.success-block {
+  background-color: var(--green-600);
+  color: black;
+  margin: 0.5rem 0;
+  border-radius: 0.5rem;
+  display: grid;
+  grid-template-columns: 1fr max-content max-content;
+  align-items: center;
+  gap: 1rem;
+}
+
+.success-block > div {
+  padding: 0.5rem;
+}
+
+.success-block > button {
+  display: block;
+  padding: 0.5rem;
+}
+
+.success-block > button:hover {
+  background-color: var(--green-800);
+  color: white;
+}

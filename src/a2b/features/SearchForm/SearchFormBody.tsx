@@ -7,11 +7,13 @@ import { selectIsLoading } from "../Results/resultsSlice";
 import InputField from "./InputField";
 import SubmitAndClearButtons from "./SubmitAndClearButtons";
 
+import * as styles from "./SearchFormBody.module.css";
+
 export default function SearchFormBody() {
   const isLoading = useSelector(selectIsLoading);
 
   return (
-    <Form className="grid grid-flow-row gap-3 grid-cols-6 auto-rows-max items-center">
+    <Form className={styles.body}>
       <InputField
         label="ID list"
         name="ids"
@@ -30,9 +32,7 @@ export default function SearchFormBody() {
         placeholder="operad & configuration space & ..."
         title="Words/sentences to search in the title separated by '&'."
       />
-      <div className="col-span-full">
-        <SubmitAndClearButtons isLoading={isLoading} />
-      </div>
+      <SubmitAndClearButtons isLoading={isLoading} />
     </Form>
   );
 }

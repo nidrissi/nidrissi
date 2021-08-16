@@ -1,0 +1,7 @@
+.form-body > div {
+  margin-bottom: 0.75rem;
+}
+
+.form-body > div > * + * {
+  margin: 1rem 0;
+}

@@ -1,0 +1,21 @@
+.btn {
+  display: block;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+}
+
+.btn[disabled] {
+  cursor: wait;
+}
+
+.btn[type="submit"] {
+  color: white;
+  background-color: var(--blue-800);
+  grid-column: span 4;
+}
+
+.btn[type="reset"] {
+  color: white;
+  background-color: var(--gray-700);
+  grid-column: span 2;
+}

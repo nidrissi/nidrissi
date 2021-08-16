@@ -8,9 +8,9 @@ import ErrorAlert from "./ErrorAlert";
  */
 export default function Results() {
   return (
-    <div>
+    <>
       <ErrorAlert />
       <EntryList />
-    </div>
+    </>
   );
 }

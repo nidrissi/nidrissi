@@ -1,6 +1,8 @@
 import React from "react";
 import { Field } from "formik";
 
+import * as styles from "./SettingField.module.css";
+
 interface SettingFieldProps {
   children?: React.ReactNode;
   as: "checkbox" | "select" | "control";
@@ -16,18 +18,15 @@ export default function SettingField({
   disabled,
   children,
 }: SettingFieldProps) {
-  const bgStyle = disabled
-    ? "bg-gray-100 dark:bg-gray-700 cursor-not-allowed"
-    : "dark:bg-gray-900";
   if (as === "control") {
     return (
       <div>
-        <label htmlFor={id} className="block mb-1">
+        <label htmlFor={id} className={styles.labelBlock}>
           {label}
         </label>
         <Field
           type="text"
-          className={`block w-full ${bgStyle}`}
+          className={styles.input}
           name={id}
           id={id}
           disabled={disabled}
@@ -36,13 +35,9 @@ export default function SettingField({
     );
   } else if (as === "checkbox") {
     return (
-      <div className="flex items-center gap-2">
+      <div className={styles.checkWrapper}>
         <Field
-          className={
-            disabled
-              ? "bg-gray-100 checked:bg-gray-500 text-gray-500 cursor-not-allowed"
-              : null
-          }
+          // className={styles.input}
           type="checkbox"
           id={id}
           name={id}
@@ -54,12 +49,12 @@ export default function SettingField({
   } else if (as === "select") {
     return (
       <div>
-        <label htmlFor={id} className="block mb-1">
+        <label htmlFor={id} className={styles.labelBlock}>
           {label}
         </label>
         <Field
           as="select"
-          className={`block w-full ${bgStyle}`}
+          className={styles.input}
           name={id}
           id={id}
           disabled={disabled}

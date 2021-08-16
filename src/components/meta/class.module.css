@@ -14,7 +14,7 @@
   border-color: var(--color);
 }
 
-.not-expanded:hover {
+.not-expanded {
   cursor: pointer;
 }
 

@@ -1,5 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "../../store";
+import { Query } from "../../types";
 
 const initialState: Query = {
   ids: [],
