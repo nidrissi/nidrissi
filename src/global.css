@@ -110,6 +110,10 @@ blockquote {
   margin-left: 0px;
 }
 
+pre {
+  overflow: scroll;
+}
+
 .prose {
   line-height: 1.25;
 }

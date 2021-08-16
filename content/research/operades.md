@@ -3,7 +3,7 @@ authors:
   - me
 date: 2016-09-01
 status: publication
-publication: "**In: _Grad. J. Math._ (2016) 1.1, pp. 9--17.**"
+publication: "**In: _Grad. J. Math._ (2016) 1.1, pp. 9&ndash;17.**"
 title: Opérades et Structures Commutatives à Homotopie Près
 urls:
   read: gradmath.pdf

@@ -50,7 +50,7 @@ export default function Navbar() {
           <FontAwesomeIcon size="lg" fixedWidth icon={faListUl} />
         </button>
       </div>
-      <div id={styles.content} className={expanded ? styles.expanded : ""}>
+      <div className={styles.content + (expanded ? " " + styles.expanded : "")}>
         {navbarLinks.map((link) => (
           <Link
             key={link.to}

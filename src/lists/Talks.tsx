@@ -40,26 +40,24 @@ export default function TalkList({ data, pageContext }: TalkListProps) {
       title={title}
       description={`The talks I have given and/or will give in the near future (page ${currentPage} out of ${numPages}).`}
     >
-      <Link to="/talk-rss.xml" className={styles.rss}>
-        <FontAwesomeIcon icon={faRss} title="RSS feed for talks." size="2x" />
-      </Link>
       <h1 role="banner">
+        <Link to="/talk-rss.xml" className={styles.rss}>
+          <FontAwesomeIcon icon={faRss} title="RSS feed for talks." />
+        </Link>
         <FontAwesomeIcon icon={faComments} size="sm" />
         &nbsp;
         {title}
       </h1>
-      <div className={styles.list}>
-        {nodes.map(({ frontmatter, slug, wordCount: { words } }) => (
-          <Mini
-            key={slug}
-            type="talk"
-            levelUp
-            slug={slug}
-            frontmatter={frontmatter}
-            noLink={words === 0}
-          />
-        ))}
-      </div>
+      {nodes.map(({ frontmatter, slug, wordCount: { words } }) => (
+        <Mini
+          key={slug}
+          type="talk"
+          levelUp
+          slug={slug}
+          frontmatter={frontmatter}
+          noLink={words === 0}
+        />
+      ))}
       <Pager currentPage={currentPage} numPages={numPages} type="talk" />
     </Layout>
   );

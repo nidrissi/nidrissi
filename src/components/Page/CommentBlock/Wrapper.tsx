@@ -16,7 +16,7 @@ export default function CommentListWrapper({
 }: CommentListWrapperProps) {
   return (
     <ErrorBoundary>
-      <section id={styles.wrapper}>
+      <section className={styles.wrapper}>
         <h2 id="__comments">
           <FontAwesomeIcon icon={faComments} />
           &nbsp; Comments

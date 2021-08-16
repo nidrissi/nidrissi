@@ -36,35 +36,31 @@ export default function ResearchList({ data }: ResearchListProps) {
       title="Research"
       description="My research articles (both published and preprints), books, theses, etc."
     >
-      <Link to="/research-rss.xml" className={styles.rss}>
-        <FontAwesomeIcon icon={faRss} title="RSS feed for talks." size="2x" />
-      </Link>
       <h1 role="banner">
+        <Link to="/research-rss.xml" className={styles.rss}>
+          <FontAwesomeIcon icon={faRss} title="RSS feed for talks." />
+        </Link>
         <FontAwesomeIcon icon={faCogs} size="sm" />
         &nbsp; Research
       </h1>
-      <div className={styles.list}>
-        {sections.map(({ key, title }) => {
-          const filteredNodes = nodes.filter(
-            ({ frontmatter: { status } }) => status === key
-          );
-          return (
-            <section key={key}>
-              <h2>{`${title} [${filteredNodes.length}]`}</h2>
-              <div className={styles.list}>
-                {filteredNodes.map(({ frontmatter, slug }) => (
-                  <Mini
-                    key={slug}
-                    type="research"
-                    slug={slug}
-                    frontmatter={frontmatter}
-                  />
-                ))}
-              </div>
-            </section>
-          );
-        })}
-      </div>
+      {sections.map(({ key, title }) => {
+        const filteredNodes = nodes.filter(
+          ({ frontmatter: { status } }) => status === key
+        );
+        return (
+          <section key={key}>
+            <h2>{`${title} [${filteredNodes.length}]`}</h2>
+            {filteredNodes.map(({ frontmatter, slug }) => (
+              <Mini
+                key={slug}
+                type="research"
+                slug={slug}
+                frontmatter={frontmatter}
+              />
+            ))}
+          </section>
+        );
+      })}
     </Layout>
   );
 }

@@ -6,8 +6,6 @@ import { Frontmatter } from "../components/meta";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChalkboardTeacher } from "@fortawesome/free-solid-svg-icons";
 
-import * as styles from "./lists.module.css";
-
 interface ClassListProps {
   data: {
     allMdx: {
@@ -37,29 +35,25 @@ export default function ClassList({
         <FontAwesomeIcon icon={faChalkboardTeacher} size="sm" />
         &nbsp; Teaching
       </h1>
-      <div className={styles.list}>
-        {group
-          // Sort in reverse year order
-          .sort((g1, g2) => g2.fieldValue.localeCompare(g1.fieldValue))
-          .map(({ fieldValue: year, nodes }) => (
-            <section key={year}>
-              <h2>
-                Academic year {year}&ndash;{Number(year) + 1}
-              </h2>
-              <div className={styles.list}>
-                {nodes.map(({ frontmatter, slug, wordCount: { words } }) => (
-                  <Mini
-                    key={slug}
-                    type="class"
-                    slug={slug}
-                    frontmatter={frontmatter}
-                    noLink={words === 0}
-                  />
-                ))}
-              </div>
-            </section>
-          ))}
-      </div>
+      {group
+        // Sort in reverse year order
+        .sort((g1, g2) => g2.fieldValue.localeCompare(g1.fieldValue))
+        .map(({ fieldValue: year, nodes }) => (
+          <section key={year}>
+            <h2>
+              Academic year {year}&ndash;{Number(year) + 1}
+            </h2>
+            {nodes.map(({ frontmatter, slug, wordCount: { words } }) => (
+              <Mini
+                key={slug}
+                type="class"
+                slug={slug}
+                frontmatter={frontmatter}
+                noLink={words === 0}
+              />
+            ))}
+          </section>
+        ))}
     </Layout>
   );
 }

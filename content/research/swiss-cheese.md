@@ -5,7 +5,7 @@ date: 2015-07-24
 lastMod: 2017-01-10
 accepted: 2017-01-10
 status: publication
-publication: "**In: _Israel J. Math._ (2017) 221.2, pp. 941--972.**"
+publication: "**In: _Israel J. Math._ (2017) 221.2, pp. 941&ndash;972.**"
 title: Swiss-Cheese Operad and Drinfeld Center
 urls:
   read: center.pdf

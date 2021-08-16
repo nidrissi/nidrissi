@@ -2,18 +2,23 @@
   width: 100%;
   margin-top: 1.5rem;
   display: grid;
-  grid-template-columns: max-content 1fr max-content;
+  grid-template-columns: repeat(2, 1fr);
 }
 
 .outer > a {
   --link-color: var(--green-700);
   display: block;
   padding: 0.25rem;
-  font-size: small;
   color: var(--link-color);
-  border-color: var(--link-color);
-  border-width: 1px;
-  border-style: solid;
+  border: 1px solid var(--link-color);
+  border-radius: 0.5rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.outer > a:last-of-type {
+  text-align: right;
 }
 
 .outer > a:hover {

@@ -1,13 +1,11 @@
 .rss {
   display: block;
   float: right;
-  width: min-content;
-  border: 1px solid hsl(0, 0%, 50%, 50%);
-  border-radius: 9999px;
+  padding: 0.5rem;
+  border-radius: 999px;
 }
 
-.list {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
+.rss:hover {
+  background-color: var(--blue-800);
+  color: white;
 }

@@ -9,7 +9,7 @@ import Class from "./Class";
 import Talk from "./Talk";
 import Post from "./Post";
 
-import { photo, root } from "./index.module.css";
+import * as styles from "./index.module.css";
 
 interface IndexQuery {
   site: {
@@ -42,7 +42,7 @@ export default function Index({ children }: { children: React.ReactNode }) {
   return (
     <Layout title={siteTitle} description={siteDescription}>
       <article>
-        <div id={photo}>
+        <div className={styles.photo}>
           <StaticImage
             src="photo.jpg"
             alt="Photo of myself."
@@ -50,13 +50,13 @@ export default function Index({ children }: { children: React.ReactNode }) {
             placeholder="tracedSVG"
           />
         </div>
-        <div className="prose">
+        <div className={"prose " + styles.description}>
           <h1 role="banner">{siteTitle}</h1>
           {children}
         </div>
         <Contact />
       </article>
-      <div id={root}>
+      <div className={styles.root}>
         <Research />
         <Class />
         <Talk />

@@ -16,24 +16,24 @@
   }
 }
 
-#content {
+.content {
   display: none;
   flex-wrap: wrap;
 }
 
-#content.expanded {
+.content.expanded {
   display: flex;
 }
 
-#content > a,
-#content > a:visited {
+.content > a,
+.content > a:visited {
   display: block;
   padding: 0.75rem;
   text-decoration: none;
   color: var(--gray-200);
 }
 
-#content > a.active {
+.content > a.active {
   font-weight: 700;
   color: white;
 }
@@ -71,7 +71,7 @@
 }
 
 @media (min-width: 768px) {
-  #content {
+  .content {
     display: flex;
   }
 

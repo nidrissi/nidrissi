@@ -40,26 +40,24 @@ export default function PostList({ data, pageContext }: PostListProps) {
       title={title}
       description={`The blog posts I have written (page ${currentPage} out of ${numPages}).`}
     >
-      <Link to="/post-rss.xml" className={styles.rss}>
-        <FontAwesomeIcon icon={faRss} title="RSS feed for posts." size="2x" />
-      </Link>
       <h1 role="banner">
+        <Link to="/post-rss.xml" className={styles.rss}>
+          <FontAwesomeIcon icon={faRss} title="RSS feed for posts." />
+        </Link>
         <FontAwesomeIcon icon={faPen} size="sm" />
         &nbsp;
         {title}
       </h1>
-      <div className={styles.list}>
-        {nodes.map(({ frontmatter, slug, excerpt }) => (
-          <Mini
-            key={slug}
-            type="post"
-            levelUp
-            slug={slug}
-            frontmatter={frontmatter}
-            excerpt={excerpt}
-          />
-        ))}
-      </div>
+      {nodes.map(({ frontmatter, slug, excerpt }) => (
+        <Mini
+          key={slug}
+          type="post"
+          levelUp
+          slug={slug}
+          frontmatter={frontmatter}
+          excerpt={excerpt}
+        />
+      ))}
       <Pager currentPage={currentPage} numPages={numPages} type="post" />
     </Layout>
   );

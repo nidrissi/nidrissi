@@ -7,8 +7,6 @@ import Layout from "../components/Layout";
 import Mini from "../components/Mini";
 import { Frontmatter } from "../components/meta";
 
-import * as styles from "./lists.module.css";
-
 interface TagListProps {
   data: {
     allMdx: {
@@ -42,18 +40,16 @@ export default function TagList({
         <FontAwesomeIcon icon={faTag} size="sm" />
         &nbsp; Pages tagged {tag}
       </h1>
-      <div className={styles.list}>
-        {nodes.map(({ frontmatter, fields: { type }, slug, excerpt }) => (
-          <Mini
-            key={slug}
-            type={type}
-            levelUp
-            slug={slug}
-            frontmatter={frontmatter}
-            excerpt={excerpt}
-          />
-        ))}
-      </div>
+      {nodes.map(({ frontmatter, fields: { type }, slug, excerpt }) => (
+        <Mini
+          key={slug}
+          type={type}
+          levelUp
+          slug={slug}
+          frontmatter={frontmatter}
+          excerpt={excerpt}
+        />
+      ))}
     </Layout>
   );
 }

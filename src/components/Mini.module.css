@@ -1,8 +1,10 @@
 .mini {
+  box-sizing: border-box;
   border: 1px solid hsla(220, 10%, 65%, 20%);
   border-radius: 0.5rem;
   padding: 0.5rem;
-  max-width: 24rem;
+  margin: 0.5rem 0;
+  max-width: 100%;
 }
 
 .mini > h2,
@@ -23,7 +25,6 @@
   display: block;
   margin-top: 0.5rem;
   font-size: small;
-  max-width: 70ch;
 }
 
 .excerpt:hover {

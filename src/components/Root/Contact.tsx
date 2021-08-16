@@ -10,7 +10,7 @@ import {
   faUniversity,
 } from "@fortawesome/free-solid-svg-icons";
 
-import { contactList } from "./index.module.css";
+import * as styles from "./index.module.css";
 
 interface ContactLinkProps {
   url: string;
@@ -102,7 +102,7 @@ export default function Contact() {
   return (
     <>
       <h2>Contact</h2>
-      <ul className="fa-ul" id={contactList}>
+      <ul className={"fa-ul " + styles.contactList}>
         {contactLinks.map((link) => (
           <li key={link.icon.iconName}>
             <FontAwesomeIcon icon={link.icon} listItem />

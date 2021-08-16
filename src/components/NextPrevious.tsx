@@ -43,7 +43,6 @@ export default function NextPrevious({
           {actualTitle(previous.frontmatter, type)}
         </Link>
       )}
-      <div></div>
       {next && (
         <Link to={`/${type}/${next.slug}`}>
           {actualTitle(next.frontmatter, type)}
