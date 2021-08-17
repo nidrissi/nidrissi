@@ -1,25 +1,38 @@
 .block {
-  display: block;
+  position: relative;
   padding: 0 0.25rem;
   border: 1px dashed transparent;
   border-radius: 0.25rem;
 }
 
-.btn {
-  --color: var(--green-400);
-}
-
-.btn:hover,
-.btn:focus {
-  border-color: var(--color);
-}
-
-.not-expanded {
+.block[title] {
   cursor: pointer;
 }
 
+.block[title]:hover,
+.block[title]:focus {
+  border-color: var(--green-400);
+}
+
+.popup {
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  left: 105%;
+  padding: 0.5rem;
+  border-radius: 0.25rem;
+  background-color: var(--green-400);
+  color: black;
+}
+
 @media (prefers-color-scheme: dark) {
-  .btn {
-    --color: var(--green-800);
+  .block[title]:hover,
+  .block[title]:focus {
+    border-color: var(--green-800);
+  }
+
+  .popup {
+    background-color: var(--green-800);
+    color: white;
   }
 }

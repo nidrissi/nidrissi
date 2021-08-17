@@ -31,9 +31,7 @@ export default function Mini({
   const linkedTitle = noLink ? (
     titleLabel
   ) : (
-    <Link to={`/${type}/${slug}`} className={styles.title}>
-      {titleLabel}
-    </Link>
+    <Link to={`/${type}/${slug}`}>{titleLabel}</Link>
   );
 
   const header = levelUp ? (

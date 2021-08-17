@@ -10,76 +10,96 @@ function format(value?: string): React.ReactNode {
   return value && <div>{value}.</div>;
 }
 
-const courseTypeAssociation: {
-  [key: string]: {
+const courseTypeAssociation: Map<
+  string,
+  {
     label: string;
     title?: string;
-  };
-} = {
-  CM: {
-    label: "Lectures",
-  },
-  TD: {
-    label: "Exercise sessions",
-    title:
-      "Directed exercise sessions where students work on their own before the solution to each exercise is given to the whole group.",
-  },
-  TP: {
-    label: "Practical work",
-    title: "Supervised programming exercises on computers.",
-  },
-  O: {
-    label: "Organization",
-    title:
-      "Organization of the overall course, including exams, and coordination between the different exercise groups.",
-  },
-  Colles: {
-    label: "Oral exams",
-    title: "Graded weekly oral exams.",
-  },
-  T: {
-    label: "Tutoring",
-    title:
-      "Weekly sessions where students can ask questions and work out exercises seen before.",
-  },
-};
+  }
+> = new Map([
+  [
+    "CM",
+    {
+      label: "Lectures",
+    },
+  ],
+  [
+    "TD",
+    {
+      label: "Exercise sessions",
+      title:
+        "Directed exercise sessions where students work on their own before the solution to each exercise is given to the whole group.",
+    },
+  ],
+  [
+    "TP",
+    {
+      label: "Practical work",
+      title: "Supervised programming exercises on computers.",
+    },
+  ],
+  [
+    "O",
+    {
+      label: "Organization",
+      title:
+        "Organization of the overall course, including exams, and coordination between the different exercise groups.",
+    },
+  ],
+  [
+    "Colles",
+    {
+      label: "Oral exams",
+      title: "Graded weekly oral exams.",
+    },
+  ],
+  [
+    "T",
+    {
+      label: "Tutoring",
+      title:
+        "Weekly sessions where students can ask questions and work out exercises seen before.",
+    },
+  ],
+]);
 
 interface CourseTypeBlockProps {
   type: string;
 }
 
 function CourseTypeBlock({ type }: CourseTypeBlockProps) {
-  const [expanded, setExpanded] = useState(false);
+  const [popped, setPopped] = useState(false);
 
-  const association = courseTypeAssociation[type];
+  const association = courseTypeAssociation.get(type);
 
   if (association === undefined) {
     throw new Error(`Unknown course type: ${type}`);
   }
 
   const { label, title } = association;
+
   return (
     <div
       // If there is a title, put a green border when the div is either hovered or focused
       // and the cursor becomes a pointer when the div is hovered and not already expanded
-      className={`${styles.block} ${
-        title ? styles.btn + (expanded ? "" : " " + styles.notExpanded) : ""
-      }`}
-      onFocus={() => title && setExpanded(true)}
-      onBlur={() => setExpanded(false)}
+      className={styles.block}
+      onFocus={() => title && setPopped(true)}
+      onBlur={() => setPopped(false)}
       title={title && "Click for more details."}
       tabIndex={title ? 0 : -1}
     >
-      {!expanded && label}
-      {title &&
-        (expanded ? (
-          `[${title}]`
-        ) : (
-          <>
-            &nbsp;
-            <FontAwesomeIcon icon={faQuestionCircle} size="xs" />
-          </>
-        ))}
+      {label}.
+      {title && (
+        <>
+          &nbsp;
+          <FontAwesomeIcon icon={faQuestionCircle} size="xs" />
+        </>
+      )}
+      {title && popped && (
+        <div role="alert" className={styles.popup}>
+          {title}
+        </div>
+      )}
     </div>
   );
 }
