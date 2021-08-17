@@ -16,33 +16,46 @@ interface CommentBlockProps {
 
 export default function CommentBlock({ pageId }: CommentBlockProps) {
   const [client, setClient] = useState<ClientPrincipal>();
-  const [comments, setComments] = useState<Comment[]>();
-  const [loadingComments, setLoadingComments] = useState(true);
-  const [errorLoadingComments, setErrorLoadingComments] = useState(false);
+  const [comments, setComments] = useState<Comment[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
 
   const fetchComments = useCallback(async () => {
-    setErrorLoadingComments(false);
+    setError(false);
     try {
       const response = await fetch(`/api/comment/${pageId}`);
       if (response.ok) {
         const body = (await response.json()) as Comment[];
         setComments(body);
-        setErrorLoadingComments(false);
+        setError(false);
       } else {
         throw new Error();
       }
     } catch {
-      setErrorLoadingComments(true);
+      setError(true);
     } finally {
-      setLoadingComments(false);
+      setLoading(false);
     }
   }, [pageId]);
+
+  const retry = useCallback(() => {
+    setError(false);
+    if (!loading) {
+      setLoading(true);
+      setComments([]);
+      setTimeout(() => fetchComments(), 500);
+    }
+  }, [fetchComments, loading]);
+
+  const pushComment = useCallback((comment: Comment) => {
+    setComments((l) => [comment].concat(l));
+  }, []);
 
   useEffect(() => {
     fetchComments();
   }, [pageId, fetchComments]);
 
-  if (loadingComments) {
+  if (loading) {
     return (
       <Wrapper>
         <FontAwesomeIcon icon={faSpinner} spin />
@@ -51,29 +64,24 @@ export default function CommentBlock({ pageId }: CommentBlockProps) {
     );
   }
 
-  if (errorLoadingComments) {
+  if (error) {
     return (
-      <Wrapper>
-        <Alert
-          retry={() => {
-            setErrorLoadingComments(false);
-            if (!loadingComments) {
-              setLoadingComments(true);
-              setTimeout(() => fetchComments(), 500);
-            }
-          }}
-        >
-          &nbsp; An error occurred fetching comments.
-        </Alert>
+      <Wrapper retry={retry}>
+        <Alert retry={retry}>&nbsp; An error occurred fetching comments.</Alert>
       </Wrapper>
     );
   }
 
   return (
-    <Wrapper num={comments?.length}>
-      <NewComment client={client} setClient={setClient} pageId={pageId} />
+    <Wrapper num={comments?.length} retry={retry}>
+      <NewComment
+        client={client}
+        setClient={setClient}
+        pushComment={pushComment}
+        pageId={pageId}
+      />
       <div className={styles.root}>
-        {comments?.map((c) => (
+        {comments.map((c) => (
           <Single key={c.id} comment={c} client={client} />
         ))}
       </div>

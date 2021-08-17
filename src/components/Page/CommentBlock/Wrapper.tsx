@@ -1,26 +1,30 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faComments } from "@fortawesome/free-solid-svg-icons";
+import { faComments, faSync } from "@fortawesome/free-solid-svg-icons";
 
 import Alert from "./Alert";
 import * as styles from "./Wrapper.module.css";
 
-interface CommentListWrapperProps {
+interface WrapperProps {
   children: React.ReactNode;
   num?: number;
+  retry?: () => void;
 }
 
-export default function CommentListWrapper({
-  children,
-  num,
-}: CommentListWrapperProps) {
+export default function Wrapper({ children, num, retry }: WrapperProps) {
   return (
     <ErrorBoundary>
       <section className={styles.wrapper}>
         <h2 id="__comments">
           <FontAwesomeIcon icon={faComments} />
-          &nbsp; Comments
+          &nbsp;Comments
           {num !== undefined && ` [${num}]`}
+          &nbsp;
+          {retry && (
+            <button onClick={() => retry()}>
+              <FontAwesomeIcon icon={faSync} size="sm" />
+            </button>
+          )}
         </h2>
         {children}
       </section>

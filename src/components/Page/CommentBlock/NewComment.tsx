@@ -9,6 +9,7 @@ import {
 import { faMarkdown } from "@fortawesome/free-brands-svg-icons";
 
 import Alert from "./Alert";
+import { Comment } from "./Single";
 import { ClientPrincipal } from "./ClientPrincipal";
 import UserDetails from "./UserDetails";
 
@@ -18,12 +19,14 @@ interface NewCommentProps {
   pageId: string;
   client?: ClientPrincipal;
   setClient: React.Dispatch<React.SetStateAction<ClientPrincipal | undefined>>;
+  pushComment: (comment: Comment) => void;
 }
 
 export default function NewComment({
   client,
   setClient,
   pageId,
+  pushComment,
 }: NewCommentProps) {
   const [userName, setUserName] = useState<string>();
 
@@ -37,12 +40,19 @@ export default function NewComment({
           setUserName={setUserName}
         />
       </div>
-      {client !== null && userName && <NewCommentForm pageId={pageId} />}
+      {client !== null && userName && (
+        <NewCommentForm pageId={pageId} pushComment={pushComment} />
+      )}
     </>
   );
 }
 
-function NewCommentForm({ pageId }: { pageId: string }) {
+interface NewCommentFormProps {
+  pageId: string;
+  pushComment: (comment: Comment) => void;
+}
+
+function NewCommentForm({ pageId, pushComment }: NewCommentFormProps) {
   const [expanded, setExpanded] = useState(false);
   const [currentInput, setCurrentInput] = useState<string>("");
   const [error, setError] = useState<string>();
@@ -76,8 +86,11 @@ function NewCommentForm({ pageId }: { pageId: string }) {
           body: JSON.stringify({ content: trueInput }),
         });
         if (response.ok) {
-          // TODO do better than a full window reload
-          window.location.reload();
+          const comment = await response.json();
+          console.log(comment);
+          pushComment(comment);
+          setCurrentInput("");
+          setSending(false);
         } else {
           if (response.status === 429) {
             setError(
@@ -134,7 +147,6 @@ function NewCommentForm({ pageId }: { pageId: string }) {
               setCurrentInput(e.target.value);
             }}
             onKeyDown={(e) => {
-              console.log(e);
               if (e.ctrlKey && e.key === "Enter") {
                 if (window.confirm("Do you want to post this comment?")) {
                   handleSubmit();
