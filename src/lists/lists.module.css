@@ -17,8 +17,8 @@
   color: white;
 }
 
-.list h2,
-.list h3 {
+.list > h2,
+.list > h3 {
   margin-bottom: 1rem;
 }
 

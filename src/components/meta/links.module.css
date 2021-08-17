@@ -1,20 +1,20 @@
 .wrapper {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.5rem;
+  gap: 0.25rem;
   align-content: center;
 }
 
-.link {
+.wrapper a {
   display: block;
-  padding: 0.5rem;
-  font-size: small;
+  padding: 0.33rem;
+  font-size: 80%;
   color: var(--gray-900);
   border: 1px solid var(--gray-200);
   border-radius: 0.5rem;
 }
 
-.link:hover {
+.wrapper a:hover {
   color: white;
   background-color: var(--blue-800);
   border-color: transparent;
@@ -22,7 +22,7 @@
 }
 
 @media (prefers-color-scheme: dark) {
-  .link {
+  .wrapper a {
     color: var(--gray-300);
     border-color: var(--gray-700);
   }

@@ -155,7 +155,6 @@ function EntryLink({ url, definition, title }: EntryLinkProps) {
     // eslint-disable-next-line react/jsx-no-target-blank
     <a
       href={href}
-      className={styles.link}
       target={href.startsWith("http") ? "_blank" : undefined}
       rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
       title={

@@ -9,7 +9,7 @@
 .mini > h2,
 .mini > h3 {
   margin-top: 0;
-  margin-bottom: 0.75rem;
+  margin-bottom: 0.5rem;
 }
 
 .mini > h2 a,
@@ -25,7 +25,7 @@
 .excerpt {
   display: block;
   margin-top: 0.5rem;
-  font-size: small;
+  font-size: 85%;
 }
 
 .excerpt:hover {
