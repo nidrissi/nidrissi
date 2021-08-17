@@ -104,12 +104,6 @@ module.exports = {
             require("rehype-toc"),
             {
               headings: ["h2", "h3"],
-              cssClasses: {
-                toc: null,
-                list: null,
-                listItem: null,
-                link: null,
-              },
             },
           ],
           require("rehype-katex"),

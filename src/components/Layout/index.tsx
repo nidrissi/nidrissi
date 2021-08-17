@@ -5,7 +5,7 @@ import Navbar from "./Navbar";
 import Footer from "./Footer";
 import Cookie from "./Cookie";
 
-import { root } from "./index.module.css";
+import { root } from "./Layout.module.css";
 
 interface LayoutProps extends SEOProps {
   children: React.ReactNode;

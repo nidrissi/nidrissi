@@ -8,7 +8,7 @@ import Links, { Urls } from "./links";
 import MetaResearch from "./research";
 import MetaTalk from "./talk";
 
-import * as styles from "./index.module.css";
+import * as styles from "./meta.module.css";
 
 export interface LocalImage {
   childImageSharp: {

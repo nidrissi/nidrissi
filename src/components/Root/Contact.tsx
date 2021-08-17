@@ -10,7 +10,7 @@ import {
   faUniversity,
 } from "@fortawesome/free-solid-svg-icons";
 
-import * as styles from "./index.module.css";
+import * as styles from "./Root.module.css";
 
 interface ContactLinkProps {
   url: string;

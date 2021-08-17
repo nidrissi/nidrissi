@@ -94,15 +94,7 @@ export default function MetaResearch({
       )}
       <DateTime label="Online on">{date}</DateTime>
       <DateTime label="Updated on">{lastMod}</DateTime>
-      <DateTime
-        label={
-          <>
-            <strong>Accepted</strong> on
-          </>
-        }
-      >
-        {accepted}
-      </DateTime>
+      <DateTime label={"Accepted on"}>{accepted}</DateTime>
     </>
   );
 }

@@ -8,7 +8,7 @@ import NewComment from "./NewComment";
 import Alert from "./Alert";
 import { ClientPrincipal } from "./ClientPrincipal";
 
-import * as styles from "./index.module.css";
+import * as styles from "./CommentBlock.module.css";
 
 interface CommentBlockProps {
   pageId: string;

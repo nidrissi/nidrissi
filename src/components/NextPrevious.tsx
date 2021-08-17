@@ -37,17 +37,19 @@ export default function NextPrevious({
   return (
     <div className={styles.outer}>
       {previous && (
-        <Link to={`/${type}/${previous.slug}`}>
-          <FontAwesomeIcon icon={faArrowLeft} />
-          &nbsp;
-          {actualTitle(previous.frontmatter, type)}
+        <Link to={`/${type}/${previous.slug}`} data-prev>
+          <div>
+            <FontAwesomeIcon icon={faArrowLeft} />
+          </div>
+          <div>{actualTitle(previous.frontmatter, type)}</div>
         </Link>
       )}
       {next && (
-        <Link to={`/${type}/${next.slug}`}>
-          {actualTitle(next.frontmatter, type)}
-          &nbsp;
-          <FontAwesomeIcon icon={faArrowRight} />
+        <Link to={`/${type}/${next.slug}`} data-next>
+          <div>{actualTitle(next.frontmatter, type)}</div>
+          <div>
+            <FontAwesomeIcon icon={faArrowRight} />
+          </div>
         </Link>
       )}
     </div>

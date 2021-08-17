@@ -9,7 +9,7 @@ import Class from "./Class";
 import Talk from "./Talk";
 import Post from "./Post";
 
-import * as styles from "./index.module.css";
+import * as styles from "./Root.module.css";
 
 interface IndexQuery {
   site: {

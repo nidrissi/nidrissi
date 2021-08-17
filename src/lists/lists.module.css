@@ -1,11 +1,27 @@
-.rss {
-  display: block;
-  float: right;
-  padding: 0.5rem;
-  border-radius: 999px;
+.list {
+  width: 100%;
 }
 
-.rss:hover {
+.list > header {
+  display: grid;
+  grid-template-columns: 1fr max-content;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.list > header > a {
+  display: block;
+  padding: 0.5rem;
+  font-size: x-large;
+}
+
+.list > header > a:hover {
   background-color: var(--blue-800);
   color: white;
+}
+
+.list section {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 }

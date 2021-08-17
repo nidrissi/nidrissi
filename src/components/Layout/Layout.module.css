@@ -7,10 +7,9 @@
 .root > main {
   margin-left: auto;
   margin-right: auto;
-  margin-bottom: 1rem;
-  padding-left: 1rem;
-  padding-right: 1rem;
   flex-grow: 1;
+  box-sizing: border-box;
+  max-width: 100%;
 }
 
 @media (min-width: 576px) {

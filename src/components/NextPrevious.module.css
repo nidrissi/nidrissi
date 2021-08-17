@@ -2,28 +2,38 @@
   width: 100%;
   margin-top: 1.5rem;
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: auto auto;
+  column-gap: 0.5rem;
+  align-items: center;
 }
 
 .outer > a {
-  --link-color: var(--green-700);
-  display: block;
+  display: grid;
+  column-gap: 0.25rem;
   padding: 0.25rem;
+  border-radius: 0.5rem;
+  --link-color: var(--green-700);
   color: var(--link-color);
   border: 1px solid var(--link-color);
-  border-radius: 0.5rem;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
 }
 
-.outer > a:last-of-type {
-  text-align: right;
+.outer > a[data-prev] {
+  grid-template-columns: auto 1fr;
+}
+
+.outer > a[data-next] {
+  grid-template-columns: 1fr auto;
 }
 
 .outer > a:hover {
   background-color: var(--link-color);
   color: white;
+}
+
+.outer > a > div {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 @media (prefers-color-scheme: dark) {

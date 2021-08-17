@@ -4,7 +4,7 @@ import Mini from "../Mini";
 import SeeMore from "./SeeMore";
 import { Frontmatter } from "../meta";
 
-import { section } from "./index.module.css";
+import { section } from "./Root.module.css";
 
 interface RootResearchQuery {
   allMdx: {

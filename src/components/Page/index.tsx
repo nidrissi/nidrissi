@@ -14,7 +14,7 @@ import Meta, { Frontmatter } from "../meta";
 import NextPrevious, { NextOrPreviousItem } from "../NextPrevious";
 import Embed from "../Embed";
 
-import { page } from "./index.module.css";
+import { page } from "./Page.module.css";
 
 interface PageTemplateProps {
   data: {

@@ -1,6 +1,6 @@
 .photo {
   float: right;
-  max-width: 16vw;
+  max-width: max(20vw, 120px);
   margin: 0.5rem;
 }
 

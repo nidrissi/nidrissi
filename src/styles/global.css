@@ -71,6 +71,10 @@
   --indigo-900: #312e81;
 }
 
+html {
+  scroll-padding-top: 3rem;
+}
+
 body {
   font-family: system-ui;
   color: var(--gray-900);
@@ -109,17 +113,22 @@ hr {
 
 blockquote {
   font-size: large;
-  border-left: 8px solid var(--gray-400);
-  padding-left: 1rem;
+  border-left: 0.5rem solid hsla(0, 0%, 50%, 50%);
+  padding-left: 0.5rem;
   margin-left: 0px;
 }
 
 pre {
-  overflow: scroll;
+  overflow: auto;
 }
 
 img {
   display: block;
+}
+
+ol ol {
+  list-style: lower-alpha;
+  padding-left: 20px;
 }
 
 .prose {
@@ -132,7 +141,7 @@ img {
 }
 
 .prose a {
-  font-weight: 600;
+  font-weight: 500;
   color: var(--blue-800);
 }
 
@@ -145,6 +154,22 @@ img {
   margin: 2rem 0;
 }
 
+nav.toc {
+  margin-top: 1.5rem;
+}
+
+nav.toc::before {
+  content: "Table of contents";
+  font-weight: bold;
+  font-size: large;
+}
+
+nav.toc > ol {
+  margin-top: 0.25rem;
+  padding-left: 1.5rem;
+  border-left: 4px solid hsla(0, 0%, 50%, 50%);
+}
+
 @media (prefers-color-scheme: dark) {
   body {
     background-color: var(--gray-800);
@@ -154,20 +179,16 @@ img {
   .prose a {
     color: var(--blue-400);
   }
-
+  h1,
   h2,
   h3,
   h4,
   h5,
   h6,
   th,
+  strong,
   code,
   pre {
     color: var(--gray-200);
-  }
-
-  h1,
-  strong {
-    color: var(--gray-100);
   }
 }

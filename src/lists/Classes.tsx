@@ -6,6 +6,8 @@ import { Frontmatter } from "../components/meta";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChalkboardTeacher } from "@fortawesome/free-solid-svg-icons";
 
+import * as styles from "./lists.module.css";
+
 interface ClassListProps {
   data: {
     allMdx: {
@@ -31,29 +33,35 @@ export default function ClassList({
       title="Teaching"
       description="The classes I have taught and/or am currently teaching."
     >
-      <h1 role="banner">
-        <FontAwesomeIcon icon={faChalkboardTeacher} size="sm" />
-        &nbsp; Teaching
-      </h1>
-      {group
-        // Sort in reverse year order
-        .sort((g1, g2) => g2.fieldValue.localeCompare(g1.fieldValue))
-        .map(({ fieldValue: year, nodes }) => (
-          <section key={year}>
-            <h2>
-              Academic year {year}&ndash;{Number(year) + 1}
-            </h2>
-            {nodes.map(({ frontmatter, slug, wordCount: { words } }) => (
-              <Mini
-                key={slug}
-                type="class"
-                slug={slug}
-                frontmatter={frontmatter}
-                noLink={words === 0}
-              />
+      <div className={styles.list}>
+        <header>
+          <h1 role="banner">
+            <FontAwesomeIcon icon={faChalkboardTeacher} size="sm" />
+            &nbsp; Teaching
+          </h1>
+        </header>
+        <section>
+          {group
+            // Sort in reverse year order
+            .sort((g1, g2) => g2.fieldValue.localeCompare(g1.fieldValue))
+            .map(({ fieldValue: year, nodes }) => (
+              <section key={year}>
+                <h2>
+                  Academic year {year}&ndash;{Number(year) + 1}
+                </h2>
+                {nodes.map(({ frontmatter, slug, wordCount: { words } }) => (
+                  <Mini
+                    key={slug}
+                    type="class"
+                    slug={slug}
+                    frontmatter={frontmatter}
+                    noLink={words === 0}
+                  />
+                ))}
+              </section>
             ))}
-          </section>
-        ))}
+        </section>
+      </div>
     </Layout>
   );
 }
