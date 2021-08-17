@@ -6,13 +6,13 @@ import {
   faSpinner,
   faTimes,
 } from "@fortawesome/free-solid-svg-icons";
+import { faMarkdown } from "@fortawesome/free-brands-svg-icons";
 
 import Alert from "./Alert";
 import { ClientPrincipal } from "./ClientPrincipal";
 import UserDetails from "./UserDetails";
 
 import * as styles from "./NewComment.module.css";
-import { faMarkdown } from "@fortawesome/free-brands-svg-icons";
 
 interface NewCommentProps {
   pageId: string;
@@ -148,14 +148,16 @@ function NewCommentForm({ pageId }: { pageId: string }) {
           />
           {error && <Alert>{error}</Alert>}
           <div className={styles.footer}>
-            <a
-              href="https://commonmark.org/help/"
-              target="_blank"
-              rel="noreferrer noopener"
-            >
-              <FontAwesomeIcon icon={faMarkdown} />
-              &nbsp;Markdown reference
-            </a>
+            <div>
+              <a
+                href="https://commonmark.org/help/"
+                target="_blank"
+                rel="noreferrer noopener"
+              >
+                <FontAwesomeIcon icon={faMarkdown} />
+                &nbsp;Markdown reference
+              </a>
+            </div>
             <button type="submit" disabled={sending}>
               <FontAwesomeIcon
                 icon={sending ? faSpinner : faCheck}

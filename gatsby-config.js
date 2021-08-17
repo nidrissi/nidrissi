@@ -2,7 +2,6 @@ module.exports = {
   flags: {
     // FAST_DEV: true,
     DEV_WEBPACK_CACHE: true,
-    LMDB_STORE: true,
     PARALLEL_QUERY_RUNNING: true,
     PARALLEL_SOURCING: true,
     PRESERVE_FILE_DOWNLOAD_CACHE: true,

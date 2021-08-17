@@ -10,14 +10,12 @@ interface EmbedProps {
 
 export default function Embed({ url, alt }: EmbedProps) {
   const content = url.endsWith(".pdf") ? (
-    <div className={styles.slides}>
-      <object type="application/pdf" data={url} title={alt}>
-        {alt}
-      </object>
-    </div>
+    <object type="application/pdf" width="100%" data={url} title={alt}>
+      {alt}
+    </object>
   ) : (
     <Link to={url}>
-      <img src={url} alt={alt} title={alt} />
+      <img src={url} alt={alt} title={alt} width="100%" />
     </Link>
   );
 
