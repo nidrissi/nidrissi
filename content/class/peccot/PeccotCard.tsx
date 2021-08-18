@@ -27,17 +27,16 @@ export default function PeccotCard({
   }
   return (
     <article className={`${styles.card} prose`}>
+      <div>
+        <h3>Lesson {number}</h3>
+        <em>{date}</em>
+      </div>
       <a href={link} target="_blank" rel="noreferrer noopener">
         <GatsbyImage
           alt={`Photo of the lecture ${number}`}
           image={parsedImage}
         />
       </a>
-      <div>
-        <strong>Lesson {number}</strong>
-        <br />
-        <em>{date}</em>
-      </div>
       <div>{children}</div>
       <a href={link} rel="noreferrer noopener">
         <FontAwesomeIcon icon={faVideo} />

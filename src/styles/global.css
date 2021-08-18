@@ -98,7 +98,7 @@ h4,
 h5,
 h6 {
   font-family: var(--ff-sans);
-  margin-bottom: 0;
+  margin-bottom: 0.5rem;
 }
 
 a {
