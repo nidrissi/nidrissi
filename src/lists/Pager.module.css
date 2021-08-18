@@ -10,7 +10,7 @@
   box-sizing: border-box;
   padding: 0.5rem;
   --button-color: var(--purple-700);
-  border: 1px dotted var(--button-color);
+  border: 1px solid var(--button-color);
   border-radius: 0.25rem;
 }
 
@@ -21,8 +21,7 @@
 
 .pager a.disabled {
   font-weight: bold;
-  border-style: solid;
-  border-width: 2px;
+  border-style: dotted;
   pointer-events: none;
 }
 
