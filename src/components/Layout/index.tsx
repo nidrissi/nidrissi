@@ -5,7 +5,7 @@ import Navbar from "./Navbar";
 import Footer from "./Footer";
 import Cookie from "./Cookie";
 
-import { root } from "./Layout.module.css";
+import * as styles from "./Layout.module.css";
 
 interface LayoutProps extends SEOProps {
   children: React.ReactNode;
@@ -14,7 +14,7 @@ interface LayoutProps extends SEOProps {
 
 export default function Layout({ children, lang, ...props }: LayoutProps) {
   return (
-    <div className={root}>
+    <div className={styles.root}>
       <SEO {...props} />
       <Navbar />
       <main lang={lang}>{children}</main>

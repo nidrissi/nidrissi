@@ -14,7 +14,7 @@ import Meta, { Frontmatter } from "../meta";
 import NextPrevious, { NextOrPreviousItem } from "../NextPrevious";
 import Embed from "../Embed";
 
-import { page } from "./Page.module.css";
+import * as styles from "./Page.module.css";
 
 interface PageTemplateProps {
   data: {
@@ -85,7 +85,7 @@ export default function PageTemplate({ data }: PageTemplateProps) {
       lastMod={frontmatter.lastMod}
       lang={frontmatter.lang}
     >
-      <div className={page}>
+      <div className={styles.page}>
         <header>
           <h1 role="banner">
             {parsedTitle}

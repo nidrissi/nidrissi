@@ -4,7 +4,7 @@ import Mini from "../Mini";
 import SeeMore from "./SeeMore";
 import { Frontmatter } from "../meta";
 
-import { section } from "./Root.module.css";
+import * as styles from "./Root.module.css";
 
 interface RootTalkQuery {
   allMdx: {
@@ -49,7 +49,7 @@ export default function Talk() {
   `);
 
   return (
-    <section className={section}>
+    <section className={styles.section}>
       <h2>Talks</h2>
       <div>
         {nodes.map(({ frontmatter, slug, wordCount: { words } }) => (

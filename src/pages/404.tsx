@@ -4,12 +4,12 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMapSigns, faUndo } from "@fortawesome/free-solid-svg-icons";
 
 import Layout from "../components/Layout";
-import { hero } from "./40x.module.css";
+import * as styles from "./40x.module.css";
 
 export default function Error404() {
   return (
     <Layout title="404 Not Found" description="Not Found">
-      <div className={hero}>
+      <div className={styles.hero}>
         <div>
           <h1 role="banner">
             <FontAwesomeIcon icon={faMapSigns} />

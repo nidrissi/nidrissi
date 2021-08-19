@@ -1,7 +1,8 @@
-import { faTimes } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useEffect, useState } from "react";
-import { cookie } from "./Cookie.module.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTimes } from "@fortawesome/free-solid-svg-icons";
+
+import * as styles from "./Cookie.module.css";
 
 export default function Cookie() {
   const [show, setShow] = useState(false);
@@ -20,7 +21,7 @@ export default function Cookie() {
     return null;
   } else {
     return (
-      <aside className={cookie}>
+      <aside className={styles.cookie}>
         <p>
           I use cookies to analyze traffic.{" "}
           <a href="/misc/cookie">The cookie policy can be found here.</a>

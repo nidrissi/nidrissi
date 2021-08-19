@@ -124,9 +124,7 @@ hr {
 
 blockquote {
   font-size: large;
-  border-left: 0.5rem solid hsla(0, 0%, 50%, 50%);
-  padding-left: 0.5rem;
-  margin-left: 0px;
+  margin-left: 0.5rem;
 }
 
 pre {
