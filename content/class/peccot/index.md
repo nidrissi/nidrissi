@@ -13,9 +13,9 @@ urls:
   custom:
     - label: Website of the Peccot Lectures
       url: https://www.college-de-france.fr/site/cours-peccot/guestlecturer-2019-2020__1.htm
-    - label: News article @ University of Lille
+    - label: News article @ ULille
       url: https://www.univ-lille.fr/fileadmin/user_upload/illustrations/contenus/recherche/2017/ActULille_Recherche/News_52_Cours_Peccot_de_Najib_Idrissi_-_article.pdf
-    - label: Longer version @ Paul Painlevé laboratory
+    - label: Longer version @ Paul Painlevé lab
       url: https://math.univ-lille1.fr/d7/node/10461
   customFile:
     - label: Old version of the notes, in French

@@ -44,7 +44,7 @@ We will illustrate these methods with rational homotopy theory by showing that m
 
 ### Prerequisites
 
-It is recommended to have taken the courses [_Homology_ (Emmanuel Wagner)](https://moodle.u-paris.fr/course/view.php?id=11052) and [_Homotopy I_ (Bruno Vallette)](https://www.math.univ-paris13.fr/~vallette/Course-Master%20II-2020.html).
+It is recommended to have taken the courses [_Homology_ (by Emmanuel Wagner)](https://moodle.u-paris.fr/course/view.php?id=11052) and [_Homotopy I_ (by Bruno Vallette)](https://www.math.univ-paris13.fr/~vallette/Course-Master%20II-2020.html).
 It will be useful to have a certain familiarity with categorical language and with basic notions of algebraic topology and homological algebra.
 
 ### Plan of the course
@@ -56,7 +56,7 @@ It will be useful to have a certain familiarity with categorical language and wi
 
 ### After this course
 
-- The course [_Higher categories_ (Muriel Livernet)](https://webusers.imj-prg.fr/~muriel.livernet/enseignement/index.html) is a natural continuation of this course and a conclusion to the "homotopy" sequence of the master's degree (Homology -- Homotopy I/II -- Higher categories).
+- The course [_Higher categories_ (by Muriel Livernet)](https://webusers.imj-prg.fr/~muriel.livernet/enseignement/index.html) is a natural continuation of this course and a conclusion to the "homotopy" sequence of the master's degree (Homology -- Homotopy I/II -- Higher categories).
 - I gave in 2020 a [Peccot lecture entitled _Real homotopy of configuration spaces_](/class/peccot) at the Collège de France which gave concrete applications of the methods presented here.
 
 ## Organization

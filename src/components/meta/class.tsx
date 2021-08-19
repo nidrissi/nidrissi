@@ -80,8 +80,6 @@ function CourseTypeBlock({ type }: CourseTypeBlockProps) {
 
   return (
     <div
-      // If there is a title, put a green border when the div is either hovered or focused
-      // and the cursor becomes a pointer when the div is hovered and not already expanded
       className={styles.block}
       onFocus={() => title && setPopped(true)}
       onBlur={() => setPopped(false)}
