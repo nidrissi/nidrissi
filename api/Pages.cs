@@ -1,10 +1,10 @@
-using System.Collections.Generic;
-
 namespace Idrissi.Blogging
 {
-  class Pages
+  using System.Collections.Generic;
+
+  public class Pages
   {
-    public static Dictionary<string, bool> allowedPageIds = new Dictionary<string, bool>
+    public static Dictionary<string, bool> AllowedPageIds = new Dictionary<string, bool>
     {
       ["post__a2b"] = true,
       ["post__abelian-bimodules"] = true,

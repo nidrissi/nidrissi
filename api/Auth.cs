@@ -1,0 +1,63 @@
+namespace Idrissi.Blogging
+{
+  using System;
+  using System.Linq;
+  using System.Security.Claims;
+  using System.Text;
+  using System.Text.Json;
+  using Microsoft.AspNetCore.Http;
+  using Microsoft.Extensions.Logging;
+
+  // https://docs.microsoft.com/en-us/azure/static-web-apps/user-information?tabs=csharp
+  public static class Auth
+  {
+    public static ClaimsPrincipal Parse(HttpRequest req)
+    {
+      var principal = new ClientPrincipal();
+
+      if (req.Headers.TryGetValue("x-ms-client-principal", out var header))
+      {
+        var data = header[0];
+        var decoded = Convert.FromBase64String(data);
+        var json = Encoding.ASCII.GetString(decoded);
+        principal = JsonSerializer.Deserialize<ClientPrincipal>(json, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+      }
+
+      principal.UserRoles = principal.UserRoles?.Except(new string[] { "anonymous" }, StringComparer.CurrentCultureIgnoreCase);
+
+      if (!principal.UserRoles?.Any() ?? true)
+      {
+        return new ClaimsPrincipal();
+      }
+
+      var identity = new ClaimsIdentity(principal.IdentityProvider);
+      identity.AddClaim(new Claim(ClaimTypes.NameIdentifier, principal.UserId));
+      identity.AddClaim(new Claim(ClaimTypes.Name, principal.UserDetails));
+      identity.AddClaims(principal.UserRoles.Select(r => new Claim(ClaimTypes.Role, r)));
+
+      return new ClaimsPrincipal(identity);
+    }
+
+    public static bool TryParse(HttpRequest req, ILogger log, out ClaimsPrincipal identity)
+    {
+      log.LogInformation("Parsing identity...");
+      identity = Parse(req);
+
+      if (!identity.IsInRole("authenticated"))
+      {
+        log.LogWarning("Got a request from an unauthenticated user.");
+        return false;
+      }
+
+      var userId = identity.FindFirst(ClaimTypes.NameIdentifier);
+
+      if (string.IsNullOrWhiteSpace(userId.Value))
+      {
+        log.LogError("Got a request from a user without a userId.");
+        return false;
+      }
+
+      return true;
+    }
+  }
+}

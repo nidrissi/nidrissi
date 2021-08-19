@@ -1,22 +1,20 @@
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Azure.Documents.Client;
-using Microsoft.Azure.WebJobs;
-using Microsoft.Azure.WebJobs.Extensions.Http;
-using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.Logging;
-using System.Linq;
-
 namespace Idrissi.Blogging
 {
+  using System.Linq;
+  using Microsoft.AspNetCore.Http;
+  using Microsoft.AspNetCore.Mvc;
+  using Microsoft.Azure.Documents.Client;
+  using Microsoft.Azure.WebJobs;
+  using Microsoft.Azure.WebJobs.Extensions.Http;
+  using Microsoft.Extensions.Logging;
+
   public static class GetComments
   {
     [FunctionName("GetComments")]
     public static IActionResult Run(
-        [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "comment/{pageId}")]
-            HttpRequest req,
+        [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "comment/{pageId}")] HttpRequest req,
         string pageId,
-        [CosmosDB(ConnectionStringSetting = "CosmosDbConnectionString")]
-            DocumentClient client,
+        [CosmosDB(ConnectionStringSetting = "CosmosDbConnectionString")] DocumentClient client,
         ILogger log)
     {
       if (string.IsNullOrWhiteSpace(pageId))
@@ -31,8 +29,8 @@ namespace Idrissi.Blogging
 
       var query =
           from c in client.CreateDocumentQuery<Comment>(commentsCollectionUri)
-          where c.pageId == pageId
-          orderby c.timestamp descending
+          where c.PageId == pageId
+          orderby c.TimeStamp descending
           select c;
 
       var comments = query.ToArray();
@@ -45,12 +43,13 @@ namespace Idrissi.Blogging
         log.LogDebug("Removing deleted comments' contents.");
         foreach (var c in comments)
         {
-          if (c.deleted)
+          if (c.Deleted)
           {
-            c.content = null;
+            c.Content = null;
           }
         }
       }
+
       return new OkObjectResult(comments);
     }
   }

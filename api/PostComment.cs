@@ -1,28 +1,21 @@
-using System;
-using System.IO;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Azure.WebJobs;
-using Microsoft.Azure.WebJobs.Extensions.Http;
-using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.Logging;
-using Microsoft.Azure.Documents.Client;
-using System.Threading;
-using System.Security.Claims;
-using System.Text.Json;
-using Microsoft.Azure.Documents;
-using System.Net;
-using System.Linq;
-
 namespace Idrissi.Blogging
 {
+  using System;
+  using System.Net;
+  using System.Security.Claims;
+  using System.Text.Json;
+  using System.Threading;
+  using System.Threading.Tasks;
+  using Microsoft.AspNetCore.Http;
+  using Microsoft.AspNetCore.Mvc;
+  using Microsoft.Azure.Documents;
+  using Microsoft.Azure.Documents.Client;
+  using Microsoft.Azure.WebJobs;
+  using Microsoft.Azure.WebJobs.Extensions.Http;
+  using Microsoft.Extensions.Logging;
+
   public static class PostComment
   {
-    public class PostCommentBody
-    {
-      public string content { get; set; }
-    }
-
     public static long ToJSTime(DateTime time)
     {
       return (long)(time - DateTime.UnixEpoch).TotalMilliseconds;
@@ -30,17 +23,15 @@ namespace Idrissi.Blogging
 
     [FunctionName("PostComment")]
     public static async Task<IActionResult> Run(
-        [HttpTrigger(AuthorizationLevel.Anonymous, "post", Route = "comment/{pageId}")]
-            HttpRequest req,
+        [HttpTrigger(AuthorizationLevel.Anonymous, "post", Route = "comment/{pageId}")] HttpRequest req,
         string pageId,
-        [CosmosDB(ConnectionStringSetting = "CosmosDbConnectionString")]
-            DocumentClient client,
+        [CosmosDB(ConnectionStringSetting = "CosmosDbConnectionString")] DocumentClient client,
         CancellationToken token,
         ILogger log)
     {
       try
       {
-        if (!Pages.allowedPageIds.TryGetValue(pageId, out var allowed) || !allowed)
+        if (!Pages.AllowedPageIds.TryGetValue(pageId, out var allowed) || !allowed)
         {
           log.LogWarning("Received a request to post on an unauthorized page: {pageId}.", pageId);
           return new UnauthorizedResult();
@@ -60,33 +51,35 @@ namespace Idrissi.Blogging
         var userRequestOptions = new RequestOptions() { PartitionKey = new PartitionKey(userId) };
         UserDetails details = await client.ReadDocumentAsync<UserDetails>(userUri, userRequestOptions, token);
 
-        if (details.banned)
+        if (details.Banned)
         {
-          log.LogWarning("Rejecting request from banned user {id}.", details.id);
+          log.LogWarning("Rejecting request from banned user {id}.", details.Id);
           return new UnauthorizedResult();
         }
 
-        var lastTime = DateTimeOffset.FromUnixTimeMilliseconds(details.lastAttemptToPost).UtcDateTime;
-        // convert to JS time
-        details.lastAttemptToPost = ToJSTime(DateTime.UtcNow);
+        var lastTime = DateTimeOffset.FromUnixTimeMilliseconds(details.LastAttemptToPost).UtcDateTime;
 
-        log.LogInformation("Updating last attempt time for user {id}.", details.id);
+        // convert to JS time
+        details.LastAttemptToPost = ToJSTime(DateTime.UtcNow);
+
+        log.LogInformation("Updating last attempt time for user {id}.", details.Id);
         await client.ReplaceDocumentAsync(userUri, details, userRequestOptions, token);
 
         if (lastTime.AddSeconds(10) > DateTime.UtcNow)
         {
-          log.LogWarning("User {id} posting too much!", details.id);
+          log.LogWarning("User {id} posting too much!", details.Id);
           return new StatusCodeResult((int)HttpStatusCode.TooManyRequests);
         }
 
         var body = await JsonSerializer.DeserializeAsync<PostCommentBody>(req.Body, null, token);
-        string content = body.content;
+        string content = body.Content;
 
         if (string.IsNullOrWhiteSpace(content))
         {
           log.LogError("Empty post!");
           return new BadRequestObjectResult("Empty post!");
         }
+
         if (content.Length < 10 || content.Length > 512)
         {
           log.LogError("Incorrect post length: {l}.", content.Length);
@@ -95,11 +88,11 @@ namespace Idrissi.Blogging
 
         var comment = new Comment()
         {
-          pageId = pageId,
-          content = content,
-          userName = details.userName,
-          userId = details.id,
-          timestamp = ToJSTime(DateTime.UtcNow)
+          PageId = pageId,
+          Content = content,
+          UserName = details.UserName,
+          UserId = details.Id,
+          TimeStamp = ToJSTime(DateTime.UtcNow),
         };
 
         var commentCollectionUri = UriFactory.CreateDocumentCollectionUri("Blogging", "Comments");
@@ -128,6 +121,11 @@ namespace Idrissi.Blogging
             throw ex;
         }
       }
+    }
+
+    public class PostCommentBody
+    {
+      public string Content { get; set; }
     }
   }
 }

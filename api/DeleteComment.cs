@@ -1,18 +1,18 @@
-using System.Net;
-using System.Security.Claims;
-using System.Text.Json;
-using System.Threading;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Azure.Documents;
-using Microsoft.Azure.Documents.Client;
-using Microsoft.Azure.WebJobs;
-using Microsoft.Azure.WebJobs.Extensions.Http;
-using Microsoft.Extensions.Logging;
-
 namespace Idrissi.Blogging
 {
+  using System.Net;
+  using System.Security.Claims;
+  using System.Text.Json;
+  using System.Threading;
+  using System.Threading.Tasks;
+  using Microsoft.AspNetCore.Http;
+  using Microsoft.AspNetCore.Mvc;
+  using Microsoft.Azure.Documents;
+  using Microsoft.Azure.Documents.Client;
+  using Microsoft.Azure.WebJobs;
+  using Microsoft.Azure.WebJobs.Extensions.Http;
+  using Microsoft.Extensions.Logging;
+
   public static class DeleteComment
   {
     [FunctionName("DeleteComment")]
@@ -20,8 +20,7 @@ namespace Idrissi.Blogging
         [HttpTrigger(AuthorizationLevel.Anonymous, "delete", Route = "comment/{pageId}/{commentId}")] HttpRequest req,
         string pageId,
         string commentId,
-        [CosmosDB(ConnectionStringSetting = "CosmosDbConnectionString")]
-            DocumentClient client,
+        [CosmosDB(ConnectionStringSetting = "CosmosDbConnectionString")] DocumentClient client,
         CancellationToken token,
         ILogger log)
     {
@@ -64,12 +63,12 @@ namespace Idrissi.Blogging
 
           var response = await client.ReadDocumentAsync<Comment>(commentUri, requestOptions, token);
           var comment = response.Document;
-          if (comment.userId != userId)
+          if (comment.UserId != userId)
           {
             return new UnauthorizedResult();
           }
 
-          comment.deleted = true;
+          comment.Deleted = true;
 
           await client.ReplaceDocumentAsync(
               commentUri,

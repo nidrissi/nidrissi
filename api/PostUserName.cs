@@ -1,27 +1,25 @@
-using System;
-using System.Net;
-using System.Threading;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Azure.WebJobs;
-using Microsoft.Azure.WebJobs.Extensions.Http;
-using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.Logging;
-using System.Security.Claims;
-using System.Text.Json;
-using Microsoft.Azure.Documents;
-using Microsoft.Azure.Documents.Client;
-
 namespace Idrissi.Blogging
 {
+  using System;
+  using System.Net;
+  using System.Threading;
+  using System.Threading.Tasks;
+  using Microsoft.AspNetCore.Mvc;
+  using Microsoft.Azure.WebJobs;
+  using Microsoft.Azure.WebJobs.Extensions.Http;
+  using Microsoft.AspNetCore.Http;
+  using Microsoft.Extensions.Logging;
+  using System.Security.Claims;
+  using System.Text.Json;
+  using Microsoft.Azure.Documents;
+  using Microsoft.Azure.Documents.Client;
+
   public static class PostUserName
   {
     [FunctionName("PostUserName")]
     public static async Task<IActionResult> Run(
-        [HttpTrigger(AuthorizationLevel.Anonymous, "post", Route = "user")]
-            HttpRequest req,
-        [CosmosDB(ConnectionStringSetting = "CosmosDbConnectionString")]
-            DocumentClient client,
+        [HttpTrigger(AuthorizationLevel.Anonymous, "post", Route = "user")] HttpRequest req,
+        [CosmosDB(ConnectionStringSetting = "CosmosDbConnectionString")] DocumentClient client,
         ILogger log,
         CancellationToken token)
     {
@@ -37,24 +35,26 @@ namespace Idrissi.Blogging
 
         log.LogDebug("Parsing body of the request");
         UserDetails details = await JsonSerializer.DeserializeAsync<UserDetails>(req.Body);
-        if (details.id != userId.Value)
+        if (details.Id != userId.Value)
         {
           log.LogError("Wrong user id.");
           return new BadRequestObjectResult("Trying to set the username of the wrong user.");
         }
-        if (details.userName.Length > 25 || details.userName.Length < 3)
+
+        if (details.UserName.Length > 25 || details.UserName.Length < 3)
         {
-          log.LogError("Wrong length: {username}", details.userName);
+          log.LogError("Wrong length: {username}", details.UserName);
           return new BadRequestObjectResult("Username must be between 3 and 25 characters.");
         }
 
         log.LogDebug("Setting username of {userId}", userId.Value);
         var collectionUri = UriFactory.CreateDocumentCollectionUri("Blogging", "Users");
-        var response = await client.CreateDocumentAsync(collectionUri,
-            details,
-            new RequestOptions() { PartitionKey = new PartitionKey(userId.Value) },
-            cancellationToken: token);
-        return new CreatedResult(details.id, details);
+        var response = await client.CreateDocumentAsync(
+          collectionUri,
+          details,
+          new RequestOptions() { PartitionKey = new PartitionKey(userId.Value) },
+          cancellationToken: token);
+        return new CreatedResult(details.Id, details);
       }
       catch (JsonException ex)
       {
