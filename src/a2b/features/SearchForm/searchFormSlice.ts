@@ -19,9 +19,5 @@ export const searchFormSlice = createSlice({
 });
 
 export const { setQuery } = searchFormSlice.actions;
-
-export const selectIds = (state: RootState) => state.searchForm.ids;
-export const selectAuthors = (state: RootState) => state.searchForm.authors;
-export const selectTitles = (state: RootState) => state.searchForm.titles;
-
+export const selectQuery = (state: RootState) => state[searchFormSlice.name];
 export default searchFormSlice.reducer;

@@ -1,24 +1,21 @@
 import React, { useRef } from "react";
 import { useSelector } from "react-redux";
 
-import { selectAllEntries, selectTotalEntriesFound } from "./resultsSlice";
 import { selectSettings } from "../Settings/settingsSlice";
 
 import EntryCard from "../EntryCard";
 import CopyAndTotal from "./CopyAndTotal";
+import { Entry } from "../../types";
 
 /** The list of all entries. Entry ids are taken from the redux state
  * and then rendered using `EntryById`. Then adds buttons to copy entries
  * to the clipboards and counts how many are displayed out of the total.
  */
-export default function EntryList() {
-  const totalEntriesFound = useSelector(selectTotalEntriesFound);
-  const entries = useSelector(selectAllEntries);
+export default function EntryList({ entries }: { entries?: Entry[] }) {
   const { mode } = useSelector(selectSettings);
   const outerRef = useRef<HTMLDivElement>(null);
 
-  if (totalEntriesFound === undefined) {
-    // entries haven't even been fetched or there was an error
+  if (!entries) {
     return null;
   }
 
@@ -28,7 +25,7 @@ export default function EntryList() {
 
   const totalText = (
     <>
-      Showing {entries.length} entries out of {totalEntriesFound} in total.
+      Showing {entries.length} entries.
       {mode === "bibtex" && (
         <> Running in legacy BibTeX mode. Check entries for issues.</>
       )}

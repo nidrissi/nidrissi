@@ -33,8 +33,15 @@ export interface Query {
   titles: string[];
 }
 
+/** Search settings */
+export interface SearchSettings {
+  maxResults: number;
+  sortBy: "submittedDate" | "lastUpdatedDate" | "relevance";
+  sortOrder: "ascending" | "descending";
+}
+
 /** The settings */
-export interface Settings {
+export type Settings = SearchSettings & {
   fileFolder: string;
   filePrefix: boolean;
   includeAbstract: boolean;
@@ -43,8 +50,5 @@ export interface Settings {
   includeVersion: boolean;
   includeWget: boolean;
   wgetPowershell: boolean;
-  maxResults: number;
   mode: "bibtex" | "biblatex";
-  sortBy: "submittedDate" | "lastUpdatedDate" | "relevance";
-  sortOrder: "ascending" | "descending";
-}
+};

@@ -1,5 +1,5 @@
 // see https://arxiv.org/help/api/user-manual
-import { Entry, Query, Settings } from "./types";
+import { Entry, Query, SearchSettings } from "./types";
 import { removeAccents } from "./utils";
 
 function getUniqueNamedTag(
@@ -11,7 +11,7 @@ function getUniqueNamedTag(
   return item?.textContent?.trim();
 }
 
-function parseEntry(xmlEntry: Element): Entry | null {
+export function parseEntry(xmlEntry: Element): Entry | null {
   // the end result
   const entry: Entry = {
     authors: [],
@@ -104,32 +104,22 @@ function parseEntry(xmlEntry: Element): Entry | null {
   return entry;
 }
 
-/** If there is an error, arXiv returns a single error entry.
-    In this case we just throw the error for fetchEntries to deal with.
- */
-function checkEntryForErrors(xmlEntry: Element): void {
-  for (let l of Array.from(xmlEntry.getElementsByTagName("link"))) {
-    if (l.getAttribute("href")?.match("api/errors")) {
-      const error = getUniqueNamedTag(xmlEntry, "summary");
-      throw Error(`ArXiv reported: “${error}”.`);
-    }
-  }
-}
-
-function buildSearchQueryPart(list: string[], label: string): string {
+function buildSearchQueryPart(
+  list: string[],
+  label: string,
+  or?: boolean
+): string {
   return list
     .map(removeAccents)
     .map(encodeURIComponent)
     .map((a) => `${label}:"${a}"`)
-    .join("+AND+");
+    .join(or ? "+OR+" : "+AND+");
 }
 
-function buildURLQuery(
+export function buildURLQuery(
   { authors, ids, titles }: Query,
-  { maxResults, sortBy, sortOrder }: Settings
+  { maxResults, sortBy, sortOrder }: SearchSettings
 ): string {
-  const base = "https://export.arxiv.org/api/query?";
-
   const idQuery =
     ids.length === 0
       ? ""
@@ -144,43 +134,5 @@ function buildURLQuery(
   const searchSettings = `sortBy=${sortBy}&sortOrder=${sortOrder}&max_results=${maxResults}`;
   const fullSearchQuery = `search_query=${searchQuery}&${searchSettings}`;
 
-  return base + fullSearchQuery + idQuery;
-}
-
-/** Return type of `arxivSearch` */
-export interface ArxivResult {
-  entries: Entry[];
-  totalEntriesFound: number;
-}
-
-/** Performs a search on arXiv.
- * @param query The query (ids, titles, authors)
- * @param settings The settings (sort order etc)
- */
-export async function arxivSearch(
-  query: Query,
-  settings: Settings
-): Promise<ArxivResult> {
-  const urlQuery = buildURLQuery(query, settings);
-  const response = await fetch(urlQuery);
-  const xmlData = await response.text();
-
-  const parser = new DOMParser();
-  const xmlDoc = parser.parseFromString(xmlData, "text/xml");
-
-  const xmlEntries = xmlDoc.getElementsByTagName("entry");
-  const entries: Entry[] = [];
-  for (const w of Array.from(xmlEntries)) {
-    checkEntryForErrors(w);
-    const parsedEntry = parseEntry(w);
-    if (parsedEntry !== null) {
-      entries.push(parsedEntry);
-    }
-  }
-
-  const totalEntriesFound = Number(
-    getUniqueNamedTag(xmlDoc, "opensearch:totalResults")
-  );
-
-  return { entries, totalEntriesFound };
+  return fullSearchQuery + idQuery;
 }

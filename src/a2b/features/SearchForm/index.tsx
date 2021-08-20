@@ -1,11 +1,10 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { Formik } from "formik";
 
 import { splitter } from "../../utils";
 
 import { setQuery } from "./searchFormSlice";
-import { selectIsLoading } from "../Results/resultsSlice";
 
 import SearchFormBody from "./SearchFormBody";
 
@@ -13,27 +12,24 @@ import SearchFormBody from "./SearchFormBody";
     - three fields: the ID list, the author list, and the title (words) list;
     - two buttons: submit and clear.
       */
-export default function SearchForm() {
+export default function SearchForm({ isLoading }: { isLoading: boolean }) {
   const dispatch = useDispatch();
-  const isLoading = useSelector(selectIsLoading);
 
   return (
     <Formik
-      component={SearchFormBody}
+      component={(props) => <SearchFormBody isLoading={isLoading} {...props} />}
       initialValues={{
         ids: "",
         authors: "",
         titles: "",
       }}
       onSubmit={(values, { setSubmitting }) => {
-        if (!isLoading) {
-          const query = {
-            ids: splitter(values.ids, /\s+/),
-            authors: splitter(values.authors, /\s*&\s*/),
-            titles: splitter(values.titles, /\s*&\s*/), // idem
-          };
-          dispatch(setQuery(query));
-        }
+        const query = {
+          ids: splitter(values.ids, /\s+/),
+          authors: splitter(values.authors, /\s*&\s*/),
+          titles: splitter(values.titles, /\s*&\s*/), // idem
+        };
+        dispatch(setQuery(query));
         setSubmitting(false);
       }}
       validate={(values) => {

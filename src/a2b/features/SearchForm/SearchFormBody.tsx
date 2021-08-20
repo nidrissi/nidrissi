@@ -1,17 +1,12 @@
 import React from "react";
-import { useSelector } from "react-redux";
 import { Form } from "formik";
-
-import { selectIsLoading } from "../Results/resultsSlice";
 
 import InputField from "./InputField";
 import SubmitAndClearButtons from "./SubmitAndClearButtons";
 
 import * as styles from "./SearchFormBody.module.css";
 
-export default function SearchFormBody() {
-  const isLoading = useSelector(selectIsLoading);
-
+export default function SearchFormBody({ isLoading }: { isLoading: boolean }) {
   return (
     <Form className={styles.body}>
       <InputField
