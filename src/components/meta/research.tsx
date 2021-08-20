@@ -89,7 +89,11 @@ export default function MetaResearch({
       )}
       {publication && (
         <>
-          <ReactMarkdown children={publication} />{" "}
+          <ReactMarkdown
+            children={publication}
+            disallowedElements={["p"]}
+            unwrapDisallowed
+          />{" "}
         </>
       )}
       <DateTime label="Online on">{date}</DateTime>
