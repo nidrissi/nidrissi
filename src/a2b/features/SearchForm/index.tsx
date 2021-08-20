@@ -12,12 +12,14 @@ import SearchFormBody from "./SearchFormBody";
     - three fields: the ID list, the author list, and the title (words) list;
     - two buttons: submit and clear.
       */
-export default function SearchForm({ isLoading }: { isLoading: boolean }) {
+export default function SearchForm({ isFetching }: { isFetching: boolean }) {
   const dispatch = useDispatch();
 
   return (
     <Formik
-      component={(props) => <SearchFormBody isLoading={isLoading} {...props} />}
+      component={(props) => (
+        <SearchFormBody isFetching={isFetching} {...props} />
+      )}
       initialValues={{
         ids: "",
         authors: "",

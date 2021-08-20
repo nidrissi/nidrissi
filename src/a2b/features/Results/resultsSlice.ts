@@ -9,7 +9,6 @@ interface SearchArguments {
 }
 
 export const arxivApi = createApi({
-  reducerPath: "result",
   baseQuery: fetchBaseQuery({ baseUrl: "https://export.arxiv.org/api/" }),
   endpoints: (builder) => ({
     arxivSearch: builder.query<Entry[] | Error, SearchArguments>({

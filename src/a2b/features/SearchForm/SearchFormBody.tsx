@@ -6,7 +6,11 @@ import SubmitAndClearButtons from "./SubmitAndClearButtons";
 
 import * as styles from "./SearchFormBody.module.css";
 
-export default function SearchFormBody({ isLoading }: { isLoading: boolean }) {
+export default function SearchFormBody({
+  isFetching,
+}: {
+  isFetching: boolean;
+}) {
   return (
     <Form className={styles.body}>
       <InputField
@@ -27,7 +31,7 @@ export default function SearchFormBody({ isLoading }: { isLoading: boolean }) {
         placeholder="operad & configuration space & ..."
         title="Words/sentences to search in the title separated by '&'."
       />
-      <SubmitAndClearButtons isLoading={isLoading} />
+      <SubmitAndClearButtons isLoading={isFetching} />
     </Form>
   );
 }

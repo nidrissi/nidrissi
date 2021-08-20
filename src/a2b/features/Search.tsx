@@ -18,7 +18,7 @@ export default function Search() {
     .map((x) => x.length)
     .some((l) => l > 0);
 
-  const { data, isLoading } = useArxivSearchQuery(
+  const { data, isFetching } = useArxivSearchQuery(
     shouldDisplayResult
       ? {
           query,
@@ -29,7 +29,7 @@ export default function Search() {
 
   return (
     <>
-      <SearchForm isLoading={isLoading} />
+      <SearchForm isFetching={isFetching} />
       {data &&
         ("message" in data ? (
           <ErrorAlert error={data} />
