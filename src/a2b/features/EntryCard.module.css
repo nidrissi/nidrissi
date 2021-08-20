@@ -4,6 +4,7 @@
   padding: 0.5rem;
   border: 1px solid black;
   border-radius: 0.33rem;
+  margin: 0.5rem 0;
 }
 
 .card > button {
@@ -24,7 +25,7 @@
 
 .card > pre[data-body] {
   color: black;
-  overflow: hidden;
+  overflow: auto;
 }
 
 .card > pre a {

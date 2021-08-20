@@ -7,6 +7,7 @@
 
 .body > label {
   display: block;
+  padding: 0.5rem 0;
   grid-column: span 1;
   font-weight: bold;
 }
