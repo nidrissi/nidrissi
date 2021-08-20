@@ -4,7 +4,6 @@ import {
   faCog,
   faQuestion,
   faSearch,
-  faTools,
   IconDefinition,
 } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "gatsby";
@@ -16,7 +15,6 @@ const links: {
   label: string;
 }[] = [
   { icon: faSearch, label: "Search" },
-  // { icon: faTools, label: "DIY" },
   { icon: faCog, label: "Settings" },
 ];
 

@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from "react-redux";
 // these components are always loaded
 import Search from "./features/Search";
 import Settings from "./features/Settings";
-import DIY from "./features/DIY";
 
 // state
 import {
@@ -52,7 +51,6 @@ export default function App() {
   const pageAssociation = new Map([
     ["Search", <Search />],
     ["Settings", <Settings />],
-    ["DIY", <DIY />],
   ]);
 
   return (
