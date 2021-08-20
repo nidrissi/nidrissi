@@ -142,7 +142,7 @@ module.exports = {
         description: `Home page of Najib Idrissi`,
         start_url: `/`,
         lang: `en`,
-        background_color: `#ffffff`,
+        background_color: `#065f46`,
         theme_color: `#065F46`,
         display: `fullscreen`,
         icon: `src/components/Root/photo.jpg`,

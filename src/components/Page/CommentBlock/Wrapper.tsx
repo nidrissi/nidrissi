@@ -12,17 +12,27 @@ interface WrapperProps {
 }
 
 export default function Wrapper({ children, num, retry }: WrapperProps) {
+  const title =
+    num === undefined
+      ? "Comments"
+      : num === 0
+      ? "No comments yet"
+      : num === 1
+      ? "1 comment"
+      : `${num} comments`;
+
   return (
     <ErrorBoundary>
       <section className={styles.wrapper}>
         <h2 id="__comments">
-          <FontAwesomeIcon icon={faComments} />
-          &nbsp;Comments
-          {num !== undefined && ` [${num}]`}
-          &nbsp;
+          <div>
+            <FontAwesomeIcon icon={faComments} />
+            &nbsp;
+            {title}
+          </div>
           {retry && (
-            <button onClick={() => retry()}>
-              <FontAwesomeIcon icon={faSync} size="sm" />
+            <button onClick={() => retry()} className={styles.retry}>
+              <FontAwesomeIcon icon={faSync} fixedWidth />
             </button>
           )}
         </h2>

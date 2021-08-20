@@ -140,17 +140,21 @@ img {
   display: block;
 }
 
+ul {
+  list-style: circle;
+}
+
 ol ol {
   list-style: lower-alpha;
   padding-left: 20px;
 }
 
 .prose {
-  line-height: 1.25;
+  line-height: 1.2;
 }
 
 .prose-lg {
-  line-height: 1.5;
+  line-height: 1.333;
   font-size: 1.2rem;
 }
 
@@ -174,7 +178,8 @@ nav.toc {
 
 nav.toc > ol {
   margin-top: 0.25rem;
-  border-left: 4px solid hsla(0, 0%, 50%, 50%);
+  padding-left: 2rem;
+  border-left: 2px solid hsla(0, 0%, 50%, 50%);
 }
 
 @media (prefers-color-scheme: dark) {

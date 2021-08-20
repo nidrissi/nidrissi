@@ -6,4 +6,25 @@
 .wrapper > h2 {
   margin-top: 0.5rem;
   margin-bottom: 1rem;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-content: center;
+}
+
+.retry {
+  display: block;
+  padding: 0.25rem;
+  border-radius: 9999px;
+}
+
+.retry:hover {
+  background-color: var(--blue-300);
+  color: black;
+}
+
+@media (prefers-color-scheme: dark) {
+  .retry:hover {
+    background-color: var(--blue-800);
+    color: white;
+  }
 }
