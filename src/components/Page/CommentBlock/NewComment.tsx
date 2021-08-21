@@ -1,4 +1,5 @@
-import React, { useRef, useState, useEffect } from "react";
+import React, { useState } from "react";
+import { skipToken } from "@reduxjs/toolkit/query";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCheck,
@@ -8,105 +9,61 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { faMarkdown } from "@fortawesome/free-brands-svg-icons";
 
-import Alert from "./Alert";
-import { Comment } from "./Single";
-import { ClientPrincipal } from "./ClientPrincipal";
+import {
+  useGetClientQuery,
+  useGetUserNameQuery,
+  usePostCommentMutation,
+} from "./CommentApi";
 import UserDetails from "./UserDetails";
+import Alert from "./Alert";
 
 import * as styles from "./NewComment.module.css";
 
-interface NewCommentProps {
-  pageId: string;
-  client?: ClientPrincipal;
-  setClient: React.Dispatch<React.SetStateAction<ClientPrincipal | undefined>>;
-  setComments: React.Dispatch<React.SetStateAction<Comment[]>>;
-}
-
-export default function NewComment({
-  pageId,
-  client,
-  setClient,
-  setComments,
-}: NewCommentProps) {
-  const [userName, setUserName] = useState<string>();
+export default function NewComment({ pageId }: { pageId: string }) {
+  const { data: client } = useGetClientQuery({});
+  const { data: userName } = useGetUserNameQuery(client ? {} : skipToken);
 
   return (
     <>
       <div>
-        <UserDetails
-          client={client}
-          setClient={setClient}
-          userName={userName}
-          setUserName={setUserName}
-        />
+        <UserDetails />
       </div>
-      {client !== null && userName && (
-        <NewCommentForm pageId={pageId} setComments={setComments} />
-      )}
+      {client !== null && userName && <NewCommentForm pageId={pageId} />}
     </>
   );
 }
 
 interface NewCommentFormProps {
   pageId: string;
-  setComments: React.Dispatch<React.SetStateAction<Comment[]>>;
 }
 
-function NewCommentForm({ pageId, setComments }: NewCommentFormProps) {
+function NewCommentForm({ pageId }: NewCommentFormProps) {
   const [expanded, setExpanded] = useState(false);
   const [currentInput, setCurrentInput] = useState<string>("");
-  const [error, setError] = useState<string>();
+  const [inputError, setInputError] = useState<string>();
 
-  const formRef = useRef<HTMLTextAreaElement>(null);
+  const [triggerPostComment, { isLoading, isError }] = usePostCommentMutation();
 
-  useEffect(() => {
-    if (expanded) {
-      formRef.current?.focus();
-    }
-  }, [expanded]);
-
-  const [sending, setSending] = useState(false);
   async function handleSubmit() {
-    if (sending) {
+    if (isLoading) {
       return;
     }
-    setSending(true);
-    setError(undefined);
-    try {
-      const trueInput = currentInput?.trim() ?? "";
-      setCurrentInput(trueInput);
+    setInputError(undefined);
+    const trueInput = currentInput?.trim() ?? "";
+    setCurrentInput(trueInput);
 
-      if (trueInput.length < 10) {
-        setError("Comments must be at least 10 characters long.");
-      } else if (trueInput.length > 512) {
-        setError("Comments must be at most 512 characters long.");
-      } else {
-        const response = await fetch(`/api/comment/${pageId}`, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ content: trueInput }),
-        });
-        if (response.ok) {
-          const comment = await response.json();
-          setComments((l) => [comment].concat(l));
-          setCurrentInput("");
-          setSending(false);
-        } else {
-          if (response.status === 429) {
-            setError(
-              "You are posting too much. Please wait 10 seconds between two comments."
-            );
-          } else {
-            throw new Error();
-          }
-        }
+    if (trueInput.length < 10) {
+      setInputError("Comments must be at least 10 characters long.");
+    } else if (trueInput.length > 512) {
+      setInputError("Comments must be at most 512 characters long.");
+    } else {
+      try {
+        await triggerPostComment({ pageId, content: trueInput }).unwrap();
+        setCurrentInput("");
+        setInputError(undefined);
+      } catch (err) {
+        setInputError(err);
       }
-    } catch {
-      setError("There was an unspecified error submitting your comment.");
-    } finally {
-      setSending(false);
     }
   }
 
@@ -119,7 +76,7 @@ function NewCommentForm({ pageId, setComments }: NewCommentFormProps) {
 
     if (shouldReset) {
       setExpanded(false);
-      setError(undefined);
+      setInputError(undefined);
       setCurrentInput("");
     }
   }
@@ -140,12 +97,12 @@ function NewCommentForm({ pageId, setComments }: NewCommentFormProps) {
           onReset={handleReset}
         >
           <textarea
-            ref={formRef}
-            className={error ? styles.error : ""}
+            autoFocus
+            className={inputError ? styles.error : ""}
             rows={5}
             value={currentInput}
             onChange={(e) => {
-              setError(undefined);
+              setInputError(undefined);
               setCurrentInput(e.target.value);
             }}
             onKeyDown={(e) => {
@@ -157,10 +114,13 @@ function NewCommentForm({ pageId, setComments }: NewCommentFormProps) {
                 handleReset();
               }
             }}
-            disabled={sending}
+            disabled={isLoading}
             placeholder="Type a comment (up to 512 characters) here..."
           />
-          {error && <Alert>{error}</Alert>}
+          {inputError && <Alert>{inputError}</Alert>}
+          {isError && (
+            <Alert>There was an unspecified error posting your comment.</Alert>
+          )}
           <div className={styles.footer}>
             <div>
               <a
@@ -172,14 +132,14 @@ function NewCommentForm({ pageId, setComments }: NewCommentFormProps) {
                 &nbsp;Markdown reference
               </a>
             </div>
-            <button type="submit" disabled={sending}>
+            <button type="submit" disabled={isLoading}>
               <FontAwesomeIcon
-                icon={sending ? faSpinner : faCheck}
-                spin={sending}
+                icon={isLoading ? faSpinner : faCheck}
+                spin={isLoading}
               />
               &nbsp;Submit
             </button>
-            <button type="reset" disabled={sending}>
+            <button type="reset" disabled={isLoading}>
               <FontAwesomeIcon icon={faTimes} />
               &nbsp;Cancel
             </button>

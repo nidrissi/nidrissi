@@ -4,11 +4,12 @@ import rehypeKatex from "rehype-katex";
 import ReactMarkdown from "react-markdown";
 import remarkExternalLinks from "remark-external-links";
 
-import Identicon from "./Identicon";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBan, faEraser, faTrash } from "@fortawesome/free-solid-svg-icons";
-import { ClientPrincipal } from "./ClientPrincipal";
 
+import Identicon from "./Identicon";
+
+import { useDeleteCommentMutation, useGetClientQuery } from "./CommentApi";
 import * as styles from "./Single.module.css";
 
 export interface Comment {
@@ -22,13 +23,12 @@ export interface Comment {
 }
 
 interface SingleProps {
-  client?: ClientPrincipal;
   comment: Comment;
-  setComments: React.Dispatch<React.SetStateAction<Comment[]>>;
 }
 
-export default function Single({ client, comment, setComments }: SingleProps) {
-  const date = new Date(comment.timestamp);
+export default function Single({ comment }: SingleProps) {
+  const { data: client } = useGetClientQuery({});
+  const [triggerDeleteComment] = useDeleteCommentMutation();
 
   const onClickDelete = async (superDelete?: boolean) => {
     if (
@@ -39,29 +39,13 @@ export default function Single({ client, comment, setComments }: SingleProps) {
       )
     ) {
       try {
-        const response = await fetch(
-          `/api/comment/${comment.pageId}/${comment.id}${
-            superDelete ? "?super=1" : ""
-          }`,
-          { method: "DELETE" }
-        );
-        if (response.ok) {
-          if (superDelete) {
-            setComments((list) =>
-              list.filter((curr) => curr.id !== comment.id)
-            );
-          } else {
-            setComments((list) =>
-              list.map((c) =>
-                c.id === comment.id ? { ...c, deleted: true } : c
-              )
-            );
-          }
-        } else {
-          throw new Error();
-        }
-      } catch {
-        alert("Error deleting comment!");
+        await triggerDeleteComment({
+          pageId: comment.pageId,
+          id: comment.id,
+          superDelete,
+        }).unwrap();
+      } catch (err) {
+        alert(`Error deleting comment: ${err}`);
       }
     }
   };
@@ -83,7 +67,7 @@ export default function Single({ client, comment, setComments }: SingleProps) {
         <div>
           <strong>{comment.userName}</strong>
           {", "}
-          <em>{date.toLocaleString()}</em>
+          <em>{new Date(comment.timestamp).toLocaleString()}</em>
         </div>
         {comment.userId === client?.userId && !comment.deleted && (
           <button onClick={() => onClickDelete()} title="Delete this comment">

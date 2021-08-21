@@ -1,5 +1,6 @@
 namespace Idrissi.Blogging
 {
+  using System.Linq;
   using System.Net;
   using System.Security.Claims;
   using System.Threading;
@@ -36,7 +37,7 @@ namespace Idrissi.Blogging
 
         var commentUri = UriFactory.CreateDocumentUri("Blogging", "Comments", commentId);
 
-        if (req.Query.ContainsKey("super"))
+        if (req.Query.TryGetValue("super", out var values) && values.Any(s => s == "1"))
         {
           if (principal.IsInRole("administrator"))
           {

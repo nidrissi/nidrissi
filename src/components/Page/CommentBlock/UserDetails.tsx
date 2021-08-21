@@ -1,67 +1,24 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React from "react";
 import { faSignOutAlt, faSpinner } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import Alert from "./Alert";
 import LoginButton from "./LoginButton";
-import { ClientPrincipal } from "./ClientPrincipal";
 import UserName from "./UserName";
 
 import * as styles from "./UserDetails.module.css";
+import { useGetClientQuery } from "./CommentApi";
 
-interface UserDetailsProps {
-  client?: ClientPrincipal;
-  setClient: React.Dispatch<React.SetStateAction<ClientPrincipal | undefined>>;
-  userName?: string;
-  setUserName: React.Dispatch<React.SetStateAction<string | undefined>>;
-}
+export default function UserDetails() {
+  const { data: client, refetch, isFetching, isError } = useGetClientQuery({});
 
-export default function UserDetails({
-  client,
-  setClient,
-  userName,
-  setUserName,
-}: UserDetailsProps) {
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(false);
-
-  const fetchClient = useCallback(async () => {
-    try {
-      const response = await fetch("/.auth/me");
-      if (response.ok) {
-        const body = await response.json();
-        setClient(body.clientPrincipal);
-        setError(false);
-      } else {
-        throw new Error();
-      }
-    } catch {
-      setClient(undefined);
-      setError(true);
-    } finally {
-      setLoading(false);
-    }
-  }, [setClient]);
-
-  useEffect(() => {
-    fetchClient();
-  }, [fetchClient]);
-
-  if (error) {
+  if (isError) {
     return (
-      <Alert
-        retry={() => {
-          setError(false);
-          if (!loading) {
-            setLoading(true);
-            setTimeout(() => fetchClient(), 500);
-          }
-        }}
-      >
+      <Alert retry={() => refetch()}>
         There was an error fetching your login details.
       </Alert>
     );
-  } else if (loading) {
+  } else if (isFetching) {
     return (
       <>
         <FontAwesomeIcon icon={faSpinner} spin />
@@ -71,11 +28,7 @@ export default function UserDetails({
   } else if (client) {
     return (
       <>
-        <UserName
-          client={client}
-          userName={userName}
-          setUserName={setUserName}
-        />{" "}
+        <UserName />{" "}
         <button
           className={styles.logout}
           onClick={() => {

@@ -1,61 +1,31 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React from "react";
+import { skipToken } from "@reduxjs/toolkit/query";
+
 import Alert from "./Alert";
-import { ClientPrincipal, formatClient } from "./ClientPrincipal";
+import { formatClient } from "./ClientPrincipal";
+import { useGetClientQuery, useGetUserNameQuery } from "./CommentApi";
 import { UserNameForm } from "./UserNameForm";
 
-interface UserNameProps {
-  userName?: string;
-  setUserName: React.Dispatch<React.SetStateAction<string | undefined>>;
-  client: ClientPrincipal;
-}
+export default function UserName() {
+  const { data: client } = useGetClientQuery({});
+  const {
+    data: userName,
+    isFetching,
+    isError,
+    refetch,
+  } = useGetUserNameQuery(client ? {} : skipToken);
 
-export default function UserName({
-  client,
-  userName,
-  setUserName,
-}: UserNameProps) {
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(false);
+  if (!client) {
+    return null;
+  }
 
-  const fetchUserName = useCallback(async () => {
-    try {
-      const response = await fetch(`/api/user`);
-      if (response.ok) {
-        const body = await response.json();
-        setUserName(body.userName);
-        setError(false);
-      } else if (response.status === 404) {
-        setUserName(undefined);
-      } else {
-        throw new Error();
-      }
-    } catch {
-      setUserName(undefined);
-      setError(true);
-    } finally {
-      setLoading(false);
-    }
-  }, [setUserName]);
-
-  useEffect(() => {
-    fetchUserName();
-  }, [fetchUserName]);
-
-  if (error) {
+  if (isError) {
     return (
-      <Alert
-        retry={() => {
-          setError(false);
-          if (!loading) {
-            setLoading(true);
-            setTimeout(() => fetchUserName(), 500);
-          }
-        }}
-      >
+      <Alert retry={() => refetch()}>
         There was an error fetching your username.
       </Alert>
     );
-  } else if (loading) {
+  } else if (isFetching) {
     return null;
   } else if (userName) {
     return (
@@ -64,6 +34,6 @@ export default function UserName({
       </>
     );
   } else {
-    return <UserNameForm id={client.userId} setUserName={setUserName} />;
+    return <UserNameForm id={client.userId} />;
   }
 }
