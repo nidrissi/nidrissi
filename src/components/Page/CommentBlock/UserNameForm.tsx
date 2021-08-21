@@ -1,10 +1,6 @@
 import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faArrowRight,
-  faSpinner,
-  faTimes,
-} from "@fortawesome/free-solid-svg-icons";
+import { faArrowRight, faSpinner } from "@fortawesome/free-solid-svg-icons";
 
 import * as styles from "./UserNameForm.module.css";
 import { usePostUserNameMutation } from "./CommentApi";
@@ -51,14 +47,16 @@ export function UserNameForm({ id }: UserNameFormProps) {
         />
         <button disabled={isLoading} type="submit">
           <FontAwesomeIcon
-            icon={isLoading ? faSpinner : inputError ? faTimes : faArrowRight}
+            icon={isLoading ? faSpinner : faArrowRight}
             spin={isLoading}
             title="Submit"
           />
         </button>
-        {inputError && <p>{inputError}</p>}
+        {inputError && <div>{inputError}</div>}
         {isError && (
-          <p>There was an error submitting the form. Retry or contact me.</p>
+          <div>
+            There was an error submitting the form. Retry or contact me.
+          </div>
         )}
       </div>
     </form>

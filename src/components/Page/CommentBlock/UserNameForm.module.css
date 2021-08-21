@@ -1,11 +1,11 @@
 .chooser {
-  display: flex;
-  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-content: center;
 }
 
 .chooser > input {
   display: block;
-  flex-grow: 1;
   color: black;
   padding: 0.25rem;
 }
@@ -25,7 +25,10 @@
   background-color: var(--blue-800);
 }
 
-.chooser > p {
+.chooser > div {
+  grid-column: span 2;
+  padding: 0.5rem 0;
+  font-weight: bold;
   color: var(--red-800);
 }
 
@@ -35,7 +38,7 @@
     background-color: var(--blue-300);
   }
 
-  .chooser > p {
-    color: var(--red-300);
+  .chooser > div {
+    color: var(--red-400);
   }
 }

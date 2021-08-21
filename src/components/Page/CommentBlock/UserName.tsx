@@ -8,10 +8,11 @@ import { UserNameForm } from "./UserNameForm";
 
 export default function UserName() {
   const { data: client } = useGetClientQuery({});
+
   const {
     data: userName,
     isFetching,
-    isError,
+    error,
     refetch,
   } = useGetUserNameQuery(client ? {} : skipToken);
 
@@ -19,12 +20,8 @@ export default function UserName() {
     return null;
   }
 
-  if (isError) {
-    return (
-      <Alert retry={() => refetch()}>
-        There was an error fetching your username.
-      </Alert>
-    );
+  if (error && "status" in error && error.status === 404) {
+    return <UserNameForm id={client.userId} />;
   } else if (isFetching) {
     return null;
   } else if (userName) {
@@ -34,6 +31,10 @@ export default function UserName() {
       </>
     );
   } else {
-    return <UserNameForm id={client.userId} />;
+    return (
+      <Alert retry={() => refetch()}>
+        There was an error fetching your username.
+      </Alert>
+    );
   }
 }
