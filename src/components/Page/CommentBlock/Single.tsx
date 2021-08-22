@@ -45,7 +45,7 @@ export default function Single({ comment }: SingleProps) {
           superDelete,
         }).unwrap();
       } catch (err) {
-        alert(`Error deleting comment: ${err}`);
+        alert("Error deleting comment!");
       }
     }
   };
