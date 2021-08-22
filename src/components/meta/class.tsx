@@ -1,13 +1,13 @@
-import { faQuestionCircle } from "@fortawesome/free-solid-svg-icons";
+import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React from "react";
-import { useState } from "react";
+import { faInfoCircle } from "@fortawesome/free-solid-svg-icons";
+
 import { Frontmatter } from ".";
 
 import * as styles from "./class.module.css";
 
 function format(value?: string): React.ReactNode {
-  return value && <div>{value}.</div>;
+  return value && <span>{value}.</span>;
 }
 
 const courseTypeAssociation: Map<
@@ -20,13 +20,13 @@ const courseTypeAssociation: Map<
   [
     "CM",
     {
-      label: "Lectures",
+      label: "lectures",
     },
   ],
   [
     "TD",
     {
-      label: "Exercise sessions",
+      label: "exercise sessions",
       title:
         "Directed exercise sessions where students work on their own before the solution to each exercise is given to the whole group.",
     },
@@ -34,14 +34,14 @@ const courseTypeAssociation: Map<
   [
     "TP",
     {
-      label: "Practical work",
+      label: "practical work",
       title: "Supervised programming exercises on computers.",
     },
   ],
   [
     "O",
     {
-      label: "Organization",
+      label: "organization",
       title:
         "Organization of the overall course, including exams, and coordination between the different exercise groups.",
     },
@@ -49,14 +49,14 @@ const courseTypeAssociation: Map<
   [
     "Colles",
     {
-      label: "Oral exams",
+      label: "oral exams",
       title: "Graded weekly oral exams.",
     },
   ],
   [
     "T",
     {
-      label: "Tutoring",
+      label: "tutoring",
       title:
         "Weekly sessions where students can ask questions and work out exercises seen before.",
     },
@@ -65,9 +65,10 @@ const courseTypeAssociation: Map<
 
 interface CourseTypeBlockProps {
   type: string;
+  capitalize?: boolean;
 }
 
-function CourseTypeBlock({ type }: CourseTypeBlockProps) {
+function CourseTypeBlock({ type, capitalize }: CourseTypeBlockProps) {
   const [popped, setPopped] = useState(false);
 
   const association = courseTypeAssociation.get(type);
@@ -79,18 +80,19 @@ function CourseTypeBlock({ type }: CourseTypeBlockProps) {
   const { label, title } = association;
 
   return (
-    <div
+    <span
       className={styles.block}
+      data-cap={capitalize}
       onFocus={() => title && setPopped(true)}
       onBlur={() => setPopped(false)}
       title={title && "Click for more details."}
       tabIndex={title ? 0 : -1}
     >
-      {label}.
+      {label}
       {title && (
         <>
           &nbsp;
-          <FontAwesomeIcon icon={faQuestionCircle} size="xs" />
+          <FontAwesomeIcon icon={faInfoCircle} size="sm" />
         </>
       )}
       {title && popped && (
@@ -98,12 +100,22 @@ function CourseTypeBlock({ type }: CourseTypeBlockProps) {
           {title}
         </div>
       )}
-    </div>
+    </span>
   );
 }
 
-function formatCourseType(courseTypes?: string[]): JSX.Element[] | undefined {
-  return courseTypes?.map((type) => <CourseTypeBlock key={type} type={type} />);
+function formatCourseType(courseTypes?: string[]): React.ReactNode {
+  return (
+    <>
+      {courseTypes?.map((type, i) => (
+        <React.Fragment key={type}>
+          {i > 0 && " & "}
+          <CourseTypeBlock type={type} capitalize={i === 0} />
+        </React.Fragment>
+      ))}
+      {"."}
+    </>
+  );
 }
 
 interface MetaClassProps {
@@ -114,12 +126,10 @@ export default function MetaClass({ frontmatter }: MetaClassProps) {
   const { cursus, institution, courseTypes, courseHours } = frontmatter;
 
   return (
-    <>
-      {format(institution)}
-      {format(cursus)}
-      {formatCourseType(courseTypes)}
+    <p>
+      {format(institution)} {format(cursus)} {formatCourseType(courseTypes)}
       {/* \xa0 = non-breaking space */}
-      {format(courseHours ? `${courseHours}\xa0h` : undefined)}
-    </>
+      {format(courseHours ? ` ${courseHours}\xa0h` : undefined)}
+    </p>
   );
 }

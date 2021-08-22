@@ -10,11 +10,12 @@ export default function MetaTalk({ frontmatter }: MetaTalkProps) {
   const { TBA, title, date } = frontmatter;
 
   return (
-    <>
+    <p>
       <DateTime label="On" TBA={TBA}>
         {date}
       </DateTime>
-      <div>Title: {title}.</div>
-    </>
+      {date && " "}
+      Title: {title}.
+    </p>
   );
 }

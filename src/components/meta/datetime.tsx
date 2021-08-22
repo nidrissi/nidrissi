@@ -23,8 +23,8 @@ export default function DateTime({ label, children, TBA }: DateTimeProps) {
         ) : (
           localeDate
         )}
-        {"."}
       </time>
+      {"."}
     </>
   );
 }

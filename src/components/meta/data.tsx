@@ -13,7 +13,7 @@ export default function MetaData({
   frontmatter: { title, date, lastMod, tags },
 }: MetaDataProps) {
   return (
-    <>
+    <p>
       <LdJSON>
         {{
           "@context": "https://schema.org",
@@ -24,10 +24,15 @@ export default function MetaData({
         }}
       </LdJSON>
       <DateTime label="Published">{date}</DateTime>
+      {date && lastMod && " "}
       <DateTime label="Updated">{lastMod}</DateTime>
-      {tags?.sort().map((tag) => (
-        <TagLink tag={tag} key={tag} />
+      {(date || lastMod) && tags && " "}
+      {tags?.sort().map((tag, i) => (
+        <React.Fragment key={tag}>
+          {i > 0 && " "}
+          <TagLink tag={tag} />
+        </React.Fragment>
       ))}
-    </>
+    </p>
   );
 }

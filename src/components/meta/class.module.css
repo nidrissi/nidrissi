@@ -1,3 +1,11 @@
+.block {
+  display: inline-block;
+}
+
+.block[data-cap="true"]::first-letter {
+  text-transform: uppercase;
+}
+
 .block[title] {
   position: relative;
   cursor: pointer;

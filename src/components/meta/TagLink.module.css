@@ -1,5 +1,4 @@
 .tag-link {
-  display: block;
   color: var(--indigo-800);
 }
 
@@ -24,6 +23,7 @@
 }
 
 .big {
+  display: block;
   font-size: xx-large;
   font-weight: bold;
   padding: 1rem;
