@@ -40,29 +40,35 @@ interface NewCommentFormProps {
 function NewCommentForm({ pageId }: NewCommentFormProps) {
   const [expanded, setExpanded] = useState(false);
   const [currentInput, setCurrentInput] = useState<string>("");
-  const [inputError, setInputError] = useState<string>();
+  const [error, setError] = useState("");
 
-  const [triggerPostComment, { isLoading, isError }] = usePostCommentMutation();
+  const [triggerPostComment, { isLoading }] = usePostCommentMutation();
 
   async function handleSubmit() {
     if (isLoading) {
       return;
     }
-    setInputError(undefined);
+    setError("");
     const trueInput = currentInput?.trim() ?? "";
     setCurrentInput(trueInput);
 
     if (trueInput.length < 10) {
-      setInputError("Comments must be at least 10 characters long.");
+      setError("Comments must be at least 10 characters long.");
     } else if (trueInput.length > 512) {
-      setInputError("Comments must be at most 512 characters long.");
+      setError("Comments must be at most 512 characters long.");
     } else {
       try {
         await triggerPostComment({ pageId, content: trueInput }).unwrap();
         setCurrentInput("");
-        setInputError(undefined);
+        setError("");
       } catch (err) {
-        setInputError(err);
+        if (typeof err === "object" && "status" in err && err.status === 429) {
+          setError(
+            "You are posting too much. Please wait 10 seconds between two comments"
+          );
+        } else {
+          setError("There was an unspecified error posting your comment.");
+        }
       }
     }
   }
@@ -76,7 +82,7 @@ function NewCommentForm({ pageId }: NewCommentFormProps) {
 
     if (shouldReset) {
       setExpanded(false);
-      setInputError(undefined);
+      setError("");
       setCurrentInput("");
     }
   }
@@ -98,11 +104,11 @@ function NewCommentForm({ pageId }: NewCommentFormProps) {
         >
           <textarea
             autoFocus
-            className={inputError ? styles.error : ""}
+            className={error ? styles.error : ""}
             rows={5}
             value={currentInput}
             onChange={(e) => {
-              setInputError(undefined);
+              setError("");
               setCurrentInput(e.target.value);
             }}
             onKeyDown={(e) => {
@@ -117,10 +123,7 @@ function NewCommentForm({ pageId }: NewCommentFormProps) {
             disabled={isLoading}
             placeholder="Type a comment (up to 512 characters) here..."
           />
-          {inputError && <Error>{inputError}</Error>}
-          {isError && (
-            <Error>There was an unspecified error posting your comment.</Error>
-          )}
+          {error && <Error>{error}</Error>}
           <div className={styles.footer}>
             <div>
               <a

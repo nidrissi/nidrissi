@@ -5,16 +5,14 @@
       "name": "Launch Edge",
       "request": "launch",
       "type": "pwa-msedge",
-      "url": "http://localhost:8000",
+      "url": "http://localhost:4280",
       "webRoot": "${workspaceFolder}"
     },
     {
       "type": "pwa-node",
       "request": "launch",
       "name": "curriculum/split.js",
-      "skipFiles": [
-        "<node_internals>/**"
-      ],
+      "skipFiles": ["<node_internals>/**"],
       "program": "${workspaceFolder}/curriculum/split.js",
       "cwd": "${workspaceFolder}/curriculum"
     },
@@ -23,12 +21,8 @@
       "type": "pwa-node",
       "request": "launch",
       "program": "${workspaceRoot}/node_modules/.bin/gatsby",
-      "args": [
-        "develop"
-      ],
-      "runtimeArgs": [
-        "--nolazy"
-      ],
+      "args": ["develop"],
+      "runtimeArgs": ["--nolazy"],
       "console": "integratedTerminal"
     },
     {
@@ -36,12 +30,8 @@
       "type": "pwa-node",
       "request": "launch",
       "program": "${workspaceRoot}/node_modules/.bin/gatsby",
-      "args": [
-        "build"
-      ],
-      "runtimeArgs": [
-        "--nolazy"
-      ],
+      "args": ["build"],
+      "runtimeArgs": ["--nolazy"],
       "console": "integratedTerminal"
     },
     {
