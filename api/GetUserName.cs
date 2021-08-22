@@ -16,7 +16,7 @@ namespace Idrissi.Blogging
   {
     [FunctionName("GetUserName")]
     public static async Task<IActionResult> Run(
-        [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "user")] HttpRequest req,
+        [HttpTrigger(AuthorizationLevel.Function, "get", Route = "user")] HttpRequest req,
         [CosmosDB(ConnectionStringSetting = "CosmosDbConnectionString")] DocumentClient client,
         ILogger log,
         CancellationToken token)

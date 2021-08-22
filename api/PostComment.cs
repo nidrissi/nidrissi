@@ -23,7 +23,7 @@ namespace Idrissi.Blogging
 
     [FunctionName("PostComment")]
     public static async Task<IActionResult> Run(
-        [HttpTrigger(AuthorizationLevel.Anonymous, "post", Route = "comment/{pageId}")] HttpRequest req,
+        [HttpTrigger(AuthorizationLevel.Function, "post", Route = "comment/{pageId}")] HttpRequest req,
         string pageId,
         [CosmosDB(ConnectionStringSetting = "CosmosDbConnectionString")] DocumentClient client,
         CancellationToken token,

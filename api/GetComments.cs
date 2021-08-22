@@ -13,7 +13,7 @@ namespace Idrissi.Blogging
   {
     [FunctionName("GetComments")]
     public static IActionResult Run(
-        [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "comment/{pageId}")] HttpRequest req,
+        [HttpTrigger(AuthorizationLevel.Function, "get", Route = "comment/{pageId}")] HttpRequest req,
         string pageId,
         [CosmosDB(ConnectionStringSetting = "CosmosDbConnectionString")] DocumentClient client,
         ILogger log)

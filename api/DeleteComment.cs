@@ -17,7 +17,7 @@ namespace Idrissi.Blogging
   {
     [FunctionName("DeleteComment")]
     public static async Task<IActionResult> Run(
-        [HttpTrigger(AuthorizationLevel.Anonymous, "delete", Route = "comment/{pageId}/{commentId}")] HttpRequest req,
+        [HttpTrigger(AuthorizationLevel.Function, "delete", Route = "comment/{pageId}/{commentId}")] HttpRequest req,
         string pageId,
         string commentId,
         [CosmosDB(ConnectionStringSetting = "CosmosDbConnectionString")] DocumentClient client,
