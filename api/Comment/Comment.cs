@@ -11,7 +11,7 @@ namespace BlogApi
     public string PageId { get; set; }
 
     [JsonProperty("timestamp")]
-    public long TimeStamp { get; set; }
+    public long Timestamp { get; set; }
 
     [JsonProperty("content")]
     public string Content { get; set; }

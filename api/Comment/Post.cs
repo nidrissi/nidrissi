@@ -96,7 +96,7 @@ namespace BlogApi
           Content = trimmedContent,
           Username = details.Username,
           UserId = details.Id,
-          TimeStamp = ToJSTime(DateTime.UtcNow),
+          Timestamp = ToJSTime(DateTime.UtcNow),
         };
 
         var commentCollectionUri = UriFactory.CreateDocumentCollectionUri("Blogging", "Comments");

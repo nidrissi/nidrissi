@@ -37,7 +37,7 @@ namespace BlogApi
       var query =
           from comment in client.CreateDocumentQuery<Comment>(commentsCollectionUri)
           where comment.PageId == pageId
-          orderby comment.TimeStamp descending
+          orderby comment.Timestamp descending
           select comment;
 
       var comments = query.ToArray();
