@@ -94,7 +94,7 @@ namespace BlogApi
         {
           PageId = pageId,
           Content = trimmedContent,
-          UserName = details.UserName,
+          Username = details.Username,
           UserId = details.Id,
           TimeStamp = ToJSTime(DateTime.UtcNow),
         };

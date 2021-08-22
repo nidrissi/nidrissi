@@ -3,31 +3,31 @@ import { skipToken } from "@reduxjs/toolkit/query";
 
 import Error from "./Error";
 import { formatClient } from "./ClientPrincipal";
-import { useGetClientQuery, useGetUserNameQuery } from "./CommentApi";
-import { UserNameForm } from "./UserNameForm";
+import { useGetClientQuery, useGetUsernameQuery } from "./CommentApi";
+import { UsernameForm } from "./UsernameForm";
 
-export default function UserName() {
+export default function Username() {
   const { data: client } = useGetClientQuery({});
 
   const {
-    data: userName,
+    data: username,
     isFetching,
     error,
     refetch,
-  } = useGetUserNameQuery(client ? {} : skipToken);
+  } = useGetUsernameQuery(client ? {} : skipToken);
 
   if (!client) {
     return null;
   }
 
   if (error && "status" in error && error.status === 404) {
-    return <UserNameForm id={client.userId} />;
+    return <UsernameForm id={client.userId} />;
   } else if (isFetching) {
     return null;
-  } else if (userName) {
+  } else if (username) {
     return (
       <>
-        Logged-in as <strong title={formatClient(client)}>{userName}</strong>.
+        Logged-in as <strong title={formatClient(client)}>{username}</strong>.
       </>
     );
   } else {

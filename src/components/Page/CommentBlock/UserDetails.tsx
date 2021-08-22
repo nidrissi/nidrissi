@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import Error from "./Error";
 import LoginButton from "./LoginButton";
-import UserName from "./UserName";
+import Username from "./Username";
 import AlertDiv from "../AlertDiv";
 
 import * as styles from "./UserDetails.module.css";
@@ -29,7 +29,7 @@ export default function UserDetails() {
   } else if (client) {
     return (
       <>
-        <UserName />{" "}
+        <Username />{" "}
         <button
           className={styles.logout}
           onClick={() => {

@@ -19,8 +19,8 @@ namespace BlogApi
     [JsonProperty("userId")]
     public string UserId { get; set; }
 
-    [JsonProperty("userName")]
-    public string UserName { get; set; }
+    [JsonProperty("username")]
+    public string Username { get; set; }
 
     [JsonProperty("deleted")]
     public bool Deleted { get; set; }

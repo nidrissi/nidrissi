@@ -7,8 +7,8 @@ namespace BlogApi
     [JsonProperty("id")]
     public string Id { get; set; }
 
-    [JsonProperty("userName")]
-    public string UserName { get; set; }
+    [JsonProperty("username")]
+    public string Username { get; set; }
 
     [JsonProperty("banned")]
     public bool Banned { get; set; }

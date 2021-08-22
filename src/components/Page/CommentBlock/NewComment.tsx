@@ -11,7 +11,7 @@ import { faMarkdown } from "@fortawesome/free-brands-svg-icons";
 
 import {
   useGetClientQuery,
-  useGetUserNameQuery,
+  useGetUsernameQuery,
   usePostCommentMutation,
 } from "./CommentApi";
 import UserDetails from "./UserDetails";
@@ -21,14 +21,14 @@ import * as styles from "./NewComment.module.css";
 
 export default function NewComment({ pageId }: { pageId: string }) {
   const { data: client } = useGetClientQuery({});
-  const { data: userName } = useGetUserNameQuery(client ? {} : skipToken);
+  const { data: username } = useGetUsernameQuery(client ? {} : skipToken);
 
   return (
     <>
       <div>
         <UserDetails />
       </div>
-      {client !== null && userName && <NewCommentForm pageId={pageId} />}
+      {client !== null && username && <NewCommentForm pageId={pageId} />}
     </>
   );
 }

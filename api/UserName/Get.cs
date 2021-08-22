@@ -12,9 +12,9 @@ namespace BlogApi
   using Microsoft.Azure.WebJobs.Extensions.Http;
   using Microsoft.Extensions.Logging;
 
-  public static class GetUserName
+  public static class GetUsername
   {
-    [FunctionName("GetUserName")]
+    [FunctionName("GetUsername")]
     public static async Task<IActionResult> Run(
         [HttpTrigger(AuthorizationLevel.Function, "get", Route = "user")] HttpRequest req,
         [CosmosDB(ConnectionStringSetting = "CosmosDbConnectionString")] DocumentClient client,
@@ -40,14 +40,14 @@ namespace BlogApi
         };
         UserDetails details = await client.ReadDocumentAsync<UserDetails>(userUri, requestOptions, token);
 
-        log.LogInformation("Found name={UserName}.", details.UserName);
+        log.LogInformation("Found name={Username}.", details.Username);
         if (details.Banned)
         {
           log.LogWarning("Rejecting request from banned user{userId}.", details.Id);
           return new UnauthorizedResult();
         }
 
-        return new OkObjectResult(new { userId = details.Id, userName = details.UserName });
+        return new OkObjectResult(new { userId = details.Id, username = details.Username });
       }
       catch (DocumentClientException ex)
       {

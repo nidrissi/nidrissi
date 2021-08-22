@@ -14,9 +14,9 @@ namespace BlogApi
   using Microsoft.Azure.Documents;
   using Microsoft.Azure.Documents.Client;
 
-  public static class PostUserName
+  public static class PostUsername
   {
-    [FunctionName("PostUserName")]
+    [FunctionName("PostUsername")]
     public static async Task<IActionResult> Run(
         [HttpTrigger(AuthorizationLevel.Function, "post", Route = "user")] HttpRequest req,
         [CosmosDB(ConnectionStringSetting = "CosmosDbConnectionString")] DocumentClient client,
@@ -34,7 +34,7 @@ namespace BlogApi
         string userId = principal.FindFirst(ClaimTypes.NameIdentifier).Value;
 
         log.LogDebug("Parsing body of the request");
-        UserDetails details = await JsonSerializer.DeserializeAsync<UserDetails>(
+        var details = await JsonSerializer.DeserializeAsync<UserDetails>(
           req.Body,
           new JsonSerializerOptions
           {
@@ -46,9 +46,9 @@ namespace BlogApi
           return new UnauthorizedResult();
         }
 
-        if (details.UserName.Length > 25 || details.UserName.Length < 3)
+        if (details.Username.Length > 25 || details.Username.Length < 3)
         {
-          log.LogError("Wrong length: {username}", details.UserName);
+          log.LogError("Wrong length: {username}", details.Username);
           return new BadRequestResult();
         }
 

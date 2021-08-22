@@ -19,7 +19,7 @@ export interface Comment {
   content: string;
   deleted: boolean;
   userId: string;
-  userName: string;
+  username: string;
 }
 
 interface SingleProps {
@@ -65,7 +65,7 @@ export default function Single({ comment }: SingleProps) {
       </aside>
       <header>
         <div>
-          <strong>{comment.userName}</strong>
+          <strong>{comment.username}</strong>
           {", "}
           <em>{new Date(comment.timestamp).toLocaleString()}</em>
         </div>

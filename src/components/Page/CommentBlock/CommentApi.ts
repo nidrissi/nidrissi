@@ -16,12 +16,12 @@ export const commentApi = createApi({
         clientPrincipal: ClientPrincipal;
       }) => clientPrincipal,
     }),
-    getUserName: builder.query<string, {}>({
+    getUsername: builder.query<string, {}>({
       query: () => "api/user",
       providesTags: ["username"],
-      transformResponse: ({ userName }: { userName: string }) => userName,
+      transformResponse: ({ username }: { username: string }) => username,
     }),
-    postUserName: builder.mutation<{}, { userName: string; id: string }>({
+    postUsername: builder.mutation<{}, { username: string; id: string }>({
       query: (body) => ({
         url: "api/user",
         method: "POST",
@@ -67,9 +67,9 @@ export const commentApi = createApi({
 
 export const {
   useGetClientQuery,
-  useGetUserNameQuery,
+  useGetUsernameQuery,
   useGetCommentsQuery,
-  usePostUserNameMutation,
+  usePostUsernameMutation,
   usePostCommentMutation,
   useDeleteCommentMutation,
 } = commentApi;

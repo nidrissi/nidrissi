@@ -2,18 +2,18 @@ import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRight, faSpinner } from "@fortawesome/free-solid-svg-icons";
 
-import * as styles from "./UserNameForm.module.css";
-import { usePostUserNameMutation } from "./CommentApi";
+import * as styles from "./UsernameForm.module.css";
+import { usePostUsernameMutation } from "./CommentApi";
 
-interface UserNameFormProps {
+interface UsernameFormProps {
   id: string;
 }
 
-export function UserNameForm({ id }: UserNameFormProps) {
+export function UsernameForm({ id }: UsernameFormProps) {
   const [currentInput, setCurrentInput] = useState("");
   const [inputError, setInputError] = useState<string>();
-  const [triggerSetUserName, { isError, isLoading }] =
-    usePostUserNameMutation();
+  const [triggerSetUsername, { isError, isLoading }] =
+    usePostUsernameMutation();
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -22,8 +22,8 @@ export function UserNameForm({ id }: UserNameFormProps) {
     } else if (currentInput.length < 3 || currentInput.length > 25) {
       setInputError("Username must be between 3 and 25 characters.");
     } else {
-      triggerSetUserName({
-        userName: currentInput,
+      triggerSetUsername({
+        username: currentInput,
         id,
       });
     }
