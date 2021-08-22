@@ -20,7 +20,13 @@ namespace Idrissi.Blogging
     {
       if (string.IsNullOrWhiteSpace(pageId))
       {
-        log.LogWarning("Empty request, aborting.");
+        log.LogError("Empty request, aborting.");
+        return new BadRequestResult();
+      }
+
+      if (!Pages.AllowedPageIds.ContainsKey(pageId))
+      {
+        log.LogError("Non-existing page {id}, aborting.", pageId);
         return new BadRequestResult();
       }
 
