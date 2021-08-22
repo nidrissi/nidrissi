@@ -31,7 +31,9 @@ export const commentApi = createApi({
     }),
     getComments: builder.query<Comment[], string>({
       query: (pageId) => `/api/comment/${pageId}`,
-      providesTags: ["comment"],
+      providesTags: (_result, _error, pageId) => [
+        { type: "comment", id: pageId },
+      ],
     }),
     postComment: builder.mutation<{}, { pageId: string; content: string }>({
       query: ({ pageId, content }) => ({
@@ -41,7 +43,9 @@ export const commentApi = createApi({
           content,
         },
       }),
-      invalidatesTags: ["comment"],
+      invalidatesTags: (_result, _error, { pageId }) => [
+        { type: "comment", id: pageId },
+      ],
     }),
     deleteComment: builder.mutation<
       {},
@@ -54,7 +58,9 @@ export const commentApi = createApi({
         },
         method: "DELETE",
       }),
-      invalidatesTags: ["comment"],
+      invalidatesTags: (_result, _error, { pageId }) => [
+        { type: "comment", id: pageId },
+      ],
     }),
   }),
 });
