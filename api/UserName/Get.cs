@@ -21,8 +21,8 @@ namespace BlogApi
         ILogger log,
         CancellationToken token)
     {
-      bool ok = Auth.ParseAndCheck(req, log, out var principal);
-      if (!ok)
+      ClaimsPrincipal principal = Auth.Parse(req);
+      if (!Auth.Check(principal, log))
       {
         return new UnauthorizedResult();
       }

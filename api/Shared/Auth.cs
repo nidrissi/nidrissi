@@ -55,11 +55,8 @@ namespace BlogApi
       return new ClaimsPrincipal(identity);
     }
 
-    public static bool ParseAndCheck(HttpRequest req, ILogger log, out ClaimsPrincipal identity)
+    public static bool Check(ClaimsPrincipal identity, ILogger log)
     {
-      log.LogInformation("Parsing identity...");
-      identity = Parse(req);
-
       if (!identity.IsInRole("authenticated"))
       {
         log.LogWarning("Got a request from an unauthenticated user.");
@@ -75,6 +72,18 @@ namespace BlogApi
       }
 
       return true;
+    }
+
+    public static ClaimsIdentity Parse(UserDetails details)
+    {
+      var identity = new ClaimsIdentity("idrissi.eu");
+      identity.AddClaim(new Claim(ClaimTypes.NameIdentifier, details.Id));
+      identity.AddClaim(new Claim(ClaimTypes.Name, details.Username));
+      if (details.Banned)
+      {
+        identity.AddClaim(new Claim("Banned", "true"));
+      }
+      return identity;
     }
   }
 }

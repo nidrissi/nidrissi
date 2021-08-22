@@ -50,16 +50,16 @@ namespace BlogApi
         if (string.IsNullOrWhiteSpace(trimmedContent))
         {
           log.LogError("Empty post.");
-          return new BadRequestObjectResult("Empty post.");
+          return new BadRequestResult();
         }
         else if (trimmedContent.Length < 10 || trimmedContent.Length > 512)
         {
           log.LogError("Incorrect post length: {l}.", trimmedContent.Length);
-          return new BadRequestObjectResult("Post must be between 10 and 512 characters.");
+          return new BadRequestResult();
         }
 
-        bool ok = Auth.ParseAndCheck(req, log, out var principal);
-        if (!ok)
+        ClaimsPrincipal principal = Auth.Parse(req);
+        if (!Auth.Check(principal, log))
         {
           return new UnauthorizedResult();
         }
@@ -71,15 +71,17 @@ namespace BlogApi
         var userUri = UriFactory.CreateDocumentUri("Blogging", "Users", userId);
         var userRequestOptions = new RequestOptions() { PartitionKey = new PartitionKey(userId) };
         UserDetails details = await client.ReadDocumentAsync<UserDetails>(userUri, userRequestOptions, token);
+        principal.AddIdentity(Auth.Parse(details));
 
-        if (details.Banned)
+        if (principal.HasClaim("banned", "true"))
         {
           log.LogError("Rejecting request from banned user={userId}.", details.Id);
           return new UnauthorizedResult();
         }
 
         var lastTime = DateTimeOffset.FromUnixTimeMilliseconds(details.LastAttemptToPost).UtcDateTime;
-        details.LastAttemptToPost = ToJSTime(DateTime.UtcNow);
+        long jsNow = ToJSTime(DateTime.UtcNow);
+        details.LastAttemptToPost = jsNow;
 
         log.LogInformation("Updating lastAttemptToPost for user={userId}.", details.Id);
         await client.ReplaceDocumentAsync(userUri, details, userRequestOptions, token);
@@ -95,8 +97,8 @@ namespace BlogApi
           PageId = pageId,
           Content = trimmedContent,
           Username = details.Username,
-          UserId = details.Id,
-          Timestamp = ToJSTime(DateTime.UtcNow),
+          UserId = userId,
+          Timestamp = jsNow,
         };
 
         var commentCollectionUri = UriFactory.CreateDocumentCollectionUri("Blogging", "Comments");
@@ -105,13 +107,13 @@ namespace BlogApi
             comment,
             new RequestOptions { PartitionKey = new PartitionKey(pageId) },
             cancellationToken: token);
-        log.LogInformation("Successfully posted comment {id}.", response.Resource.Id);
+        log.LogInformation("Successfully posted comment{commentId}.", response.Resource.Id);
 
         return new CreatedResult(response.Resource.Id, response.Resource);
       }
       catch (JsonException ex)
       {
-        log.LogError("JSON error: {msg}", ex.Message);
+        log.LogError("JSON error: {msg}.", ex.Message);
         return new BadRequestObjectResult(ex.Message);
       }
       catch (DocumentClientException ex)
