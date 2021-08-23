@@ -117,7 +117,6 @@ export default function Contact() {
         {contactLinks.map((link) => (
           <li key={link.icon.iconName}>
             <FontAwesomeIcon icon={link.icon} listItem />
-            &nbsp;
             {"items" in link ? (
               link.items.map((item, index) => (
                 <React.Fragment key={item.label}>
