@@ -5,7 +5,6 @@ export const initialState: Settings = {
   mode: "biblatex",
   includeAbstract: false,
   includeFile: true,
-  filePrefix: false,
   includeWget: false,
   wgetPowershell: false,
   fileFolder: "~",

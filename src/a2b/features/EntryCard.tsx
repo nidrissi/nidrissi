@@ -24,7 +24,7 @@ interface Pairing {
  * // returns { key: 'DoeDew2020', authorList: "Doe, Jane and Dew, John"}
  * splitAuthors({ authors: ['Jane Doe', 'John Dew'], date: '2020' })
  */
-function joinAuthorsGetKey({
+export function joinAuthorsGetKey({
   authors,
   date,
 }: {
@@ -113,7 +113,7 @@ function buildPairing({
   });
 
   // generate a filename and link to the PDF, if any
-  const fileName = (settings.filePrefix ? `${key[0]}/` : "") + `${key}.pdf`;
+  const fileName = `${key}.pdf`;
   const fileLink = entry.pdfLink ? (
     <a href={entry.pdfLink}>{fileName}</a>
   ) : (
@@ -199,17 +199,7 @@ function buildPairing({
   // delete all empty values
   Object.keys(pairing).forEach((k) => !pairing[k] && delete pairing[k]);
 
-  // the wget command, if any
-  let wget = null;
-  if (settings.includeFile && entry.pdfLink) {
-    if (settings.wgetPowershell) {
-      wget = `pwsh -Command Invoke-WebRequest ${entry.pdfLink} -OutFile ${settings.fileFolder}\\${fileName}`;
-    } else {
-      wget = `wget --user-agent='Mozilla' ${entry.pdfLink} -O ${settings.fileFolder}/${fileName}`;
-    }
-  }
-
-  return { type: entry.type, pairing, key, wget };
+  return { type: entry.type, pairing, key };
 }
 
 interface EntryCardProps {
@@ -232,7 +222,7 @@ export default function EntryCard({ entry }: EntryCardProps) {
 
   const settings = useSelector(selectSettings);
 
-  const { type, pairing, key, wget } = buildPairing({ entry, settings });
+  const { type, pairing, key } = buildPairing({ entry, settings });
   const formattedEntry = formatEntry({ type, pairing, key });
 
   return (
@@ -244,7 +234,6 @@ export default function EntryCard({ entry }: EntryCardProps) {
       <pre ref={preRef} data-body>
         {formattedEntry}
       </pre>
-      {settings.includeWget && wget && <pre data-wget>{wget}</pre>}
     </div>
   );
 }

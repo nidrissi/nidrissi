@@ -43,7 +43,6 @@ export interface SearchSettings {
 /** The settings */
 export type Settings = SearchSettings & {
   fileFolder: string;
-  filePrefix: boolean;
   includeAbstract: boolean;
   includeFile: boolean;
   includePrimaryCategory: boolean;
