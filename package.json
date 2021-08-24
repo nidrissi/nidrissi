@@ -23,7 +23,7 @@
     "@silvenon/remark-smartypants": "^1.0.0",
     "@types/crypto-js": "^4.0.2",
     "@types/mdx-js__react": "^1.5.4",
-    "@types/node": "^16.4.13",
+    "@types/node": "^16.7.1",
     "@types/react": "^17.0.16",
     "@types/react-dom": "^17.0.9",
     "@types/react-helmet": "^6.1.2",
