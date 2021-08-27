@@ -1,5 +1,5 @@
 ---
-title: "Git for Mathematicians (3/3): The Practice"
+title: "Git for Mathematicians (3a/3): The Practice"
 date: 2021-08-06
 tags: [code, math]
 urls:
@@ -151,9 +151,7 @@ However, the remote(s) will not be set-up properly yet, so you will need to adju
 
 ---
 
-_More to come..._
-
----
+_More to come in a next post..._
 
 ## Further reading
 

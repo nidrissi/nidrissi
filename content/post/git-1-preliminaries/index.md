@@ -7,7 +7,7 @@ urls:
   custom:
     - label: "Part 2: The Theory"
       url: /post/git-2-theory
-    - label: "Part 3: The Practice"
+    - label: "Part 3a: The Practice"
       url: /post/git-3-practice
 ---
 

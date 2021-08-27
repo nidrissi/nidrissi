@@ -6,7 +6,7 @@ urls:
   custom:
     - label: "Part 1: Preliminaries"
       url: /post/git-1-preliminaries
-    - label: "Part 3: The Practice"
+    - label: "Part 3a: The Practice"
       url: /post/git-3-practice
 ---
 
