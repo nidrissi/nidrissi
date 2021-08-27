@@ -33,13 +33,13 @@ export default function CommentBlock({ pageId }: CommentBlockProps) {
         </AlertDiv>
       ) : isError ? (
         <Error retry={refetch}>An error occurred fetching comments.</Error>
-      ) : (
-        <div className={styles.root}>
-          {comments?.map((c) => (
+      ) : (comments?.length ?? 0) > 0 ? (
+        <div className={styles.list}>
+          {comments!.map((c) => (
             <Single key={c.id} comment={c} />
           ))}
         </div>
-      )}
+      ) : null}
     </Wrapper>
   );
 }

@@ -26,10 +26,12 @@ export default function WriteComment({ pageId }: { pageId: string }) {
 
   return (
     <>
-      <div>
-        <UserDetails />
-      </div>
-      {client !== null && username && <WriteCommentForm pageId={pageId} />}
+      <UserDetails />
+      {client !== null && username && (
+        <div className={styles.wrapDiv}>
+          <WriteCommentForm pageId={pageId} />
+        </div>
+      )}
     </>
   );
 }
@@ -89,7 +91,7 @@ export function WriteCommentForm({
       } catch (err) {
         if (typeof err === "object" && "status" in err && err.status === 429) {
           setError(
-            "You are posting too much. Please wait 10 seconds between two comments"
+            "You are posting too much. Please wait 10 seconds between two comments."
           );
         } else {
           setError("There was an unspecified error posting your comment.");
@@ -129,11 +131,11 @@ export function WriteCommentForm({
             e.preventDefault();
             handleSubmit();
           }}
-          onReset={handleReset}
+          onReset={() => handleReset()}
         >
           <textarea
             autoFocus
-            className={error ? styles.error : ""}
+            data-error={error !== "" || undefined}
             rows={5}
             value={currentInput}
             onChange={(e) => {
@@ -149,7 +151,7 @@ export function WriteCommentForm({
                 handleReset();
               }
             }}
-            disabled={isPostLoading}
+            disabled={isLoading}
             placeholder="Type a comment (up to 512 characters) here..."
           />
           {error && <Error>{error}</Error>}

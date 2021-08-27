@@ -1,3 +1,7 @@
+.wrap-div {
+  margin-top: 0.5rem;
+}
+
 .new-comment button {
   display: block;
   padding: 0.333rem;
@@ -20,8 +24,12 @@
   color: black;
 }
 
-.new-comment textarea.error {
-  background-color: var(--red-100);
+.new-comment textarea[data-error] {
+  background-color: var(--red-200);
+}
+
+.new-comment:disabled {
+  background-color: var(--gray-200);
 }
 
 .footer {

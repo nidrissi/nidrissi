@@ -10,7 +10,11 @@ export const commentApi = createApi({
     getClient: builder.query<ClientPrincipal, {}>({
       query: () => ".auth/me",
       providesTags: ["client"],
-      transformResponse: ({ client }: { client: ClientPrincipal }) => client,
+      transformResponse: ({
+        clientPrincipal,
+      }: {
+        clientPrincipal: ClientPrincipal;
+      }) => clientPrincipal,
     }),
     getUsername: builder.query<string, {}>({
       query: () => "api/user",

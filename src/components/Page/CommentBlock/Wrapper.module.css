@@ -4,14 +4,14 @@
 }
 
 .wrapper > h2 {
-  margin-top: 0.5rem;
-  margin-bottom: 1rem;
+  margin-top: 0.25rem;
   display: grid;
-  grid-template-columns: 1fr auto;
+  gap: 1rem;
+  grid-template-columns: 1fr auto auto;
   align-content: center;
 }
 
-.retry {
+.wrapper > h2 > button {
   display: block;
   padding: 0.25rem;
 }
@@ -21,7 +21,14 @@
   color: black;
 }
 
+.logout:hover {
+  background-color: var(--red-400);
+}
+
 @media (prefers-color-scheme: dark) {
+  .logout:hover {
+    background-color: var(--red-900);
+  }
   .retry:hover {
     background-color: var(--blue-800);
     color: white;

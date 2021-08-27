@@ -1,9 +1,14 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faComments, faSync } from "@fortawesome/free-solid-svg-icons";
+import {
+  faComments,
+  faSignOutAlt,
+  faSync,
+} from "@fortawesome/free-solid-svg-icons";
 
 import Error from "./Error";
 import * as styles from "./Wrapper.module.css";
+import { useGetClientQuery } from "./CommentApi";
 
 interface WrapperProps {
   children: React.ReactNode;
@@ -12,6 +17,8 @@ interface WrapperProps {
 }
 
 export default function Wrapper({ children, num, retry }: WrapperProps) {
+  const { data: client } = useGetClientQuery({});
+
   const title =
     num === undefined
       ? "Comments"
@@ -32,7 +39,22 @@ export default function Wrapper({ children, num, retry }: WrapperProps) {
           </div>
           {retry && (
             <button onClick={() => retry()} className={styles.retry}>
-              <FontAwesomeIcon icon={faSync} fixedWidth />
+              <FontAwesomeIcon icon={faSync} />
+            </button>
+          )}
+          {client && (
+            <button
+              onClick={() => {
+                const location = window.location.pathname;
+                window.location.assign(
+                  `/.auth/logout?post_logout_redirect_uri=${encodeURI(
+                    location + "#__comments"
+                  )}`
+                );
+              }}
+              className={styles.logout}
+            >
+              <FontAwesomeIcon icon={faSignOutAlt} />
             </button>
           )}
         </h2>

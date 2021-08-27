@@ -25,16 +25,16 @@ export default function Username() {
     return <UsernameForm id={client.userId} />;
   } else if (isFetching) {
     return (
-      <>
+      <div>
         <FontAwesomeIcon icon={faSpinner} spin />
         &nbsp;Loading username...
-      </>
+      </div>
     );
   } else if (username) {
     return (
-      <>
+      <div>
         Logged-in as <strong title={client.toString()}>{username}</strong>.
-      </>
+      </div>
     );
   } else {
     return (

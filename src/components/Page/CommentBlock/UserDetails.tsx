@@ -1,5 +1,5 @@
 import React from "react";
-import { faSignOutAlt, faSpinner } from "@fortawesome/free-solid-svg-icons";
+import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import Error from "./Error";
@@ -7,7 +7,6 @@ import LoginButton from "./LoginButton";
 import Username from "./Username";
 import AlertDiv from "../AlertDiv";
 
-import * as styles from "./UserDetails.module.css";
 import { useGetClientQuery } from "./CommentApi";
 
 export default function UserDetails() {
@@ -27,25 +26,7 @@ export default function UserDetails() {
       </AlertDiv>
     );
   } else if (client) {
-    return (
-      <>
-        <Username />{" "}
-        <button
-          className={styles.logout}
-          onClick={() => {
-            const location = window.location.pathname;
-            window.location.assign(
-              `/.auth/logout?post_logout_redirect_uri=${encodeURI(
-                location + "#__comments"
-              )}`
-            );
-          }}
-        >
-          <FontAwesomeIcon icon={faSignOutAlt} />
-          &nbsp;Logout
-        </button>
-      </>
-    );
+    return <Username />;
   } else {
     return <LoginButton />;
   }
