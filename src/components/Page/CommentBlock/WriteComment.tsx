@@ -18,9 +18,9 @@ import {
 import UserDetails from "./UserDetails";
 import Error from "./Error";
 
-import * as styles from "./NewComment.module.css";
+import * as styles from "./WriteComment.module.css";
 
-export default function NewComment({ pageId }: { pageId: string }) {
+export default function WriteComment({ pageId }: { pageId: string }) {
   const { data: client } = useGetClientQuery({});
   const { data: username } = useGetUsernameQuery(client ? {} : skipToken);
 
@@ -29,12 +29,12 @@ export default function NewComment({ pageId }: { pageId: string }) {
       <div>
         <UserDetails />
       </div>
-      {client !== null && username && <NewCommentForm pageId={pageId} />}
+      {client !== null && username && <WriteCommentForm pageId={pageId} />}
     </>
   );
 }
 
-type NewCommentFormProps =
+type WriteCommentFormProps =
   | {
       pageId: string;
       initialValue?: never;
@@ -48,12 +48,12 @@ type NewCommentFormProps =
       closeCallback: () => void;
     };
 
-export function NewCommentForm({
+export function WriteCommentForm({
   pageId,
   initialValue,
   id,
   closeCallback,
-}: NewCommentFormProps) {
+}: WriteCommentFormProps) {
   const [expanded, setExpanded] = useState(id !== undefined);
   const [currentInput, setCurrentInput] = useState<string>(initialValue ?? "");
   const [error, setError] = useState("");

@@ -17,7 +17,7 @@ import Identicon from "./Identicon";
 
 import { useDeleteCommentMutation, useGetClientQuery } from "./CommentApi";
 import * as styles from "./Single.module.css";
-import { NewCommentForm } from "./NewComment";
+import { WriteCommentForm } from "./WriteComment";
 
 export interface Comment {
   id: string;
@@ -111,7 +111,7 @@ export default function Single({ comment }: SingleProps) {
         )}
       </header>
       {isEditing ? (
-        <NewCommentForm
+        <WriteCommentForm
           id={comment.id}
           pageId={comment.pageId}
           initialValue={comment.content}

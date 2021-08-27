@@ -4,7 +4,7 @@ import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 
 import Single from "./Single";
 import Wrapper from "./Wrapper";
-import NewComment from "./NewComment";
+import WriteComment from "./WriteComment";
 import Error from "./Error";
 
 import * as styles from "./CommentBlock.module.css";
@@ -25,7 +25,7 @@ export default function CommentBlock({ pageId }: CommentBlockProps) {
 
   return (
     <Wrapper num={comments?.length} retry={refetch}>
-      <NewComment pageId={pageId} />
+      <WriteComment pageId={pageId} />
       {isFetching ? (
         <AlertDiv color="blue">
           <FontAwesomeIcon icon={faSpinner} spin />
