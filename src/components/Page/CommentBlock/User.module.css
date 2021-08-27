@@ -1,0 +1,38 @@
+.info-btn {
+  display: inline-block;
+  position: relative;
+}
+
+.info-btn > div {
+  position: absolute;
+  z-index: 2;
+  bottom: 105%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.info-btn > div > div {
+  background-color: var(--blue-900);
+  color: white;
+  border-radius: 0.25rem;
+  padding: 0.25rem;
+  width: fit-content;
+  box-shadow: 0px 0px 5px 1px var(--blue-900);
+}
+
+.info-btn > div::after {
+  position: relative;
+  z-index: 3;
+  bottom: -15px;
+  left: 0;
+  content: "";
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-top: 15px solid var(--blue-900);
+}
+
+.info-btn code {
+  color: white;
+}

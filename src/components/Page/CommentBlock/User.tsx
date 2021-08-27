@@ -6,9 +6,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Error from "./Error";
 import LoginButton from "./LoginButton";
 import AlertDiv from "../AlertDiv";
-
 import { useGetClientQuery, useGetUsernameQuery } from "./CommentApi";
 import { UsernameForm } from "./UsernameForm";
+import { formatClient } from "./ClientPrincipal";
+import * as styles from "./User.module.css";
 
 export default function User() {
   const {
@@ -59,14 +60,19 @@ export default function User() {
       <div>
         Logged-in as <strong>{username}</strong>{" "}
         <button
-          onClick={() => setDetailsExpanded((e) => !e)}
+          className={styles.infoBtn}
+          onClick={() => setDetailsExpanded(true)}
+          onBlur={() => setDetailsExpanded(false)}
           title="Show user id"
         >
-          {detailsExpanded ? (
-            <>Id: {client.userId}</>
-          ) : (
-            <FontAwesomeIcon icon={faInfoCircle} size="sm" />
+          {detailsExpanded && (
+            <div>
+              <div>
+                User details: <code>{formatClient(client)}</code>
+              </div>
+            </div>
           )}
+          <FontAwesomeIcon icon={faInfoCircle} size="sm" />
         </button>
       </div>
     );

@@ -1,22 +1,10 @@
-export default class ClientPrincipal {
+export default interface ClientPrincipal {
   userId: string;
   identityProvider: string;
   userDetails: string;
   userRoles: string[];
+}
 
-  constructor(
-    userId: string,
-    identityProvider: string,
-    userDetails: string,
-    userRoles: string[]
-  ) {
-    this.userId = userId;
-    this.identityProvider = identityProvider;
-    this.userDetails = userDetails;
-    this.userRoles = userRoles;
-  }
-
-  toString(): string {
-    return `${this.userDetails} @ ${this.identityProvider} [${this.userId}]`;
-  }
+export function formatClient(client: ClientPrincipal): string {
+  return `${client.userDetails} @ ${client.identityProvider} - ${client.userId}`;
 }
