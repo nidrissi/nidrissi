@@ -6,8 +6,7 @@
   grid-template-areas:
     "avatar header"
     "avatar body";
-  align-items: flex-start;
-  gap: 0.5rem;
+  align-content: flex-start;
 }
 
 .comment[data-deleted="true"] {
@@ -28,28 +27,34 @@
 
 .comment > div[data-body] {
   grid-area: body;
-  margin-top: -1em;
-  margin-bottom: -1em;
+}
+
+.comment > div[data-body] p {
+  margin: 0;
 }
 
 .comment > aside {
   grid-area: avatar;
+  margin: 0.5rem;
 }
 
 .comment > header {
   grid-area: header;
   display: flex;
+  align-items: baseline;
   gap: 0.5rem;
 }
 
-.comment > header > div {
+.comment > header > p {
+  margin: 0;
   flex-grow: 1;
   border-bottom: 1px dotted currentColor;
 }
 
 .comment > header > button {
   display: block;
-  padding: 0.333rem;
+  padding: 0.3rem;
+  border-radius: 9999px;
 }
 
 .comment > header > button[data-del]:hover {

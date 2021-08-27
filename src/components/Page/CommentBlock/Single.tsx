@@ -70,7 +70,7 @@ export default function Single({ comment }: SingleProps) {
         )}
       </aside>
       <header>
-        <div>
+        <p>
           <strong>{comment.username}</strong>
           {", "}
           <em>{new Date(comment.timestamp).toLocaleString()}</em>.
@@ -81,7 +81,7 @@ export default function Single({ comment }: SingleProps) {
               {new Date(comment.lastEditTimestamp).toLocaleDateString()}
             </em>
           )}
-        </div>
+        </p>
         {comment.userId === client?.userId && !comment.deleted && (
           <>
             {new Date().getTime() - comment.timestamp < 1000 * 60 * 60 * 5 && (
@@ -125,6 +125,7 @@ export default function Single({ comment }: SingleProps) {
           <ReactMarkdown
             remarkPlugins={[remarkMath, remarkExternalLinks]}
             rehypePlugins={[rehypeKatex]}
+            disallowedElements={["h1", "h2", "h3", "h4", "h5", "h6"]}
             children={comment.content ?? "*[deleted]*"}
           />
         </div>

@@ -9,6 +9,7 @@
   gap: 1rem;
   grid-template-columns: 1fr auto auto;
   align-content: center;
+  align-items: baseline;
 }
 
 .wrapper > h2 > button {
