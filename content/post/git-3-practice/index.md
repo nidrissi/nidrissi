@@ -1,5 +1,5 @@
 ---
-title: "Git for Mathematicians (3a/3): The Practice"
+title: "Git for Mathematicians (3a): The Practice"
 date: 2021-08-06
 tags: [code, math]
 urls:
