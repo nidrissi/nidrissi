@@ -117,7 +117,7 @@ namespace BlogApi.Comment
 
         var response = await client.ReplaceDocumentAsync(commentUri, comment, commentRequestOptions, token);
 
-        return new OkResult();
+        return new EmptyResult();
       }
       catch (JsonException ex)
       {

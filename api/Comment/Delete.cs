@@ -48,7 +48,7 @@ namespace BlogApi.Comment
             };
             log.LogWarning("Administrator erasure of comment {commentId}", commentId);
             await client.DeleteDocumentAsync(commentUri, requestOptions, token);
-            return new OkResult();
+            return new NoContentResult();
           }
           else
           {
@@ -77,7 +77,7 @@ namespace BlogApi.Comment
               requestOptions,
               token);
 
-          return new OkResult();
+          return new NoContentResult();
         }
       }
       catch (DocumentClientException ex)
